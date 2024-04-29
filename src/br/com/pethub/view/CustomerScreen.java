@@ -111,9 +111,10 @@ public class CustomerScreen extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setForeground(new java.awt.Color(28, 74, 137));
         jLabel2.setText("Código:");
 
+        jTextField1.setForeground(new java.awt.Color(28, 74, 137));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -121,11 +122,10 @@ public class CustomerScreen extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setForeground(new java.awt.Color(28, 74, 137));
         jLabel4.setText("Nome:");
 
-        jTextField2.setEditable(false);
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField2.setForeground(new java.awt.Color(28, 74, 137));
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -136,14 +136,14 @@ public class CustomerScreen extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setForeground(new java.awt.Color(28, 74, 137));
         jLabel10.setText("CEP:");
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setForeground(new java.awt.Color(28, 74, 137));
         jLabel11.setText("N°:");
 
-        jTextField5.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField5.setForeground(new java.awt.Color(28, 74, 137));
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
@@ -151,10 +151,10 @@ public class CustomerScreen extends javax.swing.JFrame {
         });
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setForeground(new java.awt.Color(28, 74, 137));
         jLabel12.setText("Complemento");
 
-        jTextField6.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField6.setForeground(new java.awt.Color(28, 74, 137));
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
@@ -162,10 +162,10 @@ public class CustomerScreen extends javax.swing.JFrame {
         });
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel13.setForeground(new java.awt.Color(28, 74, 137));
         jLabel13.setText("Bairro:");
 
-        jTextField7.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField7.setForeground(new java.awt.Color(28, 74, 137));
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField7ActionPerformed(evt);
@@ -173,10 +173,10 @@ public class CustomerScreen extends javax.swing.JFrame {
         });
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setForeground(new java.awt.Color(28, 74, 137));
         jLabel14.setText("Cidade:");
 
-        jTextField8.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField8.setForeground(new java.awt.Color(28, 74, 137));
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField8ActionPerformed(evt);
@@ -184,13 +184,14 @@ public class CustomerScreen extends javax.swing.JFrame {
         });
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setForeground(new java.awt.Color(28, 74, 137));
         jLabel15.setText("UF:");
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBox1.setForeground(new java.awt.Color(28, 74, 137));
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jFormattedTextField3.setForeground(new java.awt.Color(0, 0, 0));
+        jFormattedTextField3.setForeground(new java.awt.Color(28, 74, 137));
         try {
             jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ##### - ####")));
         } catch (java.text.ParseException ex) {
@@ -198,10 +199,10 @@ public class CustomerScreen extends javax.swing.JFrame {
         }
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setForeground(new java.awt.Color(28, 74, 137));
         jLabel9.setText("Endereço:");
 
-        jTextField4.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField4.setForeground(new java.awt.Color(28, 74, 137));
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
@@ -271,14 +272,14 @@ public class CustomerScreen extends javax.swing.JFrame {
         );
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setForeground(new java.awt.Color(28, 74, 137));
         jLabel5.setText("Email:");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setForeground(new java.awt.Color(28, 74, 137));
         jLabel6.setText("Celular:");
 
-        jFormattedTextField1.setForeground(new java.awt.Color(0, 0, 0));
+        jFormattedTextField1.setForeground(new java.awt.Color(28, 74, 137));
         try {
             jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ##### - ####")));
         } catch (java.text.ParseException ex) {
@@ -286,10 +287,10 @@ public class CustomerScreen extends javax.swing.JFrame {
         }
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setForeground(new java.awt.Color(28, 74, 137));
         jLabel7.setText("Telefone (fixo)");
 
-        jFormattedTextField2.setForeground(new java.awt.Color(0, 0, 0));
+        jFormattedTextField2.setForeground(new java.awt.Color(28, 74, 137));
         try {
             jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##) ##### - ####")));
         } catch (java.text.ParseException ex) {
@@ -297,10 +298,10 @@ public class CustomerScreen extends javax.swing.JFrame {
         }
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setForeground(new java.awt.Color(28, 74, 137));
         jLabel16.setText("RG:");
 
-        jFormattedTextField5.setForeground(new java.awt.Color(0, 0, 0));
+        jFormattedTextField5.setForeground(new java.awt.Color(28, 74, 137));
         try {
             jFormattedTextField5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-##")));
         } catch (java.text.ParseException ex) {
@@ -308,10 +309,10 @@ public class CustomerScreen extends javax.swing.JFrame {
         }
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setForeground(new java.awt.Color(28, 74, 137));
         jLabel17.setText("CPF:");
 
-        jFormattedTextField4.setForeground(new java.awt.Color(0, 0, 0));
+        jFormattedTextField4.setForeground(new java.awt.Color(28, 74, 137));
         try {
             jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-##")));
         } catch (java.text.ParseException ex) {
@@ -319,10 +320,10 @@ public class CustomerScreen extends javax.swing.JFrame {
         }
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setForeground(new java.awt.Color(28, 74, 137));
         jLabel8.setText("Dados de Faturamento ");
 
-        jTextField10.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField10.setForeground(new java.awt.Color(28, 74, 137));
         jTextField10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField10ActionPerformed(evt);
@@ -405,16 +406,17 @@ public class CustomerScreen extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setForeground(new java.awt.Color(28, 74, 137));
         jLabel3.setText("Nome:");
 
-        jTextField9.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField9.setForeground(new java.awt.Color(28, 74, 137));
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField9ActionPerformed(evt);
             }
         });
 
+        jButton1.setForeground(new java.awt.Color(28, 74, 137));
         jButton1.setText("Pesquisar");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -458,12 +460,16 @@ public class CustomerScreen extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Consulta de Clientes", jPanel3);
 
+        jButton2.setForeground(new java.awt.Color(28, 74, 137));
         jButton2.setText("SALVAR");
 
+        jButton3.setForeground(new java.awt.Color(28, 74, 137));
         jButton3.setText("NOVO");
 
+        jButton4.setForeground(new java.awt.Color(28, 74, 137));
         jButton4.setText("EDITAR");
 
+        jButton5.setForeground(new java.awt.Color(28, 74, 137));
         jButton5.setText("EXCLUIR");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

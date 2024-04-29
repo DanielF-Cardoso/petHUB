@@ -124,6 +124,7 @@ public class DashboardScreen extends javax.swing.JFrame {
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/Icone_cliente.png"))); // NOI18N
         jMenu1.setText("Clientes");
 
+        jMenuItem1.setForeground(new java.awt.Color(28, 74, 137));
         jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_adicionar.png"))); // NOI18N
         jMenuItem1.setText("Controle de Cliente");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -139,6 +140,7 @@ public class DashboardScreen extends javax.swing.JFrame {
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/Icone_funcionario.png"))); // NOI18N
         jMenu2.setText("Funcionarios");
 
+        jMenuItem2.setForeground(new java.awt.Color(28, 74, 137));
         jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_adicionar.png"))); // NOI18N
         jMenuItem2.setText("Controle de Funcionarios");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -154,20 +156,23 @@ public class DashboardScreen extends javax.swing.JFrame {
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_fornecedores.png"))); // NOI18N
         jMenu3.setText("Fornecedores");
 
+        jMenuItem3.setForeground(new java.awt.Color(28, 74, 137));
         jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_adicionar.png"))); // NOI18N
         jMenuItem3.setText("Controle de Fornecedores");
         jMenu3.add(jMenuItem3);
 
         jMenuBar1.add(jMenu3);
 
-        jMenu6.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu6.setForeground(new java.awt.Color(28, 74, 137));
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_produtos.png"))); // NOI18N
         jMenu6.setText("Produtos");
 
+        jMenuItem4.setForeground(new java.awt.Color(28, 74, 137));
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_adicionar.png"))); // NOI18N
         jMenuItem4.setText("Controle de Estoque");
         jMenu6.add(jMenuItem4);
 
+        jMenuItem5.setForeground(new java.awt.Color(28, 74, 137));
         jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_buscar.png"))); // NOI18N
         jMenuItem5.setText("Consulta de Produtos");
         jMenu6.add(jMenuItem5);
@@ -178,24 +183,28 @@ public class DashboardScreen extends javax.swing.JFrame {
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_configuracoes.png"))); // NOI18N
         jMenu5.setText("Configurações");
 
+        jMenuItem9.setForeground(new java.awt.Color(28, 74, 137));
         jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_trocarusuario.png"))); // NOI18N
         jMenuItem9.setText("Trocar de Usuário");
         jMenu5.add(jMenuItem9);
 
         jMenuBar1.add(jMenu5);
 
-        jMenu4.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu4.setForeground(new java.awt.Color(28, 74, 137));
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_vendas.png"))); // NOI18N
         jMenu4.setText("Vendas");
 
+        jMenuItem6.setForeground(new java.awt.Color(28, 74, 137));
         jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_pdv.png"))); // NOI18N
         jMenuItem6.setText("Abrir PDV");
         jMenu4.add(jMenuItem6);
 
+        jMenuItem7.setForeground(new java.awt.Color(28, 74, 137));
         jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_historico.png"))); // NOI18N
         jMenuItem7.setText("Posição do dia");
         jMenu4.add(jMenuItem7);
 
+        jMenuItem8.setForeground(new java.awt.Color(28, 74, 137));
         jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_historico.png"))); // NOI18N
         jMenuItem8.setText("Histórico de Vendas");
         jMenu4.add(jMenuItem8);

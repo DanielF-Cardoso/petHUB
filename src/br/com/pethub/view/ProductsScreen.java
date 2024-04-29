@@ -92,9 +92,10 @@ public class ProductsScreen extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setForeground(new java.awt.Color(28, 74, 137));
         jLabel2.setText("Código:");
 
+        jTextField1.setForeground(new java.awt.Color(28, 74, 137));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -102,19 +103,20 @@ public class ProductsScreen extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setForeground(new java.awt.Color(28, 74, 137));
         jLabel4.setText("Produto:");
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel19.setForeground(new java.awt.Color(28, 74, 137));
         jLabel19.setText("Preço:");
 
         jPasswordField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jPasswordField1.setForeground(new java.awt.Color(28, 74, 137));
 
-        jTextField11.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField11.setForeground(new java.awt.Color(28, 74, 137));
         jTextField11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField11ActionPerformed(evt);
@@ -122,14 +124,15 @@ public class ProductsScreen extends javax.swing.JFrame {
         });
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel20.setForeground(new java.awt.Color(28, 74, 137));
         jLabel20.setText("Quantidade");
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel21.setForeground(new java.awt.Color(28, 74, 137));
         jLabel21.setText("Fornecedor");
 
         jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jComboBox2.setForeground(new java.awt.Color(28, 74, 137));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -163,6 +166,8 @@ public class ProductsScreen extends javax.swing.JFrame {
                     .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(32, Short.MAX_VALUE))
         );
+
+        jTextField3.setForeground(new java.awt.Color(28, 74, 137));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -201,18 +206,20 @@ public class ProductsScreen extends javax.swing.JFrame {
         jTabbedPane1.addTab("Dados do Produto", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setForeground(new java.awt.Color(28, 74, 137));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setForeground(new java.awt.Color(28, 74, 137));
         jLabel3.setText("Nome:");
 
-        jTextField9.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField9.setForeground(new java.awt.Color(28, 74, 137));
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField9ActionPerformed(evt);
             }
         });
 
+        jButton1.setForeground(new java.awt.Color(28, 74, 137));
         jButton1.setText("Pesquisar");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -255,12 +262,16 @@ public class ProductsScreen extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Consulta de Produtos", jPanel3);
 
+        jButton2.setForeground(new java.awt.Color(28, 74, 137));
         jButton2.setText("SALVAR");
 
+        jButton3.setForeground(new java.awt.Color(28, 74, 137));
         jButton3.setText("NOVO");
 
+        jButton4.setForeground(new java.awt.Color(28, 74, 137));
         jButton4.setText("EDITAR");
 
+        jButton5.setForeground(new java.awt.Color(28, 74, 137));
         jButton5.setText("EXCLUIR");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -280,8 +291,7 @@ public class ProductsScreen extends javax.swing.JFrame {
                 .addGap(280, 280, 280))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addGap(0, 0, 0))
+                .addComponent(jTabbedPane1))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton2, jButton3, jButton4, jButton5});

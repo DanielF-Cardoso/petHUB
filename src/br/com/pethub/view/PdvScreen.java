@@ -130,14 +130,14 @@ public class PdvScreen extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados do Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
-        jPanel8.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados do Cliente", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(28, 74, 137))); // NOI18N
+        jPanel8.setForeground(new java.awt.Color(28, 74, 137));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setForeground(new java.awt.Color(28, 74, 137));
         jLabel17.setText("CPF:");
 
-        jFormattedTextField4.setForeground(new java.awt.Color(0, 0, 0));
+        jFormattedTextField4.setForeground(new java.awt.Color(28, 74, 137));
         try {
             jFormattedTextField4.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-##")));
         } catch (java.text.ParseException ex) {
@@ -145,16 +145,19 @@ public class PdvScreen extends javax.swing.JFrame {
         }
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setForeground(new java.awt.Color(28, 74, 137));
         jLabel18.setText("Data:");
 
-        jFormattedTextField5.setForeground(new java.awt.Color(0, 0, 0));
+        jFormattedTextField5.setForeground(new java.awt.Color(28, 74, 137));
         jFormattedTextField5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel19.setForeground(new java.awt.Color(28, 74, 137));
         jLabel19.setText("Nome:");
 
+        jTextField1.setForeground(new java.awt.Color(28, 74, 137));
+
+        jButton1.setForeground(new java.awt.Color(28, 74, 137));
         jButton1.setText("Buscar Cliente");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
@@ -197,26 +200,36 @@ public class PdvScreen extends javax.swing.JFrame {
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
-        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados do Produto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Dados do Produto", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(28, 74, 137))); // NOI18N
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel20.setForeground(new java.awt.Color(28, 74, 137));
         jLabel20.setText("Código:");
 
+        jTextField2.setForeground(new java.awt.Color(28, 74, 137));
+
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel21.setForeground(new java.awt.Color(28, 74, 137));
         jLabel21.setText("Produto:");
 
+        jTextField3.setForeground(new java.awt.Color(28, 74, 137));
+
+        jButton2.setForeground(new java.awt.Color(28, 74, 137));
         jButton2.setText("Pesquisar");
 
         jLabel22.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel22.setForeground(new java.awt.Color(28, 74, 137));
         jLabel22.setText("Preço:");
 
+        jTextField4.setForeground(new java.awt.Color(28, 74, 137));
+
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel23.setForeground(new java.awt.Color(28, 74, 137));
         jLabel23.setText("Quantidade:");
 
+        jTextField5.setForeground(new java.awt.Color(28, 74, 137));
+
+        jButton3.setForeground(new java.awt.Color(28, 74, 137));
         jButton3.setText("Adicionar Produto");
 
         jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/logo_azul.png"))); // NOI18N
@@ -278,7 +291,7 @@ public class PdvScreen extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Carrinho de Compras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Carrinho de Compras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(28, 74, 137))); // NOI18N
         jPanel10.setForeground(new java.awt.Color(0, 0, 0));
 
         jTable1.setBackground(new java.awt.Color(30, 30, 30));
@@ -309,14 +322,20 @@ public class PdvScreen extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(null, "Finalizar Venda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(0, 0, 0)))); // NOI18N
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Finalizar Venda", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(28, 74, 137))); // NOI18N
 
         jLabel13.setBackground(new java.awt.Color(0, 0, 0));
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(28, 74, 137));
         jLabel13.setText("Total da Venda:");
 
+        jTextField6.setEditable(false);
+        jTextField6.setForeground(new java.awt.Color(28, 74, 137));
+
+        jButton4.setForeground(new java.awt.Color(28, 74, 137));
         jButton4.setText("Cancelar Venda");
 
+        jButton5.setForeground(new java.awt.Color(28, 74, 137));
         jButton5.setText("Finalizar Venda");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -328,7 +347,7 @@ public class PdvScreen extends javax.swing.JFrame {
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -357,7 +376,7 @@ public class PdvScreen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -465,26 +484,14 @@ public class PdvScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
