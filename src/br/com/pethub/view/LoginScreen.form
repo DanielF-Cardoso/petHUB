@@ -47,7 +47,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="emailField" linkSize="5" min="-2" max="-2" attributes="0"/>
                           <Component id="passwordField" linkSize="5" min="-2" pref="181" max="-2" attributes="0"/>
-                          <Component id="jButton2" linkSize="5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="loginButton" linkSize="5" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -76,7 +76,7 @@
                   <Component id="passwordField" linkSize="4" min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jButton2" linkSize="4" min="-2" max="-2" attributes="0"/>
+              <Component id="loginButton" linkSize="4" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="150" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -165,7 +165,7 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailFieldActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
+    <Component class="javax.swing.JButton" name="loginButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Realizar Login"/>
       </Properties>
