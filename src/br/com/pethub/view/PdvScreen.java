@@ -149,7 +149,11 @@ public class PdvScreen extends javax.swing.JFrame {
         jLabel18.setText("Data:");
 
         jFormattedTextField5.setForeground(new java.awt.Color(28, 74, 137));
-        jFormattedTextField5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(java.text.DateFormat.getDateInstance(java.text.DateFormat.SHORT))));
+        try {
+            jFormattedTextField5.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(28, 74, 137));

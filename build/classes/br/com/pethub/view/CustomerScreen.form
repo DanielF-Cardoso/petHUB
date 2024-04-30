@@ -232,12 +232,17 @@
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="C&#xf3;digo:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField1">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="89" green="4a" red="1c" type="rgb"/>
+                </Property>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
               </Events>
@@ -248,16 +253,15 @@
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nome:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField2">
               <Properties>
-                <Property name="editable" type="boolean" value="false"/>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
@@ -353,7 +357,7 @@
                       <Font name="Tahoma" size="14" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
+                      <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="CEP:"/>
                   </Properties>
@@ -364,7 +368,7 @@
                       <Font name="Tahoma" size="14" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
+                      <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="N&#xb0;:"/>
                   </Properties>
@@ -372,7 +376,7 @@
                 <Component class="javax.swing.JTextField" name="jTextField5">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
+                      <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -385,7 +389,7 @@
                       <Font name="Tahoma" size="14" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
+                      <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Complemento"/>
                   </Properties>
@@ -393,7 +397,7 @@
                 <Component class="javax.swing.JTextField" name="jTextField6">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
+                      <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -406,7 +410,7 @@
                       <Font name="Tahoma" size="14" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
+                      <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Bairro:"/>
                   </Properties>
@@ -414,7 +418,7 @@
                 <Component class="javax.swing.JTextField" name="jTextField7">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
+                      <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -427,7 +431,7 @@
                       <Font name="Tahoma" size="14" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
+                      <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Cidade:"/>
                   </Properties>
@@ -435,7 +439,7 @@
                 <Component class="javax.swing.JTextField" name="jTextField8">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
+                      <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -448,7 +452,7 @@
                       <Font name="Tahoma" size="14" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
+                      <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="UF:"/>
                   </Properties>
@@ -457,6 +461,9 @@
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Tahoma" size="14" style="0"/>
+                    </Property>
+                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="4">
@@ -474,7 +481,7 @@
                 <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField3">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
+                      <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
                     <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                       <Format format="(##) ##### - ####" subtype="-1" type="5"/>
@@ -487,7 +494,7 @@
                       <Font name="Tahoma" size="14" style="0"/>
                     </Property>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
+                      <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Endere&#xe7;o:"/>
                   </Properties>
@@ -495,7 +502,7 @@
                 <Component class="javax.swing.JTextField" name="jTextField4">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
+                      <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
                   </Properties>
                   <Events>
@@ -510,7 +517,7 @@
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Email:"/>
               </Properties>
@@ -521,7 +528,7 @@
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Celular:"/>
               </Properties>
@@ -529,7 +536,7 @@
             <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField1">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                   <Format format="(##) ##### - ####" subtype="-1" type="5"/>
@@ -542,7 +549,7 @@
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Telefone (fixo)"/>
               </Properties>
@@ -550,7 +557,7 @@
             <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField2">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                   <Format format="(##) ##### - ####" subtype="-1" type="5"/>
@@ -563,7 +570,7 @@
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="RG:"/>
               </Properties>
@@ -571,7 +578,7 @@
             <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField5">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                   <Format format="##.###.###-##" subtype="-1" type="5"/>
@@ -584,7 +591,7 @@
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="CPF:"/>
               </Properties>
@@ -592,7 +599,7 @@
             <Component class="javax.swing.JFormattedTextField" name="jFormattedTextField4">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
                   <Format format="##.###.###-##" subtype="-1" type="5"/>
@@ -605,7 +612,7 @@
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Dados de Faturamento "/>
               </Properties>
@@ -613,7 +620,7 @@
             <Component class="javax.swing.JTextField" name="jTextField10">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
@@ -677,7 +684,7 @@
                   <Font name="Tahoma" size="14" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Nome:"/>
               </Properties>
@@ -685,7 +692,7 @@
             <Component class="javax.swing.JTextField" name="jTextField9">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
+                  <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
@@ -694,6 +701,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="jButton1">
               <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="89" green="4a" red="1c" type="rgb"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Pesquisar"/>
               </Properties>
             </Component>
@@ -805,21 +815,33 @@
     </Container>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="89" green="4a" red="1c" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="SALVAR"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="89" green="4a" red="1c" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="NOVO"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton4">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="89" green="4a" red="1c" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="EDITAR"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton5">
       <Properties>
+        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="89" green="4a" red="1c" type="rgb"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="EXCLUIR"/>
       </Properties>
     </Component>

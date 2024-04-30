@@ -45,6 +45,7 @@ public class DashboardScreen extends javax.swing.JFrame {
         jMenuBar1 = customizeJMenuBar(new javax.swing.JMenuBar());
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -52,12 +53,14 @@ public class DashboardScreen extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenu8 = new javax.swing.JMenu();
+        jMenuItem11 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jMenu5 = new javax.swing.JMenu();
+        jMenuItem9 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -113,7 +116,7 @@ public class DashboardScreen extends javax.swing.JFrame {
         painel_desktopLayout.setVerticalGroup(
             painel_desktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painel_desktopLayout.createSequentialGroup()
-                .addGap(0, 422, Short.MAX_VALUE)
+                .addGap(0, 423, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -133,6 +136,16 @@ public class DashboardScreen extends javax.swing.JFrame {
             }
         });
         jMenu1.add(jMenuItem1);
+
+        jMenuItem10.setForeground(new java.awt.Color(28, 74, 137));
+        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_adicionar.png"))); // NOI18N
+        jMenuItem10.setText("Cadastro de Animal");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem10);
 
         jMenuBar1.add(jMenu1);
 
@@ -163,7 +176,7 @@ public class DashboardScreen extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
-        jMenu6.setForeground(new java.awt.Color(28, 74, 137));
+        jMenu6.setForeground(new java.awt.Color(255, 255, 255));
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_produtos.png"))); // NOI18N
         jMenu6.setText("Produtos");
 
@@ -179,18 +192,22 @@ public class DashboardScreen extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu6);
 
-        jMenu5.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_configuracoes.png"))); // NOI18N
-        jMenu5.setText("Configurações");
+        jMenu8.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_vacina.png"))); // NOI18N
+        jMenu8.setText("Vacinas");
 
-        jMenuItem9.setForeground(new java.awt.Color(28, 74, 137));
-        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_trocarusuario.png"))); // NOI18N
-        jMenuItem9.setText("Trocar de Usuário");
-        jMenu5.add(jMenuItem9);
+        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_adicionar.png"))); // NOI18N
+        jMenuItem11.setText("Controle de Vacinas");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem11);
 
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(jMenu8);
 
-        jMenu4.setForeground(new java.awt.Color(28, 74, 137));
+        jMenu4.setForeground(new java.awt.Color(255, 255, 255));
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_vendas.png"))); // NOI18N
         jMenu4.setText("Vendas");
 
@@ -210,6 +227,17 @@ public class DashboardScreen extends javax.swing.JFrame {
         jMenu4.add(jMenuItem8);
 
         jMenuBar1.add(jMenu4);
+
+        jMenu5.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_configuracoes.png"))); // NOI18N
+        jMenu5.setText("Configurações");
+
+        jMenuItem9.setForeground(new java.awt.Color(28, 74, 137));
+        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_trocarusuario.png"))); // NOI18N
+        jMenuItem9.setText("Trocar de Usuário");
+        jMenu5.add(jMenuItem9);
+
+        jMenuBar1.add(jMenu5);
 
         jMenu7.setForeground(new java.awt.Color(255, 255, 255));
         jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_sair.png"))); // NOI18N
@@ -245,6 +273,14 @@ public class DashboardScreen extends javax.swing.JFrame {
         this.setExtendedState(this.MAXIMIZED_BOTH);
         this.setVisible(true);
     }//GEN-LAST:event_formWindowActivated
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -303,8 +339,11 @@ public class DashboardScreen extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
+    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
