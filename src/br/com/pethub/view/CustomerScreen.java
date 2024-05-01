@@ -6,8 +6,13 @@ package br.com.pethub.view;
 
 import br.com.pethub.dao.CustomersDAO;
 import br.com.pethub.model.Customers;
-import br.com.pethub.model.Utilities;
+import br.com.pethub.utils.CEPUtils;
+import br.com.pethub.utils.CleanFields;
+import java.awt.event.KeyEvent;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -83,6 +88,7 @@ public class CustomerScreen extends javax.swing.JFrame {
         cepField = new javax.swing.JFormattedTextField();
         jLabel9 = new javax.swing.JLabel();
         addressField = new javax.swing.JTextField();
+        findCep = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         phoneField = new javax.swing.JFormattedTextField();
@@ -234,6 +240,16 @@ public class CustomerScreen extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        cepField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cepFieldActionPerformed(evt);
+            }
+        });
+        cepField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cepFieldKeyPressed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(28, 74, 137));
@@ -246,6 +262,13 @@ public class CustomerScreen extends javax.swing.JFrame {
             }
         });
 
+        findCep.setText("Preencher CEP");
+        findCep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                findCepActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -254,8 +277,12 @@ public class CustomerScreen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cepField, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(findCep))
+                    .addComponent(cepField, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel13)
@@ -273,7 +300,7 @@ public class CustomerScreen extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addressField, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                        .addComponent(addressField, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -297,15 +324,17 @@ public class CustomerScreen extends javax.swing.JFrame {
                     .addComponent(numberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
                     .addComponent(complementField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(districtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14)
-                    .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15)
-                    .addComponent(ufField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel13)
+                        .addComponent(districtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel14)
+                        .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel15)
+                        .addComponent(ufField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(findCep))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -653,7 +682,7 @@ public class CustomerScreen extends javax.swing.JFrame {
             CustomersDAO dao = new CustomersDAO();
             dao.editCustomer(obj);
             
-            new Utilities().cleanFields(jPanel2, jPanel4);
+            new CleanFields().cleanFields(jPanel2, jPanel4);
 
         } catch (Exception e) {
         }
@@ -671,8 +700,8 @@ public class CustomerScreen extends javax.swing.JFrame {
 
             CustomersDAO dao = new CustomersDAO();
             dao.deleteCustomer(obj);
-            
-            new Utilities().cleanFields(jPanel2, jPanel4);
+
+            new CleanFields().cleanFields(jPanel2, jPanel4);
 
         } catch (Exception e) {
         }
@@ -712,7 +741,7 @@ public class CustomerScreen extends javax.swing.JFrame {
 
     private void newBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBtnActionPerformed
         // TODO add your handling code here:
-        
+
         try {
 
             Customers obj = new Customers();
@@ -732,13 +761,49 @@ public class CustomerScreen extends javax.swing.JFrame {
 
             CustomersDAO dao = new CustomersDAO();
             dao.addCustomer(obj);
-            
-            new Utilities().cleanFields(jPanel2, jPanel4);
+
+            new CleanFields().cleanFields(jPanel2, jPanel4);
 
         } catch (Exception e) {
         }
-        
+
     }//GEN-LAST:event_newBtnActionPerformed
+
+    private void cepFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cepFieldKeyPressed
+        // TODO add your handling code here:
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            CEPUtils.buscarCEP(cepField, addressField, districtField, cityField, ufField);
+
+        }
+
+    }//GEN-LAST:event_cepFieldKeyPressed
+
+    private void cepFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cepFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cepFieldActionPerformed
+
+    private void findCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findCepActionPerformed
+        // TODO add your handling code here:
+
+//        ViaCEP viaCep = new ViaCEP();
+//
+//        try {
+//            viaCep.buscar(cepField.getText());
+//            addressField.setText(viaCep.getLogradouro());
+//            districtField.setText(viaCep.getBairro());
+//            cityField.setText(viaCep.getLocalidade());
+//            ufField.setSelectedItem(viaCep.getUf());
+//        } catch (ViaCEPException ex) {
+//            Logger.getLogger(CustomerScreen.class.getName()).log(Level.SEVERE, null, ex);
+//            Toolkit.getDefaultToolkit().beep();
+//            JOptionPane.showMessageDialog(this, "CEP inválido", "Erro", JOptionPane.ERROR_MESSAGE);
+//        }
+        CEPUtils.buscarCEP(cepField, addressField, districtField, cityField, ufField);
+
+
+    }//GEN-LAST:event_findCepActionPerformed
 
     /**
      * @param args the command line arguments
@@ -792,6 +857,7 @@ public class CustomerScreen extends javax.swing.JFrame {
     private javax.swing.JTextField districtField;
     private javax.swing.JButton editBtn;
     private javax.swing.JTextField emailField;
+    private javax.swing.JButton findCep;
     private javax.swing.JTextField idField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
