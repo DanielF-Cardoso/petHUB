@@ -729,7 +729,7 @@ public class CustomerScreen extends javax.swing.JFrame {
                 c.getPhone(),
                 c.getCep(),
                 c.getAddress(),
-                c.getNumber(),
+                c.getNumber(), 
                 c.getComplement(),
                 c.getDistrict(),
                 c.getCity(),
