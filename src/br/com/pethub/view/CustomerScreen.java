@@ -6,6 +6,7 @@ package br.com.pethub.view;
 
 import br.com.pethub.dao.CustomersDAO;
 import br.com.pethub.model.Customers;
+import br.com.pethub.model.Utilities;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,38 +16,36 @@ import javax.swing.table.DefaultTableModel;
  */
 public class CustomerScreen extends javax.swing.JFrame {
 
-    public void listTable(){
-        
-        
+    public void listTable() {
+
         CustomersDAO dao = new CustomersDAO();
         List<Customers> listCustomer = dao.listCustomers();
         DefaultTableModel data = (DefaultTableModel) table.getModel();
         data.setNumRows(0);
-        
-        for(Customers c: listCustomer){
-          data.addRow(new Object[]{
-              c.getId(),
-              c.getName(),
-              c.getRg(),
-              c.getCpf(),
-              c.getEmail(),
-              c.getLandline(),
-              c.getPhone(),
-              c.getCep(),
-              c.getAddress(),
-              c.getNumber(),
-              c.getComplement(),
-              c.getDistrict(),
-              c.getCity(),
-              c.getState()
-          });
+
+        for (Customers c : listCustomer) {
+            data.addRow(new Object[]{
+                c.getId(),
+                c.getName(),
+                c.getRg(),
+                c.getCpf(),
+                c.getEmail(),
+                c.getLandline(),
+                c.getPhone(),
+                c.getCep(),
+                c.getAddress(),
+                c.getNumber(),
+                c.getComplement(),
+                c.getDistrict(),
+                c.getCity(),
+                c.getState()
+            });
         }
     }
-    
+
     /**
      * Creates new form Frmcliente
      */
-    
     public CustomerScreen() {
         initComponents();
     }
@@ -76,7 +75,7 @@ public class CustomerScreen extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         complementField = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        neighborhoodField = new javax.swing.JTextField();
+        districtField = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
         cityField = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
@@ -97,11 +96,9 @@ public class CustomerScreen extends javax.swing.JFrame {
         emailField = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        searchField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        saveBtn = new javax.swing.JButton();
         newBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
@@ -205,10 +202,10 @@ public class CustomerScreen extends javax.swing.JFrame {
         jLabel13.setForeground(new java.awt.Color(28, 74, 137));
         jLabel13.setText("Bairro:");
 
-        neighborhoodField.setForeground(new java.awt.Color(28, 74, 137));
-        neighborhoodField.addActionListener(new java.awt.event.ActionListener() {
+        districtField.setForeground(new java.awt.Color(28, 74, 137));
+        districtField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                neighborhoodFieldActionPerformed(evt);
+                districtFieldActionPerformed(evt);
             }
         });
 
@@ -263,7 +260,7 @@ public class CustomerScreen extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel13)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(neighborhoodField, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(districtField, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -276,7 +273,7 @@ public class CustomerScreen extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addressField, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                        .addComponent(addressField, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -303,7 +300,7 @@ public class CustomerScreen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(neighborhoodField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(districtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14)
                     .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel15)
@@ -449,24 +446,31 @@ public class CustomerScreen extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(28, 74, 137));
         jLabel3.setText("Nome:");
 
-        jTextField9.setForeground(new java.awt.Color(28, 74, 137));
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        searchField.setForeground(new java.awt.Color(28, 74, 137));
+        searchField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                searchFieldActionPerformed(evt);
             }
         });
-
-        jButton1.setForeground(new java.awt.Color(28, 74, 137));
-        jButton1.setText("Pesquisar");
+        searchField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                searchFieldKeyPressed(evt);
+            }
+        });
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "Nome", "RG", "CPF", "E-mail", "Telefone", "Celular", "CEP", "Endereço", "N°", "Comp", "Bairro", "Cidade", "UF"
+                "Código", "Nome", "RG", "CPF", "E-mail", "Celular", "Telefone", "CEP", "Endereço", "N°", "Comp", "Bairro", "Cidade", "UF"
             }
         ));
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(table);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -474,16 +478,14 @@ public class CustomerScreen extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 178, Short.MAX_VALUE)
+                .addGap(196, 196, 196)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addGap(155, 155, 155))
+                .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 902, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -491,8 +493,7 @@ public class CustomerScreen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -500,22 +501,29 @@ public class CustomerScreen extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Consulta de Clientes", jPanel3);
 
-        saveBtn.setForeground(new java.awt.Color(28, 74, 137));
-        saveBtn.setText("SALVAR");
-        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+        newBtn.setForeground(new java.awt.Color(28, 74, 137));
+        newBtn.setText("NOVO");
+        newBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveBtnActionPerformed(evt);
+                newBtnActionPerformed(evt);
             }
         });
 
-        newBtn.setForeground(new java.awt.Color(28, 74, 137));
-        newBtn.setText("NOVO");
-
         editBtn.setForeground(new java.awt.Color(28, 74, 137));
         editBtn.setText("EDITAR");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setForeground(new java.awt.Color(28, 74, 137));
         deleteBtn.setText("EXCLUIR");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -527,18 +535,16 @@ public class CustomerScreen extends javax.swing.JFrame {
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(272, 272, 272)
+                .addGap(329, 329, 329)
                 .addComponent(newBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(saveBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(editBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deleteBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {deleteBtn, editBtn, newBtn, saveBtn});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {deleteBtn, editBtn, newBtn});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -548,21 +554,20 @@ public class CustomerScreen extends javax.swing.JFrame {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(saveBtn)
                     .addComponent(editBtn)
                     .addComponent(deleteBtn)
                     .addComponent(newBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {deleteBtn, editBtn, newBtn, saveBtn});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {deleteBtn, editBtn, newBtn});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_searchFieldActionPerformed
 
     private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
         // TODO add your handling code here:
@@ -576,9 +581,9 @@ public class CustomerScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cityFieldActionPerformed
 
-    private void neighborhoodFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_neighborhoodFieldActionPerformed
+    private void districtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_districtFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_neighborhoodFieldActionPerformed
+    }//GEN-LAST:event_districtFieldActionPerformed
 
     private void complementFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_complementFieldActionPerformed
         // TODO add your handling code here:
@@ -596,11 +601,38 @@ public class CustomerScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_idFieldActionPerformed
 
-    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
-        
+        listTable();
+    }//GEN-LAST:event_formWindowActivated
+
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+        // TODO add your handling code here:
+
+        jTabbedPane1.setSelectedIndex(0); //Ao clicar na tabela, enviar para a tela 1
+
+        idField.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
+        nameField.setText(table.getValueAt(table.getSelectedRow(), 1).toString());
+        rgField.setText(table.getValueAt(table.getSelectedRow(), 2).toString());
+        cpfField.setText(table.getValueAt(table.getSelectedRow(), 3).toString());
+        emailField.setText(table.getValueAt(table.getSelectedRow(), 4).toString());
+        phoneField.setText(table.getValueAt(table.getSelectedRow(), 5).toString());
+        landlineField.setText(table.getValueAt(table.getSelectedRow(), 6).toString());
+        cepField.setText(table.getValueAt(table.getSelectedRow(), 7).toString());
+        addressField.setText(table.getValueAt(table.getSelectedRow(), 8).toString());
+        numberField.setText(table.getValueAt(table.getSelectedRow(), 9).toString());
+        complementField.setText(table.getValueAt(table.getSelectedRow(), 10).toString());
+        districtField.setText(table.getValueAt(table.getSelectedRow(), 11).toString());
+        cityField.setText(table.getValueAt(table.getSelectedRow(), 12).toString());
+        ufField.setSelectedItem(table.getValueAt(table.getSelectedRow(), 13).toString());
+
+    }//GEN-LAST:event_tableMouseClicked
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        // TODO add your handling code here:
+
         try {
-            
+
             Customers obj = new Customers();
             obj.setName(nameField.getText());
             obj.setRg(rgField.getText());
@@ -612,22 +644,101 @@ public class CustomerScreen extends javax.swing.JFrame {
             obj.setCep(cepField.getText());
             obj.setNumber(Integer.parseInt(numberField.getText()));
             obj.setComplement(complementField.getText());
-            obj.setDistrict(neighborhoodField.getText());
+            obj.setDistrict(districtField.getText());
             obj.setCity(cityField.getText());
             obj.setState(ufField.getSelectedItem().toString());
+
+            obj.setId(Integer.parseInt(idField.getText()));
+
+            CustomersDAO dao = new CustomersDAO();
+            dao.editCustomer(obj);
             
+            new Utilities().cleanFields(jPanel2, jPanel4);
+
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_editBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+
+        try {
+
+            Customers obj = new Customers();
+
+            obj.setId(Integer.parseInt(idField.getText()));
+
+            CustomersDAO dao = new CustomersDAO();
+            dao.deleteCustomer(obj);
+            
+            new Utilities().cleanFields(jPanel2, jPanel4);
+
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void searchFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyPressed
+        // TODO add your handling code here:
+
+        String name = "%" + searchField.getText() + "%";
+
+        CustomersDAO dao = new CustomersDAO();
+        List<Customers> listCustomer = dao.searchCustomer(name);
+        DefaultTableModel data = (DefaultTableModel) table.getModel();
+        data.setNumRows(0);
+
+        for (Customers c : listCustomer) {
+            data.addRow(new Object[]{
+                c.getId(),
+                c.getName(),
+                c.getRg(),
+                c.getCpf(),
+                c.getEmail(),
+                c.getLandline(),
+                c.getPhone(),
+                c.getCep(),
+                c.getAddress(),
+                c.getNumber(),
+                c.getComplement(),
+                c.getDistrict(),
+                c.getCity(),
+                c.getState()
+            });
+        }
+
+    }//GEN-LAST:event_searchFieldKeyPressed
+
+    private void newBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBtnActionPerformed
+        // TODO add your handling code here:
+        
+        try {
+
+            Customers obj = new Customers();
+            obj.setName(nameField.getText());
+            obj.setRg(rgField.getText());
+            obj.setCpf(cpfField.getText());
+            obj.setEmail(emailField.getText());
+            obj.setLandline(landlineField.getText());
+            obj.setPhone(phoneField.getText());
+            obj.setAddress(addressField.getText());
+            obj.setCep(cepField.getText());
+            obj.setNumber(Integer.parseInt(numberField.getText()));
+            obj.setComplement(complementField.getText());
+            obj.setDistrict(districtField.getText());
+            obj.setCity(cityField.getText());
+            obj.setState(ufField.getSelectedItem().toString());
+
             CustomersDAO dao = new CustomersDAO();
             dao.addCustomer(obj);
             
+            new Utilities().cleanFields(jPanel2, jPanel4);
+
         } catch (Exception e) {
         }
         
-    }//GEN-LAST:event_saveBtnActionPerformed
-
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        // TODO add your handling code here:
-        listTable();   
-    }//GEN-LAST:event_formWindowActivated
+    }//GEN-LAST:event_newBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -678,10 +789,10 @@ public class CustomerScreen extends javax.swing.JFrame {
     private javax.swing.JTextField complementField;
     private javax.swing.JFormattedTextField cpfField;
     private javax.swing.JButton deleteBtn;
+    private javax.swing.JTextField districtField;
     private javax.swing.JButton editBtn;
     private javax.swing.JTextField emailField;
     private javax.swing.JTextField idField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -706,15 +817,13 @@ public class CustomerScreen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField9;
     private javax.swing.JFormattedTextField landlineField;
     private javax.swing.JTextField nameField;
-    private javax.swing.JTextField neighborhoodField;
     private javax.swing.JButton newBtn;
     private javax.swing.JTextField numberField;
     private javax.swing.JFormattedTextField phoneField;
     private javax.swing.JFormattedTextField rgField;
-    private javax.swing.JButton saveBtn;
+    private javax.swing.JTextField searchField;
     private javax.swing.JTable table;
     private javax.swing.JComboBox<String> ufField;
     // End of variables declaration//GEN-END:variables

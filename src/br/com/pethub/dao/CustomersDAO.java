@@ -66,9 +66,9 @@ public class CustomersDAO {
 
             //Criar o comando sql
 
-            String sql = "update into tb_customers (name, rg, cpf, email, landline, phone, cep, address, number," +
-                    "complement, district, city, state)" +
-                    "values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "update tb_customers set name = ?, rg = ?, cpf = ?, email = ?, landline = ?, phone = ?, cep = ?, address = ?, number = ?," +
+                    "complement = ?, district = ?, city = ?, state = ? where id = ?";
+
 
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, obj.getName());
@@ -84,11 +84,12 @@ public class CustomersDAO {
             stmt.setString(11, obj.getDistrict());
             stmt.setString(12, obj.getCity());
             stmt.setString(13, obj.getState());
+            stmt.setInt(14, obj.getId());
 
             stmt.execute();
             stmt.close();
 
-            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
+            JOptionPane.showMessageDialog(null, "Cliente editado com sucesso!");
             
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
@@ -102,7 +103,7 @@ public class CustomersDAO {
 
             //Criar o comando sql
 
-            String sql = "delete form tb_customers where id = ?";
+            String sql = "delete from tb_customers where id = ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, obj.getId());
@@ -154,5 +155,44 @@ public class CustomersDAO {
             return null;
         }
     }
+    
+    public List<Customers>  searchCustomer(String name){
+        try {
+
+            List<Customers> listCustomer = new ArrayList<>();
+
+            String sql = "select * from tb_customers where name like ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
+
+            while(rs.next()){
+                Customers obj = new Customers();
+                obj.setId(rs.getInt("id"));
+                obj.setName(rs.getString("name"));
+                obj.setRg(rs.getString("rg"));
+                obj.setCpf(rs.getString("cpf"));
+                obj.setEmail(rs.getString("email"));
+                obj.setLandline(rs.getString("landline"));
+                obj.setPhone(rs.getString("phone"));
+                obj.setCep(rs.getString("cep"));
+                obj.setAddress(rs.getString("address"));
+                obj.setNumber(rs.getInt("number"));
+                obj.setComplement(rs.getString("complement"));
+                obj.setDistrict(rs.getString("district"));
+                obj.setCity(rs.getString("city"));
+                obj.setState(rs.getString("state"));
+
+                listCustomer.add(obj);
+            }
+
+            return listCustomer;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
+            return null;
+        }
+    }    
+    
     
 }
