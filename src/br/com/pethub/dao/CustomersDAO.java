@@ -60,9 +60,63 @@ public class CustomersDAO {
         
     }
     
-    public void editCustomer(){}
+    public void editCustomer(Customers obj){
     
-    public void deleteCustomer(){}
+            try {
+
+            //Criar o comando sql
+
+            String sql = "update into tb_customers (name, rg, cpf, email, landline, phone, cep, address, number," +
+                    "complement, district, city, state)" +
+                    "values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, obj.getName());
+            stmt.setString(2, obj.getRg());
+            stmt.setString(3, obj.getCpf());
+            stmt.setString(4, obj.getEmail());
+            stmt.setString(5, obj.getLandline());
+            stmt.setString(6, obj.getPhone());
+            stmt.setString(7, obj.getCep());
+            stmt.setString(8, obj.getAddress());
+            stmt.setInt(9, obj.getNumber());
+            stmt.setString(10, obj.getComplement());
+            stmt.setString(11, obj.getDistrict());
+            stmt.setString(12, obj.getCity());
+            stmt.setString(13, obj.getState());
+
+            stmt.execute();
+            stmt.close();
+
+            JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
+            
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro: " + erro);
+        }
+        
+    }
+    
+    public void deleteCustomer(Customers obj){
+    
+                try {
+
+            //Criar o comando sql
+
+            String sql = "delete form tb_customers where id = ?";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, obj.getId());
+
+            stmt.execute();
+            stmt.close();
+
+            JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso!");
+            
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro: " + erro);
+        }
+    
+    }
     
     public List<Customers>  listCustomers(){
         try {
