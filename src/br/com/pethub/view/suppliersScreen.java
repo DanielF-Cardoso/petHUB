@@ -114,6 +114,7 @@ public class SuppliersScreen extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(28, 74, 137));
         jLabel2.setText("Código:");
 
+        jTextField1.setEditable(false);
         jTextField1.setForeground(new java.awt.Color(28, 74, 137));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
