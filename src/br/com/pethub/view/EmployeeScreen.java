@@ -21,11 +21,11 @@ public class EmployeeScreen extends javax.swing.JFrame {
     public void listTable() {
 
         EmployeesDAO dao = new EmployeesDAO();
-        List<Employees> listemployees = dao.listEmployees();
+        List<Employees> listEmployees = dao.listEmployees();
         DefaultTableModel data = (DefaultTableModel) table.getModel();
         data.setNumRows(0);
 
-        for (Employees c : listemployees) {
+        for (Employees c : listEmployees) {
             data.addRow(new Object[]{
                 c.getId(),
                 c.getName(),
@@ -115,8 +115,8 @@ public class EmployeeScreen extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        editBtn = new javax.swing.JButton();
+        deleteBnt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -570,7 +570,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Nome", "RG", "E-mail", "Senha", "Cargo", "Nível Acesso", "Telefone", "Celular", "Cepl", "Endereço", "N°", "Comp", "Bairro", "Cidade", "UF"
+                "Código", "Nome", "RG", "CPF", "E-mail", "Senha", "Cargo", "Nível Acesso", "Telefone", "Celular", "Cep", "Endereço", "N°", "Comp", "Bairro", "Cidade", "UF"
             }
         ));
         table.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -594,8 +594,8 @@ public class EmployeeScreen extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(table);
         if (table.getColumnModel().getColumnCount() > 0) {
-            table.getColumnModel().getColumn(4).setResizable(false);
             table.getColumnModel().getColumn(5).setResizable(false);
+            table.getColumnModel().getColumn(6).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -637,19 +637,19 @@ public class EmployeeScreen extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setForeground(new java.awt.Color(28, 74, 137));
-        jButton4.setText("EDITAR");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        editBtn.setForeground(new java.awt.Color(28, 74, 137));
+        editBtn.setText("EDITAR");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                editBtnActionPerformed(evt);
             }
         });
 
-        jButton5.setForeground(new java.awt.Color(28, 74, 137));
-        jButton5.setText("EXCLUIR");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        deleteBnt.setForeground(new java.awt.Color(28, 74, 137));
+        deleteBnt.setText("EXCLUIR");
+        deleteBnt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                deleteBntActionPerformed(evt);
             }
         });
 
@@ -666,13 +666,13 @@ public class EmployeeScreen extends javax.swing.JFrame {
                 .addGap(320, 320, 320)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(editBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
+                .addComponent(deleteBnt)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton3, jButton4, jButton5});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {deleteBnt, editBtn, jButton3});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -682,13 +682,13 @@ public class EmployeeScreen extends javax.swing.JFrame {
                 .addComponent(jTabbedPane1)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
+                    .addComponent(editBtn)
+                    .addComponent(deleteBnt)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton3, jButton4, jButton5});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {deleteBnt, editBtn, jButton3});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -833,7 +833,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
         ufField.setSelectedItem(table.getValueAt(table.getSelectedRow(), 16).toString());
     }//GEN-LAST:event_tableMouseClicked
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         // TODO add your handling code here:
         try {
 
@@ -865,9 +865,9 @@ public class EmployeeScreen extends javax.swing.JFrame {
         } catch (Exception e) {
         }
 
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_editBtnActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void deleteBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBntActionPerformed
         // TODO add your handling code here:
         try {
 
@@ -883,7 +883,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
         } catch (Exception e) {
         }
 
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_deleteBntActionPerformed
 
     private void cepFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cepFieldKeyPressed
         // TODO add your handling code here:
@@ -958,14 +958,14 @@ public class EmployeeScreen extends javax.swing.JFrame {
     private javax.swing.JTextField cityField;
     private javax.swing.JTextField complementField;
     private javax.swing.JFormattedTextField cpfField;
+    private javax.swing.JButton deleteBnt;
     private javax.swing.JTextField districtField;
+    private javax.swing.JButton editBtn;
     private javax.swing.JTextField emailField;
     private javax.swing.JButton findCep;
     private javax.swing.JTextField idField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

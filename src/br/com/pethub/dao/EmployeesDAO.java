@@ -212,7 +212,7 @@ public class EmployeesDAO {
         
             try {
                 
-             String sql = "select* from employees where email = ? and password = ?";
+             String sql = "select * from tb_employees where email = ? and password = ?";
              PreparedStatement stmt = con.prepareStatement(sql);
              stmt.setString(1, email);
              stmt.setString(2, password);
