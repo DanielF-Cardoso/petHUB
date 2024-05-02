@@ -5,6 +5,7 @@
 
 package br.com.pethub.view;
 
+import br.com.pethub.dao.EmployeesDAO;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
@@ -94,6 +95,11 @@ public class LoginScreen extends javax.swing.JFrame {
         });
 
         loginButton.setText("Realizar Login");
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -154,6 +160,24 @@ public class LoginScreen extends javax.swing.JFrame {
     private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_emailFieldActionPerformed
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        // TODO add your handling code here:
+        try {
+            
+            String email, password;
+            email = emailField.getText();
+            password = passwordField.getText();
+            
+            EmployeesDAO dao = new EmployeesDAO();
+            
+            dao.toLogin(email, password);
+            this.dispose();
+            
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "erro");
+        }
+    }//GEN-LAST:event_loginButtonActionPerformed
 
     /**
      * @param args the command line arguments

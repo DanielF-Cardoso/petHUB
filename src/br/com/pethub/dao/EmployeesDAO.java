@@ -2,6 +2,7 @@ package br.com.pethub.dao;
 
 import br.com.pethub.jdbc.ConnectionFactory; 
 import br.com.pethub.model.Employees;
+import br.com.pethub.view.DashboardScreen;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -206,4 +207,29 @@ public class EmployeesDAO {
         }
     }    
     
+    
+        public void toLogin(String email, String password){
+        
+            try {
+                
+             String sql = "select* from employees where email = ? and password = ?";
+             PreparedStatement stmt = con.prepareStatement(sql);
+             stmt.setString(1, email);
+             stmt.setString(2, password);
+             
+             ResultSet rs = stmt.executeQuery();
+             
+             if(rs.next()){
+                 JOptionPane.showMessageDialog(null, "Seja bem vindo ao Sistema");
+                    DashboardScreen screen = new DashboardScreen();
+                    screen.setVisible(true);
+             }
+             else{
+                 JOptionPane.showMessageDialog(null, "Dados incorretos");
+             }
+                
+            } catch (SQLException erro) {
+                JOptionPane.showMessageDialog(null, "Erro : " + erro);
+            }
+    }
  }
