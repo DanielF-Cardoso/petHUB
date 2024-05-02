@@ -4,10 +4,11 @@
  */
 package br.com.pethub.view;
 
-
 import br.com.pethub.dao.EmployeesDAO;
 import br.com.pethub.model.Employees;
+import br.com.pethub.utils.CEPUtils;
 import br.com.pethub.utils.CleanFields;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  * @author danie
  */
 public class EmployeeScreen extends javax.swing.JFrame {
-    
+
     public void listTable() {
 
         EmployeesDAO dao = new EmployeesDAO();
@@ -87,6 +88,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
         cepField = new javax.swing.JFormattedTextField();
         jLabel9 = new javax.swing.JLabel();
         addressField = new javax.swing.JTextField();
+        findCep = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         phoneField = new javax.swing.JFormattedTextField();
@@ -248,6 +250,11 @@ public class EmployeeScreen extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        cepField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cepFieldKeyPressed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(28, 74, 137));
@@ -260,6 +267,13 @@ public class EmployeeScreen extends javax.swing.JFrame {
             }
         });
 
+        findCep.setText("Preencher CEP");
+        findCep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                findCepActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -268,7 +282,9 @@ public class EmployeeScreen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel10)
                 .addGap(23, 23, 23)
-                .addComponent(cepField, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cepField, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                    .addComponent(findCep, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -311,15 +327,17 @@ public class EmployeeScreen extends javax.swing.JFrame {
                     .addComponent(numberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
                     .addComponent(complementField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(districtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14)
-                    .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15)
-                    .addComponent(ufField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel13)
+                        .addComponent(districtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel14)
+                        .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel15)
+                        .addComponent(ufField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(findCep))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -645,7 +663,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(368, 368, 368)
+                .addGap(320, 320, 320)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4)
@@ -717,7 +735,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-         try {
+        try {
 
             Employees obj = new Employees();
             obj.setName(nameField.getText());
@@ -725,7 +743,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
             obj.setCpf(cpfField.getText());
             obj.setEmail(emailField.getText());
             obj.setPassword(passwordField.getText());
-            obj.setResponsibility(responsibilityField.getText()); 
+            obj.setResponsibility(responsibilityField.getText());
             obj.setAccess_level(acess_levelField.getSelectedItem().toString());
             obj.setLandline(landlineField.getText());
             obj.setPhone(phoneField.getText());
@@ -756,7 +774,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
 
     private void searchFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyPressed
         // TODO add your handling code here:
-         String name = "%" + searchField.getText() + "%";
+        String name = "%" + searchField.getText() + "%";
 
         EmployeesDAO dao = new EmployeesDAO();
         List<Employees> listEmployees = dao.searchEmployees(name);
@@ -793,7 +811,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
         // TODO add your handling code here:
-        
+
         jTabbedPane1.setSelectedIndex(0); //Ao clicar na tabela, enviar para a tela 1
 
         idField.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
@@ -841,7 +859,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
 
             EmployeesDAO dao = new EmployeesDAO();
             dao.editEmployees(obj);
-            
+
             new CleanFields().cleanFields(jPanel2, jPanel4);
 
         } catch (Exception e) {
@@ -866,6 +884,22 @@ public class EmployeeScreen extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void cepFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cepFieldKeyPressed
+        // TODO add your handling code here:
+
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            CEPUtils.buscarCEP(cepField, addressField, districtField, cityField, ufField);
+
+        }
+
+    }//GEN-LAST:event_cepFieldKeyPressed
+
+    private void findCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findCepActionPerformed
+        // TODO add your handling code here:
+        CEPUtils.buscarCEP(cepField, addressField, districtField, cityField, ufField);
+    }//GEN-LAST:event_findCepActionPerformed
 
     /**
      * @param args the command line arguments
@@ -926,6 +960,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField cpfField;
     private javax.swing.JTextField districtField;
     private javax.swing.JTextField emailField;
+    private javax.swing.JButton findCep;
     private javax.swing.JTextField idField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
