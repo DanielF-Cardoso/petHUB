@@ -2,14 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 package br.com.pethub.view;
 
 import br.com.pethub.dao.EmployeesDAO;
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.*;
-
 
 /**
  *
@@ -22,11 +20,9 @@ public class LoginScreen extends javax.swing.JFrame {
      */
     public LoginScreen() {
         initComponents();
-               
-        emailField = new RoundedTextField(15);
+
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,8 +38,8 @@ public class LoginScreen extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
-        emailField = new javax.swing.JTextField();
         loginButton = new javax.swing.JButton();
+        emailField = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -87,13 +83,6 @@ public class LoginScreen extends javax.swing.JFrame {
 
         passwordField.setForeground(new java.awt.Color(28, 74, 137));
 
-        emailField.setForeground(new java.awt.Color(28, 74, 137));
-        emailField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailFieldActionPerformed(evt);
-            }
-        });
-
         loginButton.setText("Realizar Login");
         loginButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,9 +107,9 @@ public class LoginScreen extends javax.swing.JFrame {
                                 .addComponent(jLabel3)
                                 .addGap(5, 5, 5)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(loginButton)))
+                            .addComponent(passwordField, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
+                            .addComponent(loginButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(72, 72, 72)
                         .addComponent(jLabel2)))
@@ -139,13 +128,13 @@ public class LoginScreen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(loginButton)
-                .addContainerGap(150, Short.MAX_VALUE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {emailField, loginButton, passwordField});
@@ -157,23 +146,19 @@ public class LoginScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_formWindowGainedFocus
 
-    private void emailFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailFieldActionPerformed
-
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         // TODO add your handling code here:
         try {
-            
+
             String email, password;
             email = emailField.getText();
             password = passwordField.getText();
-            
+
             EmployeesDAO dao = new EmployeesDAO();
-            
+
             dao.toLogin(email, password);
             this.dispose();
-            
+
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "erro");
         }
@@ -225,8 +210,8 @@ public class LoginScreen extends javax.swing.JFrame {
     private javax.swing.JButton loginButton;
     private javax.swing.JPasswordField passwordField;
     // End of variables declaration//GEN-END:variables
- 
-   private class RoundedTextField extends JTextField {
+
+    private class RoundedTextField extends JTextField {
 
         private int radius;
 
@@ -254,9 +239,6 @@ public class LoginScreen extends javax.swing.JFrame {
             g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, radius, radius);
             g2.dispose();
         }
-    }    
-   
-   
-    
-}
+    }
 
+}

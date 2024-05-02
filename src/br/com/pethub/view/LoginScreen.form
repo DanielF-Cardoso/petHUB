@@ -45,9 +45,9 @@
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="emailField" linkSize="5" min="-2" max="-2" attributes="0"/>
-                          <Component id="passwordField" linkSize="5" min="-2" pref="181" max="-2" attributes="0"/>
-                          <Component id="loginButton" linkSize="5" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="passwordField" linkSize="5" pref="181" max="32767" attributes="0"/>
+                          <Component id="loginButton" linkSize="5" alignment="0" max="32767" attributes="0"/>
+                          <Component id="emailField" linkSize="5" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -70,14 +70,14 @@
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <Component id="emailField" linkSize="4" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                   <Component id="passwordField" linkSize="4" min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="loginButton" linkSize="4" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="150" max="32767" attributes="0"/>
+              <EmptySpace pref="147" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -155,16 +155,6 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="emailField">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="89" green="4a" red="1c" type="rgb"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="emailFieldActionPerformed"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JButton" name="loginButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Realizar Login"/>
@@ -172,6 +162,8 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loginButtonActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="emailField">
     </Component>
   </SubComponents>
 </Form>
