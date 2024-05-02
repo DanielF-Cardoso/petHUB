@@ -1,6 +1,6 @@
 package br.com.pethub.dao;
 
-import br.com.pethub.jdbc.ConnectionFactory;
+import br.com.pethub.jdbc.ConnectionFactory; 
 import br.com.pethub.model.Employees;
 
 import javax.swing.*;
@@ -57,6 +57,73 @@ public class EmployeesDAO {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
         }
    }
+    
+    
+    public void editEmployees(Employees obj){
+    
+            try {
+
+            //Criar o comando sql
+
+            String sql = "update tb_employees set name = ?, rg = ?, cpf = ?, email = ?, "
+                    + "password = ?, responsibility = ?, access_level = ?, landline = ?, phone = ?, cep = ?, address = ?, number = ?," +
+                    "complement = ?, district = ?, city = ?, state = ? where id = ?";
+
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, obj.getName());
+            stmt.setString(2, obj.getRg());
+            stmt.setString(3, obj.getCpf());
+            stmt.setString(4, obj.getEmail());
+            stmt.setString(5, obj.getPassword());
+            stmt.setString(6, obj.getResponsibility());
+            stmt.setString(7, obj.getAccess_level());
+            stmt.setString(8, obj.getLandline());
+            stmt.setString(9, obj.getPhone());
+            stmt.setString(10, obj.getCep());
+            stmt.setString(11, obj.getAddress());
+            stmt.setInt(12, obj.getNumber());
+            stmt.setString(13, obj.getComplement());
+            stmt.setString(14, obj.getDistrict());
+            stmt.setString(15, obj.getCity());
+            stmt.setString(16, obj.getState());
+            stmt.setInt(17, obj.getId());
+
+
+            stmt.execute();
+            stmt.close();
+
+            JOptionPane.showMessageDialog(null, "Funcionário editado com sucesso!");
+            
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro: " + erro);
+        }
+        
+    }
+    
+    
+     public void deleteEmployees (Employees obj){
+    
+                try {
+
+            //Criar o comando sql
+
+            String sql = "delete from tb_employees where id = ?";
+
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, obj.getId());
+
+            stmt.execute();
+            stmt.close();
+
+            JOptionPane.showMessageDialog(null, "Funcionário excluido com sucesso!");
+            
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro: " + erro);
+        }
+    
+    }
+    
     
     public List<Employees>  listEmployees(){
         try {

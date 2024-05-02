@@ -69,7 +69,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        idField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         nameField = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
@@ -163,11 +163,11 @@ public class EmployeeScreen extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(28, 74, 137));
         jLabel2.setText("Código:");
 
-        jTextField1.setEditable(false);
-        jTextField1.setForeground(new java.awt.Color(28, 74, 137));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        idField.setEditable(false);
+        idField.setForeground(new java.awt.Color(28, 74, 137));
+        idField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                idFieldActionPerformed(evt);
             }
         });
 
@@ -473,7 +473,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                                     .addComponent(jLabel2)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jLabel4)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -498,7 +498,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
                 .addGap(9, 9, 9)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16)
@@ -564,6 +564,11 @@ public class EmployeeScreen extends javax.swing.JFrame {
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMouseClicked(evt);
+            }
+        });
         table.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tableKeyPressed(evt);
@@ -616,9 +621,19 @@ public class EmployeeScreen extends javax.swing.JFrame {
 
         jButton4.setForeground(new java.awt.Color(28, 74, 137));
         jButton4.setText("EDITAR");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setForeground(new java.awt.Color(28, 74, 137));
         jButton5.setText("EXCLUIR");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -692,9 +707,9 @@ public class EmployeeScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameFieldActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void idFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_idFieldActionPerformed
 
     private void responsibilityFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_responsibilityFieldActionPerformed
         // TODO add your handling code here:
@@ -776,6 +791,82 @@ public class EmployeeScreen extends javax.swing.JFrame {
         listTable();
     }//GEN-LAST:event_formWindowActivated
 
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+        // TODO add your handling code here:
+        
+        jTabbedPane1.setSelectedIndex(0); //Ao clicar na tabela, enviar para a tela 1
+
+        idField.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
+        nameField.setText(table.getValueAt(table.getSelectedRow(), 1).toString());
+        rgField.setText(table.getValueAt(table.getSelectedRow(), 2).toString());
+        cpfField.setText(table.getValueAt(table.getSelectedRow(), 3).toString());
+        emailField.setText(table.getValueAt(table.getSelectedRow(), 4).toString());
+        passwordField.setText(table.getValueAt(table.getSelectedRow(), 5).toString());
+        responsibilityField.setText(table.getValueAt(table.getSelectedRow(), 6).toString());
+        acess_levelField.setSelectedItem(table.getValueAt(table.getSelectedRow(), 7).toString());
+        landlineField.setText(table.getValueAt(table.getSelectedRow(), 8).toString());
+        phoneField.setText(table.getValueAt(table.getSelectedRow(), 9).toString());
+        cepField.setText(table.getValueAt(table.getSelectedRow(), 10).toString());
+        addressField.setText(table.getValueAt(table.getSelectedRow(), 11).toString());
+        numberField.setText(table.getValueAt(table.getSelectedRow(), 12).toString());
+        complementField.setText(table.getValueAt(table.getSelectedRow(), 13).toString());
+        districtField.setText(table.getValueAt(table.getSelectedRow(), 14).toString());
+        cityField.setText(table.getValueAt(table.getSelectedRow(), 15).toString());
+        ufField.setSelectedItem(table.getValueAt(table.getSelectedRow(), 16).toString());
+    }//GEN-LAST:event_tableMouseClicked
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        try {
+
+            Employees obj = new Employees();
+            obj.setName(nameField.getText());
+            obj.setRg(rgField.getText());
+            obj.setCpf(cpfField.getText());
+            obj.setEmail(emailField.getText());
+            obj.setPassword(passwordField.getText());
+            obj.setResponsibility(responsibilityField.getText());
+            obj.setAccess_level(acess_levelField.getSelectedItem().toString());
+            obj.setLandline(landlineField.getText());
+            obj.setPhone(phoneField.getText());
+            obj.setAddress(addressField.getText());
+            obj.setCep(cepField.getText());
+            obj.setNumber(Integer.parseInt(numberField.getText()));
+            obj.setComplement(complementField.getText());
+            obj.setDistrict(districtField.getText());
+            obj.setCity(cityField.getText());
+            obj.setState(ufField.getSelectedItem().toString());
+
+            obj.setId(Integer.parseInt(idField.getText()));
+
+            EmployeesDAO dao = new EmployeesDAO();
+            dao.editEmployees(obj);
+            
+            new CleanFields().cleanFields(jPanel2, jPanel4);
+
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        try {
+
+            Employees obj = new Employees();
+
+            obj.setId(Integer.parseInt(idField.getText()));
+
+            EmployeesDAO dao = new EmployeesDAO();
+            dao.deleteEmployees(obj);
+
+            new CleanFields().cleanFields(jPanel2, jPanel4);
+
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -835,6 +926,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField cpfField;
     private javax.swing.JTextField districtField;
     private javax.swing.JTextField emailField;
+    private javax.swing.JTextField idField;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -868,7 +960,6 @@ public class EmployeeScreen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JFormattedTextField landlineField;
     private javax.swing.JTextField nameField;
     private javax.swing.JTextField numberField;
