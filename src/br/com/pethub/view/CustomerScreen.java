@@ -645,8 +645,8 @@ public class CustomerScreen extends javax.swing.JFrame {
         rgField.setText(table.getValueAt(table.getSelectedRow(), 2).toString());
         cpfField.setText(table.getValueAt(table.getSelectedRow(), 3).toString());
         emailField.setText(table.getValueAt(table.getSelectedRow(), 4).toString());
-        phoneField.setText(table.getValueAt(table.getSelectedRow(), 5).toString());
-        landlineField.setText(table.getValueAt(table.getSelectedRow(), 6).toString());
+        landlineField.setText(table.getValueAt(table.getSelectedRow(), 5).toString());
+        phoneField.setText(table.getValueAt(table.getSelectedRow(), 6).toString());
         cepField.setText(table.getValueAt(table.getSelectedRow(), 7).toString());
         addressField.setText(table.getValueAt(table.getSelectedRow(), 8).toString());
         numberField.setText(table.getValueAt(table.getSelectedRow(), 9).toString());
@@ -729,7 +729,7 @@ public class CustomerScreen extends javax.swing.JFrame {
                 c.getPhone(),
                 c.getCep(),
                 c.getAddress(),
-                c.getNumber(),
+                c.getNumber(), 
                 c.getComplement(),
                 c.getDistrict(),
                 c.getCity(),
