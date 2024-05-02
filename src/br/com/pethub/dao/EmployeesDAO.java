@@ -211,6 +211,7 @@ public class EmployeesDAO {
             if (rs.next()) {
                 JOptionPane.showMessageDialog(null, "Seja bem vindo ao Sistema");
                 DashboardScreen screen = new DashboardScreen();
+                screen.userLogin = rs.getString("name");
                 screen.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, "Dados incorretos");

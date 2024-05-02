@@ -13,6 +13,8 @@ import java.awt.*;
  */
 public class DashboardScreen extends javax.swing.JFrame {
 
+    public String userLogin;
+     
     /**
      * Creates new form Frmmenu
      */
@@ -271,6 +273,7 @@ public class DashboardScreen extends javax.swing.JFrame {
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
         this.setExtendedState(this.MAXIMIZED_BOTH);
+        jLabel3.setText(userLogin);
         this.setVisible(true);
     }//GEN-LAST:event_formWindowActivated
 
