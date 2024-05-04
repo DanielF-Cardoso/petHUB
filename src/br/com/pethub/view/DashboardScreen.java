@@ -20,6 +20,9 @@ public class DashboardScreen extends javax.swing.JFrame {
      */
     public DashboardScreen() {
         initComponents();
+        
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/com/pethub/images/icones/icone_pethub.png")));
+
     }
 
     /**
@@ -65,8 +68,8 @@ public class DashboardScreen extends javax.swing.JFrame {
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("PetHUB - DASHBOARD");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("PetHUB | Painel Administrativo");
         setBackground(new java.awt.Color(255, 255, 255));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {

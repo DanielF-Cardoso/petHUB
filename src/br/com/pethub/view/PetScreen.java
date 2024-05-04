@@ -4,6 +4,8 @@
  */
 package br.com.pethub.view;
 
+import java.awt.Toolkit;
+
 /**
  *
  * @author danie
@@ -15,6 +17,9 @@ public class PetScreen extends javax.swing.JFrame {
      */
     public PetScreen() {
         initComponents();
+        
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/com/pethub/images/icones/icone_pethub.png")));
+  
     }
 
     /**
@@ -59,7 +64,9 @@ public class PetScreen extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("PetHUB | Cadastro de Animal");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(28, 74, 137));
         jPanel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -351,6 +358,7 @@ public class PetScreen extends javax.swing.JFrame {
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton2, jButton3, jButton4, jButton5});
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed

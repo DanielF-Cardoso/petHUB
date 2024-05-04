@@ -21,6 +21,8 @@ public class LoginScreen extends javax.swing.JFrame {
     public LoginScreen() {
         initComponents();
 
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/com/pethub/images/icones/icone_pethub.png")));
+
     }
 
     /**
@@ -41,8 +43,10 @@ public class LoginScreen extends javax.swing.JFrame {
         loginButton = new javax.swing.JButton();
         emailField = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("PetHUB | Login");
         setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 formWindowGainedFocus(evt);
@@ -140,6 +144,7 @@ public class LoginScreen extends javax.swing.JFrame {
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {emailField, loginButton, passwordField});
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
@@ -156,8 +161,11 @@ public class LoginScreen extends javax.swing.JFrame {
 
             EmployeesDAO dao = new EmployeesDAO();
 
-            dao.toLogin(email, password);
-            this.dispose();
+            boolean loggedIn = dao.toLogin(email, password);
+
+            if (loggedIn) {
+                this.dispose();
+            }
 
         } catch (Exception erro) {
             JOptionPane.showMessageDialog(null, "erro");

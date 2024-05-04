@@ -7,6 +7,7 @@ package br.com.pethub.view;
 import br.com.pethub.dao.SuppliersDAO;
 import br.com.pethub.model.Suppliers;
 import br.com.pethub.utils.CleanFields;
+import java.awt.Toolkit;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
@@ -46,6 +47,9 @@ public class SupplierScreen extends javax.swing.JFrame {
      */
     public SupplierScreen() {
         initComponents();
+        
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/com/pethub/images/icones/icone_pethub.png")));
+
     }
 
     /**
@@ -100,7 +104,9 @@ public class SupplierScreen extends javax.swing.JFrame {
         editBnt = new javax.swing.JButton();
         deleteBnt = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("PetHUB | Cadastro de Fornecedores");
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -551,6 +557,7 @@ public class SupplierScreen extends javax.swing.JFrame {
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {deleteBnt, editBnt, newBnt});
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed

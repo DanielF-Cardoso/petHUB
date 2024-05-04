@@ -4,6 +4,8 @@
  */
 package br.com.pethub.view;
 
+import java.awt.Toolkit;
+
 /**
  *
  * @author danie
@@ -15,6 +17,9 @@ public class PaymentScreen extends javax.swing.JFrame {
      */
     public PaymentScreen() {
         initComponents();
+        
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/com/pethub/images/icones/icone_pethub.png")));
+
     }
 
     /**
@@ -40,7 +45,9 @@ public class PaymentScreen extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("PetHUB | Finalizar Compra");
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(28, 74, 137));
         jPanel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
