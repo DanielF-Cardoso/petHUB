@@ -187,4 +187,38 @@ public class SuppliersDAO {
         }
     }    
     
+      public Suppliers consultSuppliers(String name){
+        try {
+
+            String sql = "select * from tb_suppliers where name = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
+
+            Suppliers obj = new Suppliers();
+            
+            if(rs.next()){
+                
+                obj.setId(rs.getInt("id"));
+                obj.setName(rs.getString("name"));
+                obj.setCnpj(rs.getString("cnpj"));
+                obj.setEmail(rs.getString("email"));
+                obj.setLandline(rs.getString("landline"));
+                obj.setPhone(rs.getString("phone"));
+                obj.setCep(rs.getString("cep"));
+                obj.setAddress(rs.getString("address"));
+                obj.setNumber(rs.getInt("number"));
+                obj.setComplement(rs.getString("complement"));
+                obj.setDistrict(rs.getString("district"));
+                obj.setCity(rs.getString("city"));
+                obj.setState(rs.getString("state"));
+            }
+
+            return obj;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
+            return null;
+        }
+    }    
 }
