@@ -1001,7 +1001,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    public javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JFormattedTextField landlineField;
     private javax.swing.JTextField nameField;
     private javax.swing.JTextField numberField;
