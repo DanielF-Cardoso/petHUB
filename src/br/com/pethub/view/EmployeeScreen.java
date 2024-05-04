@@ -8,6 +8,7 @@ import br.com.pethub.dao.EmployeesDAO;
 import br.com.pethub.model.Employees;
 import br.com.pethub.utils.CEPUtils;
 import br.com.pethub.utils.CleanFields;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -53,6 +54,9 @@ public class EmployeeScreen extends javax.swing.JFrame {
      */
     public EmployeeScreen() {
         initComponents();
+        
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/com/pethub/images/icones/icone_pethub.png")));
+
     }
 
     /**
@@ -118,7 +122,9 @@ public class EmployeeScreen extends javax.swing.JFrame {
         editBtn = new javax.swing.JButton();
         deleteBnt = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("PetHUB | Cadastro de Funcionários");
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -691,6 +697,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {deleteBnt, editBtn, jButton3});
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
@@ -994,7 +1001,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    public javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JFormattedTextField landlineField;
     private javax.swing.JTextField nameField;
     private javax.swing.JTextField numberField;

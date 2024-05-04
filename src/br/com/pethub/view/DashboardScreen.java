@@ -14,12 +14,15 @@ import java.awt.*;
 public class DashboardScreen extends javax.swing.JFrame {
 
     public String userLogin;
-     
+
     /**
      * Creates new form Frmmenu
      */
     public DashboardScreen() {
         initComponents();
+
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/com/pethub/images/icones/icone_pethub.png")));
+
     }
 
     /**
@@ -45,28 +48,34 @@ public class DashboardScreen extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jMenuBar1 = customizeJMenuBar(new javax.swing.JMenuBar());
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu8 = new javax.swing.JMenu();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        customerMenu = new javax.swing.JMenu();
+        addCustomerMenu = new javax.swing.JMenuItem();
+        searchCustomerMenu = new javax.swing.JMenuItem();
+        addAnimalMenu = new javax.swing.JMenuItem();
+        searchAnimalMenu = new javax.swing.JMenuItem();
+        employeeMenu = new javax.swing.JMenu();
+        addEmployeeMenu = new javax.swing.JMenuItem();
+        searchEmployeeMenu = new javax.swing.JMenuItem();
+        supplierMenu = new javax.swing.JMenu();
+        addSupplierMenu = new javax.swing.JMenuItem();
+        searchSupplierMenu = new javax.swing.JMenuItem();
+        productsMenu = new javax.swing.JMenu();
+        stockManagementMenu = new javax.swing.JMenuItem();
+        addProductsMenu = new javax.swing.JMenuItem();
+        searchProductMenu = new javax.swing.JMenuItem();
+        vaccineMenu = new javax.swing.JMenu();
+        vaccineControllerMenu = new javax.swing.JMenuItem();
+        searchVaccineMenu = new javax.swing.JMenuItem();
+        salesMenu = new javax.swing.JMenu();
+        pdvMenu = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
+        historySalesMenu = new javax.swing.JMenuItem();
+        settingsMenu = new javax.swing.JMenu();
+        changeUserMenu = new javax.swing.JMenuItem();
+        exitMenu = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("PetHUB - DASHBOARD");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("PetHUB | Painel Administrativo");
         setBackground(new java.awt.Color(255, 255, 255));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
@@ -125,126 +134,222 @@ public class DashboardScreen extends javax.swing.JFrame {
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setBorder(null);
 
-        jMenu1.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/Icone_cliente.png"))); // NOI18N
-        jMenu1.setText("Clientes");
+        customerMenu.setForeground(new java.awt.Color(255, 255, 255));
+        customerMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/Icone_cliente.png"))); // NOI18N
+        customerMenu.setText("Clientes");
 
-        jMenuItem1.setForeground(new java.awt.Color(28, 74, 137));
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_adicionar.png"))); // NOI18N
-        jMenuItem1.setText("Controle de Cliente");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        addCustomerMenu.setForeground(new java.awt.Color(28, 74, 137));
+        addCustomerMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_adicionar.png"))); // NOI18N
+        addCustomerMenu.setText("Cadastro de Cliente");
+        addCustomerMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                addCustomerMenuActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        customerMenu.add(addCustomerMenu);
 
-        jMenuItem10.setForeground(new java.awt.Color(28, 74, 137));
-        jMenuItem10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_adicionar.png"))); // NOI18N
-        jMenuItem10.setText("Cadastro de Animal");
-        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+        searchCustomerMenu.setForeground(new java.awt.Color(28, 74, 137));
+        searchCustomerMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_buscar.png"))); // NOI18N
+        searchCustomerMenu.setText("Consulta de Cliente");
+        searchCustomerMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem10ActionPerformed(evt);
+                searchCustomerMenuActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem10);
+        customerMenu.add(searchCustomerMenu);
 
-        jMenuBar1.add(jMenu1);
-
-        jMenu2.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/Icone_funcionario.png"))); // NOI18N
-        jMenu2.setText("Funcionarios");
-
-        jMenuItem2.setForeground(new java.awt.Color(28, 74, 137));
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_adicionar.png"))); // NOI18N
-        jMenuItem2.setText("Controle de Funcionarios");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        addAnimalMenu.setForeground(new java.awt.Color(28, 74, 137));
+        addAnimalMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_adicionar.png"))); // NOI18N
+        addAnimalMenu.setText("Cadastro de Animal");
+        addAnimalMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                addAnimalMenuActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem2);
+        customerMenu.add(addAnimalMenu);
 
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_fornecedores.png"))); // NOI18N
-        jMenu3.setText("Fornecedores");
-
-        jMenuItem3.setForeground(new java.awt.Color(28, 74, 137));
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_adicionar.png"))); // NOI18N
-        jMenuItem3.setText("Controle de Fornecedores");
-        jMenu3.add(jMenuItem3);
-
-        jMenuBar1.add(jMenu3);
-
-        jMenu6.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_produtos.png"))); // NOI18N
-        jMenu6.setText("Produtos");
-
-        jMenuItem4.setForeground(new java.awt.Color(28, 74, 137));
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_adicionar.png"))); // NOI18N
-        jMenuItem4.setText("Controle de Estoque");
-        jMenu6.add(jMenuItem4);
-
-        jMenuItem5.setForeground(new java.awt.Color(28, 74, 137));
-        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_buscar.png"))); // NOI18N
-        jMenuItem5.setText("Consulta de Produtos");
-        jMenu6.add(jMenuItem5);
-
-        jMenuBar1.add(jMenu6);
-
-        jMenu8.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_vacina.png"))); // NOI18N
-        jMenu8.setText("Vacinas");
-
-        jMenuItem11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_adicionar.png"))); // NOI18N
-        jMenuItem11.setText("Controle de Vacinas");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+        searchAnimalMenu.setForeground(new java.awt.Color(28, 74, 137));
+        searchAnimalMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_buscar.png"))); // NOI18N
+        searchAnimalMenu.setText("Consulta de Animal");
+        searchAnimalMenu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
+                searchAnimalMenuActionPerformed(evt);
             }
         });
-        jMenu8.add(jMenuItem11);
+        customerMenu.add(searchAnimalMenu);
 
-        jMenuBar1.add(jMenu8);
+        jMenuBar1.add(customerMenu);
 
-        jMenu4.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_vendas.png"))); // NOI18N
-        jMenu4.setText("Vendas");
+        employeeMenu.setForeground(new java.awt.Color(255, 255, 255));
+        employeeMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/Icone_funcionario.png"))); // NOI18N
+        employeeMenu.setText("Funcionarios");
 
-        jMenuItem6.setForeground(new java.awt.Color(28, 74, 137));
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_pdv.png"))); // NOI18N
-        jMenuItem6.setText("Abrir PDV");
-        jMenu4.add(jMenuItem6);
+        addEmployeeMenu.setForeground(new java.awt.Color(28, 74, 137));
+        addEmployeeMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_adicionar.png"))); // NOI18N
+        addEmployeeMenu.setText("Cadastro de  Funcionários");
+        addEmployeeMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addEmployeeMenuActionPerformed(evt);
+            }
+        });
+        employeeMenu.add(addEmployeeMenu);
+
+        searchEmployeeMenu.setForeground(new java.awt.Color(28, 74, 137));
+        searchEmployeeMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_buscar.png"))); // NOI18N
+        searchEmployeeMenu.setText("Consulta de Funcionários");
+        searchEmployeeMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchEmployeeMenuActionPerformed(evt);
+            }
+        });
+        employeeMenu.add(searchEmployeeMenu);
+
+        jMenuBar1.add(employeeMenu);
+
+        supplierMenu.setForeground(new java.awt.Color(255, 255, 255));
+        supplierMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_fornecedores.png"))); // NOI18N
+        supplierMenu.setText("Fornecedores");
+
+        addSupplierMenu.setForeground(new java.awt.Color(28, 74, 137));
+        addSupplierMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_adicionar.png"))); // NOI18N
+        addSupplierMenu.setText("Cadastro de Fornecedores");
+        addSupplierMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addSupplierMenuActionPerformed(evt);
+            }
+        });
+        supplierMenu.add(addSupplierMenu);
+
+        searchSupplierMenu.setForeground(new java.awt.Color(28, 74, 137));
+        searchSupplierMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_buscar.png"))); // NOI18N
+        searchSupplierMenu.setText("Consulta de Fornecedores");
+        searchSupplierMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchSupplierMenuActionPerformed(evt);
+            }
+        });
+        supplierMenu.add(searchSupplierMenu);
+
+        jMenuBar1.add(supplierMenu);
+
+        productsMenu.setForeground(new java.awt.Color(255, 255, 255));
+        productsMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_produtos.png"))); // NOI18N
+        productsMenu.setText("Produtos");
+
+        stockManagementMenu.setForeground(new java.awt.Color(28, 74, 137));
+        stockManagementMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_adicionar.png"))); // NOI18N
+        stockManagementMenu.setText("Controle de Estoque");
+        stockManagementMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stockManagementMenuActionPerformed(evt);
+            }
+        });
+        productsMenu.add(stockManagementMenu);
+
+        addProductsMenu.setForeground(new java.awt.Color(28, 74, 137));
+        addProductsMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_adicionar.png"))); // NOI18N
+        addProductsMenu.setText("Cadastro de Produtos");
+        addProductsMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addProductsMenuActionPerformed(evt);
+            }
+        });
+        productsMenu.add(addProductsMenu);
+
+        searchProductMenu.setForeground(new java.awt.Color(28, 74, 137));
+        searchProductMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_buscar.png"))); // NOI18N
+        searchProductMenu.setText("Consulta de Produtos");
+        searchProductMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchProductMenuActionPerformed(evt);
+            }
+        });
+        productsMenu.add(searchProductMenu);
+
+        jMenuBar1.add(productsMenu);
+
+        vaccineMenu.setForeground(new java.awt.Color(255, 255, 255));
+        vaccineMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_vacina.png"))); // NOI18N
+        vaccineMenu.setText("Vacinas");
+
+        vaccineControllerMenu.setForeground(new java.awt.Color(28, 74, 137));
+        vaccineControllerMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_adicionar.png"))); // NOI18N
+        vaccineControllerMenu.setText("Controle de Vacinas");
+        vaccineControllerMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vaccineControllerMenuActionPerformed(evt);
+            }
+        });
+        vaccineMenu.add(vaccineControllerMenu);
+
+        searchVaccineMenu.setForeground(new java.awt.Color(28, 74, 137));
+        searchVaccineMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_buscar.png"))); // NOI18N
+        searchVaccineMenu.setText("Consulta de Vacinas");
+        searchVaccineMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchVaccineMenuActionPerformed(evt);
+            }
+        });
+        vaccineMenu.add(searchVaccineMenu);
+
+        jMenuBar1.add(vaccineMenu);
+
+        salesMenu.setForeground(new java.awt.Color(255, 255, 255));
+        salesMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_vendas.png"))); // NOI18N
+        salesMenu.setText("Vendas");
+
+        pdvMenu.setForeground(new java.awt.Color(28, 74, 137));
+        pdvMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_pdv.png"))); // NOI18N
+        pdvMenu.setText("Abrir PDV");
+        pdvMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pdvMenuActionPerformed(evt);
+            }
+        });
+        salesMenu.add(pdvMenu);
 
         jMenuItem7.setForeground(new java.awt.Color(28, 74, 137));
         jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_historico.png"))); // NOI18N
         jMenuItem7.setText("Posição do dia");
-        jMenu4.add(jMenuItem7);
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        salesMenu.add(jMenuItem7);
 
-        jMenuItem8.setForeground(new java.awt.Color(28, 74, 137));
-        jMenuItem8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_historico.png"))); // NOI18N
-        jMenuItem8.setText("Histórico de Vendas");
-        jMenu4.add(jMenuItem8);
+        historySalesMenu.setForeground(new java.awt.Color(28, 74, 137));
+        historySalesMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_historico.png"))); // NOI18N
+        historySalesMenu.setText("Histórico de Vendas");
+        historySalesMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                historySalesMenuActionPerformed(evt);
+            }
+        });
+        salesMenu.add(historySalesMenu);
 
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(salesMenu);
 
-        jMenu5.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_configuracoes.png"))); // NOI18N
-        jMenu5.setText("Configurações");
+        settingsMenu.setForeground(new java.awt.Color(255, 255, 255));
+        settingsMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_configuracoes.png"))); // NOI18N
+        settingsMenu.setText("Configurações");
 
-        jMenuItem9.setForeground(new java.awt.Color(28, 74, 137));
-        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_trocarusuario.png"))); // NOI18N
-        jMenuItem9.setText("Trocar de Usuário");
-        jMenu5.add(jMenuItem9);
+        changeUserMenu.setForeground(new java.awt.Color(28, 74, 137));
+        changeUserMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_trocarusuario.png"))); // NOI18N
+        changeUserMenu.setText("Trocar de Usuário");
+        settingsMenu.add(changeUserMenu);
 
-        jMenuBar1.add(jMenu5);
+        jMenuBar1.add(settingsMenu);
 
-        jMenu7.setForeground(new java.awt.Color(255, 255, 255));
-        jMenu7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_sair.png"))); // NOI18N
-        jMenu7.setText("Sair");
-        jMenuBar1.add(jMenu7);
+        exitMenu.setForeground(new java.awt.Color(255, 255, 255));
+        exitMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_sair.png"))); // NOI18N
+        exitMenu.setText("Sair");
+        exitMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitMenuMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(exitMenu);
 
         setJMenuBar(jMenuBar1);
 
@@ -262,13 +367,23 @@ public class DashboardScreen extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void addCustomerMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCustomerMenuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        CustomerScreen customer = new CustomerScreen();
+        customer.jTabbedPane1.setSelectedIndex(0);
+        customer.setVisible(true);
+
+    }//GEN-LAST:event_addCustomerMenuActionPerformed
+
+    private void addEmployeeMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addEmployeeMenuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+        EmployeeScreen employee = new EmployeeScreen();
+        employee.jTabbedPane1.setSelectedIndex(0);
+        employee.setVisible(true);
+
+    }//GEN-LAST:event_addEmployeeMenuActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
@@ -277,13 +392,127 @@ public class DashboardScreen extends javax.swing.JFrame {
         this.setVisible(true);
     }//GEN-LAST:event_formWindowActivated
 
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+    private void addAnimalMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAnimalMenuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+        PetScreen pet = new PetScreen();
+        pet.jTabbedPane1.setSelectedIndex(0);
+        pet.setVisible(true);
+
+    }//GEN-LAST:event_addAnimalMenuActionPerformed
+
+    private void vaccineControllerMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vaccineControllerMenuActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem11ActionPerformed
+        
+        VaccineScreen vaccine = new VaccineScreen();
+        vaccine.jTabbedPane1.setSelectedIndex(0);
+        vaccine.setVisible(true);
+        
+    }//GEN-LAST:event_vaccineControllerMenuActionPerformed
+
+    private void searchProductMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchProductMenuActionPerformed
+        // TODO add your handling code here:
+
+        ProductsScreen products = new ProductsScreen();
+        products.jTabbedPane1.setSelectedIndex(1);
+        products.setVisible(true);
+
+    }//GEN-LAST:event_searchProductMenuActionPerformed
+
+    private void searchCustomerMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchCustomerMenuActionPerformed
+        // TODO add your handling code here:
+        CustomerScreen customer = new CustomerScreen();
+        customer.jTabbedPane1.setSelectedIndex(1);
+        customer.setVisible(true);
+    }//GEN-LAST:event_searchCustomerMenuActionPerformed
+
+    private void searchAnimalMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAnimalMenuActionPerformed
+        // TODO add your handling code here:
+
+        PetScreen pet = new PetScreen();
+        pet.jTabbedPane1.setSelectedIndex(1);
+        pet.setVisible(true);
+
+    }//GEN-LAST:event_searchAnimalMenuActionPerformed
+
+    private void searchEmployeeMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchEmployeeMenuActionPerformed
+        // TODO add your handling code here:
+
+        EmployeeScreen employee = new EmployeeScreen();
+        employee.jTabbedPane1.setSelectedIndex(0);
+        employee.setVisible(true);
+
+    }//GEN-LAST:event_searchEmployeeMenuActionPerformed
+
+    private void searchSupplierMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchSupplierMenuActionPerformed
+        // TODO add your handling code here:
+
+        SupplierScreen supplier = new SupplierScreen();
+        supplier.jTabbedPane1.setSelectedIndex(1);
+        supplier.setVisible(true);
+
+    }//GEN-LAST:event_searchSupplierMenuActionPerformed
+
+    private void addSupplierMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSupplierMenuActionPerformed
+        // TODO add your handling code here:
+
+        SupplierScreen supplier = new SupplierScreen();
+        supplier.jTabbedPane1.setSelectedIndex(0);
+        supplier.setVisible(true);
+
+    }//GEN-LAST:event_addSupplierMenuActionPerformed
+
+    private void addProductsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductsMenuActionPerformed
+        // TODO add your handling code here:
+        
+        ProductsScreen products = new ProductsScreen();
+        products.jTabbedPane1.setSelectedIndex(0);
+        products.setVisible(true);
+        
+    }//GEN-LAST:event_addProductsMenuActionPerformed
+
+    private void stockManagementMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stockManagementMenuActionPerformed
+        // TODO add your handling code here:
+        
+        StockManagementScreen stock = new StockManagementScreen();
+        stock.setVisible(true);
+        
+    }//GEN-LAST:event_stockManagementMenuActionPerformed
+
+    private void searchVaccineMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchVaccineMenuActionPerformed
+        // TODO add your handling code here:
+        
+                VaccineScreen vaccine = new VaccineScreen();
+        vaccine.jTabbedPane1.setSelectedIndex(1);
+        vaccine.setVisible(true);
+        
+    }//GEN-LAST:event_searchVaccineMenuActionPerformed
+
+    private void pdvMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pdvMenuActionPerformed
+        // TODO add your handling code here:
+        
+        PdvScreen pdv = new PdvScreen();
+        pdv.setVisible(true);
+        
+    }//GEN-LAST:event_pdvMenuActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void historySalesMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historySalesMenuActionPerformed
+        // TODO add your handling code here:
+        
+        HistorySalesScreen history = new HistorySalesScreen();
+        history.setVisible(true);
+        
+    }//GEN-LAST:event_historySalesMenuActionPerformed
+
+    private void exitMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMenuMouseClicked
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_exitMenuMouseClicked
 
     /**
      * @param args the command line arguments
@@ -333,29 +562,35 @@ public class DashboardScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem addAnimalMenu;
+    private javax.swing.JMenuItem addCustomerMenu;
+    private javax.swing.JMenuItem addEmployeeMenu;
+    private javax.swing.JMenuItem addProductsMenu;
+    private javax.swing.JMenuItem addSupplierMenu;
+    private javax.swing.JMenuItem changeUserMenu;
+    private javax.swing.JMenu customerMenu;
+    private javax.swing.JMenu employeeMenu;
+    private javax.swing.JMenu exitMenu;
+    private javax.swing.JMenuItem historySalesMenu;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JDesktopPane painel_desktop;
+    private javax.swing.JMenuItem pdvMenu;
+    private javax.swing.JMenu productsMenu;
+    private javax.swing.JMenu salesMenu;
+    private javax.swing.JMenuItem searchAnimalMenu;
+    private javax.swing.JMenuItem searchCustomerMenu;
+    private javax.swing.JMenuItem searchEmployeeMenu;
+    private javax.swing.JMenuItem searchProductMenu;
+    private javax.swing.JMenuItem searchSupplierMenu;
+    private javax.swing.JMenuItem searchVaccineMenu;
+    private javax.swing.JMenu settingsMenu;
+    private javax.swing.JMenuItem stockManagementMenu;
+    private javax.swing.JMenu supplierMenu;
+    private javax.swing.JMenuItem vaccineControllerMenu;
+    private javax.swing.JMenu vaccineMenu;
     // End of variables declaration//GEN-END:variables
 }

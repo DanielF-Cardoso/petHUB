@@ -9,6 +9,7 @@ import br.com.pethub.dao.SuppliersDAO;
 import br.com.pethub.model.Products;
 import br.com.pethub.model.Suppliers;
 import br.com.pethub.utils.CleanFields;
+import java.awt.Toolkit;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -40,6 +41,9 @@ public class ProductsScreen extends javax.swing.JFrame {
      */
     public ProductsScreen() {
         initComponents();
+        
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/com/pethub/images/icones/icone_pethub.png")));
+
     }
 
     /**
@@ -77,12 +81,18 @@ public class ProductsScreen extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
+<<<<<<< HEAD
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
             }
         });
+=======
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("PetHUB | Cadastro de Produtos");
+        setResizable(false);
+>>>>>>> a8ca7e6c3548b3c5f406d26823852ca0717d45d5
 
         jPanel1.setBackground(new java.awt.Color(28, 74, 137));
         jPanel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -372,6 +382,7 @@ public class ProductsScreen extends javax.swing.JFrame {
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton3, jButton4, jButton5});
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
@@ -565,12 +576,19 @@ public class ProductsScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
+    public javax.swing.JPanel jPanel1;
+    public javax.swing.JPanel jPanel2;
+    public javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+<<<<<<< HEAD
     private javax.swing.JTabbedPane jTabbedPane1;
+=======
+    public javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField9;
+>>>>>>> a8ca7e6c3548b3c5f406d26823852ca0717d45d5
     private javax.swing.JPasswordField priceField;
     private javax.swing.JTextField productField;
     private javax.swing.JTextField searchField;

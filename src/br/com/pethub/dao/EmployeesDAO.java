@@ -199,7 +199,7 @@ public class EmployeesDAO {
         }
     }
 
-    public void toLogin(String email, String password) {
+    public boolean toLogin(String email, String password) {
         try {
             String sql = "select * from tb_employees where email = ? and password = ?";
 
@@ -210,20 +210,21 @@ public class EmployeesDAO {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                JOptionPane.showMessageDialog(null, "Seja bem vindo ao Sistema");
+                JOptionPane.showMessageDialog(null, "Bem-vindo ao PetHUB!");
                 DashboardScreen screen = new DashboardScreen();
                 screen.userLogin = rs.getString("name");
                 screen.setVisible(true);
+                rs.close();
+                stmt.close();
+                return true;
             } else {
-               
-                JOptionPane.showMessageDialog(null, "Dados incorretos");
+                JOptionPane.showMessageDialog(null, "Dados incorretos. Por favor, verifique suas credenciais e tente novamente.");
+                return false;
             }
-            
-            rs.close();
-            stmt.close();
 
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro : " + erro);
+            return false;
         }
     }
 
