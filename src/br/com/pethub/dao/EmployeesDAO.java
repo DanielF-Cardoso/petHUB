@@ -3,6 +3,7 @@ package br.com.pethub.dao;
 import br.com.pethub.jdbc.ConnectionFactory;
 import br.com.pethub.model.Employees;
 import br.com.pethub.view.DashboardScreen;
+import br.com.pethub.view.LoginScreen;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -214,6 +215,7 @@ public class EmployeesDAO {
                 screen.userLogin = rs.getString("name");
                 screen.setVisible(true);
             } else {
+               
                 JOptionPane.showMessageDialog(null, "Dados incorretos");
             }
             

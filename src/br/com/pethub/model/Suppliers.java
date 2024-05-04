@@ -13,4 +13,9 @@ public class Suppliers extends Customers{
         this.cnpj = cnpj;
     }
     
+    
+    @Override
+    public String toString(){
+        return this.getName();
+    }
 }
