@@ -5,6 +5,7 @@
 package br.com.pethub.view;
 
 import br.com.pethub.dao.ItemSaleDAO;
+import br.com.pethub.dao.ProductsDAO;
 import br.com.pethub.dao.SalesDAO;
 import br.com.pethub.model.Customers;
 import br.com.pethub.model.ItemSale;
@@ -320,7 +321,9 @@ public class PaymentScreen extends javax.swing.JFrame {
 
         for (int i = 0; i < cart.getRowCount(); i++) {
 
+            int qty_stock, qty_purchased, qty_new;
             Products product = new Products();
+            ProductsDAO productDAO = new ProductsDAO();
             ItemSale item = new ItemSale();
             item.setSale(sales);
 
@@ -328,6 +331,12 @@ public class PaymentScreen extends javax.swing.JFrame {
             item.setProduct(product);
             item.setQty(Integer.parseInt(cart.getValueAt(i, 2).toString()));
             item.setSubtotal(Double.parseDouble(cart.getValueAt(i, 4).toString()));
+            
+            qty_stock = productDAO.returnStock(product.getId());
+            qty_purchased = Integer.parseInt(cart.getValueAt(i, 2).toString());
+            qty_new = qty_stock - qty_purchased;
+            
+            productDAO.updateStock(product.getId(), qty_new);
 
             ItemSaleDAO itemDAO = new ItemSaleDAO();
             itemDAO.addItem(item);
