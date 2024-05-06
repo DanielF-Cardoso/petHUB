@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-
 public class ProductsDAO {
     
     private Connection con;
@@ -178,5 +177,39 @@ public class ProductsDAO {
             return null;
         }
     }
+     
+     public Products searchProductsByCode (int id){
+        try {
+
+            String sql = "select p.id, p.product, p.price, p.stock_qty, f.name from tb_products as p "
+                    + "inner join tb_suppliers as f on (p.for_id = f.id) where p.id = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, id);
+            
+            ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
+            Products obj = new Products();
+            Suppliers f = new Suppliers();
+            
+            if(rs.next()){
+                                
+                obj.setId(rs.getInt("p.id"));
+                obj.setProduct(rs.getString("p.product"));
+                obj.setPrice(rs.getDouble("p.price"));
+                obj.setStock_qty(rs.getInt("p.stock_qty"));
+                
+                f.setName(rs.getString("f.name"));
+                
+                obj.setSuppliers(f);
+                
+            }
+
+            return obj;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Produto não encontrado");
+            return null;
+        }
+    }     
+     
     
 }

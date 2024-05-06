@@ -194,5 +194,42 @@ public class CustomersDAO {
         }
     }    
     
+    public Customers searchCustomerByCPF (String cpf){
+        try {
+
+            String sql = "select * from tb_customers where cpf = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, cpf);
+            
+            ResultSet rs = stmt.executeQuery();
+            Customers obj = new Customers();
+
+            if (rs.next()){
+                obj.setId(rs.getInt("id"));
+                obj.setName(rs.getString("name"));
+                obj.setRg(rs.getString("rg"));
+                obj.setCpf(rs.getString("cpf"));
+                obj.setEmail(rs.getString("email"));
+                obj.setLandline(rs.getString("landline"));
+                obj.setPhone(rs.getString("phone"));
+                obj.setCep(rs.getString("cep"));
+                obj.setAddress(rs.getString("address"));
+                obj.setNumber(rs.getInt("number"));
+                obj.setComplement(rs.getString("complement"));
+                obj.setDistrict(rs.getString("district"));
+                obj.setCity(rs.getString("city"));
+                obj.setState(rs.getString("state"));
+                
+            }
+            
+            return obj;
+
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
+            return null;
+        }
+    }        
+    
     
 }
