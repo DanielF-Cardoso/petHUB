@@ -210,13 +210,34 @@ public class EmployeesDAO {
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                JOptionPane.showMessageDialog(null, "Bem-vindo ao PetHUB!");
-                DashboardScreen screen = new DashboardScreen();
-                screen.userLogin = rs.getString("name");
-                screen.setVisible(true);
-                rs.close();
-                stmt.close();
-                return true;
+
+                //Usuario Admin
+                if (rs.getString("access_level").equals("Admin")) {
+                    JOptionPane.showMessageDialog(null, "Bem-vindo ao PetHUB!");
+                    DashboardScreen screen = new DashboardScreen();
+                    screen.userLogin = rs.getString("name");
+                    screen.setVisible(true);
+                    rs.close();
+                    stmt.close();
+                    return true;
+                } //Usuario Funcionario
+                else if (rs.getString("access_level").equals("Usuário")) {
+                    JOptionPane.showMessageDialog(null, "Bem-vindo ao PetHUB!");
+                    DashboardScreen screen = new DashboardScreen();
+                    screen.userLogin = rs.getString("name");
+                    
+                    screen.totalSalesDay.setVisible(false);
+                    screen.historySalesMenu.setVisible(false);
+                    screen.employeeMenu.setVisible(false);
+                    screen.supplierMenu.setVisible(false);
+                    screen.addProductsMenu.setVisible(false);
+                    
+                    screen.setVisible(true);
+                    rs.close();
+                    stmt.close();
+                    return true;
+                }
+
             } else {
                 JOptionPane.showMessageDialog(null, "Dados incorretos. Por favor, verifique suas credenciais e tente novamente.");
                 return false;
@@ -226,6 +247,7 @@ public class EmployeesDAO {
             JOptionPane.showMessageDialog(null, "Erro : " + erro);
             return false;
         }
+        return false;
     }
 
 }

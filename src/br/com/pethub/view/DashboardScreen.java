@@ -68,7 +68,7 @@ public class DashboardScreen extends javax.swing.JFrame {
         searchVaccineMenu = new javax.swing.JMenuItem();
         salesMenu = new javax.swing.JMenu();
         pdvMenu = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        totalSalesDay = new javax.swing.JMenuItem();
         historySalesMenu = new javax.swing.JMenuItem();
         settingsMenu = new javax.swing.JMenu();
         changeUserMenu = new javax.swing.JMenuItem();
@@ -308,15 +308,15 @@ public class DashboardScreen extends javax.swing.JFrame {
         });
         salesMenu.add(pdvMenu);
 
-        jMenuItem7.setForeground(new java.awt.Color(28, 74, 137));
-        jMenuItem7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_historico.png"))); // NOI18N
-        jMenuItem7.setText("Posição do dia");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        totalSalesDay.setForeground(new java.awt.Color(28, 74, 137));
+        totalSalesDay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_historico.png"))); // NOI18N
+        totalSalesDay.setText("Total de Vendas no Dia");
+        totalSalesDay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                totalSalesDayActionPerformed(evt);
             }
         });
-        salesMenu.add(jMenuItem7);
+        salesMenu.add(totalSalesDay);
 
         historySalesMenu.setForeground(new java.awt.Color(28, 74, 137));
         historySalesMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_historico.png"))); // NOI18N
@@ -337,6 +337,11 @@ public class DashboardScreen extends javax.swing.JFrame {
         changeUserMenu.setForeground(new java.awt.Color(28, 74, 137));
         changeUserMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_trocarusuario.png"))); // NOI18N
         changeUserMenu.setText("Trocar de Usuário");
+        changeUserMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeUserMenuActionPerformed(evt);
+            }
+        });
         settingsMenu.add(changeUserMenu);
 
         jMenuBar1.add(settingsMenu);
@@ -403,11 +408,11 @@ public class DashboardScreen extends javax.swing.JFrame {
 
     private void vaccineControllerMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vaccineControllerMenuActionPerformed
         // TODO add your handling code here:
-        
+
         VaccineScreen vaccine = new VaccineScreen();
         vaccine.jTabbedPane1.setSelectedIndex(0);
         vaccine.setVisible(true);
-        
+
     }//GEN-LAST:event_vaccineControllerMenuActionPerformed
 
     private void searchProductMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchProductMenuActionPerformed
@@ -464,55 +469,76 @@ public class DashboardScreen extends javax.swing.JFrame {
 
     private void addProductsMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductsMenuActionPerformed
         // TODO add your handling code here:
-        
+
         ProductsScreen products = new ProductsScreen();
         products.jTabbedPane1.setSelectedIndex(0);
         products.setVisible(true);
-        
+
     }//GEN-LAST:event_addProductsMenuActionPerformed
 
     private void stockManagementMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stockManagementMenuActionPerformed
         // TODO add your handling code here:
-        
+
         StockManagementScreen stock = new StockManagementScreen();
         stock.setVisible(true);
-        
+
     }//GEN-LAST:event_stockManagementMenuActionPerformed
 
     private void searchVaccineMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchVaccineMenuActionPerformed
         // TODO add your handling code here:
-        
-                VaccineScreen vaccine = new VaccineScreen();
+
+        VaccineScreen vaccine = new VaccineScreen();
         vaccine.jTabbedPane1.setSelectedIndex(1);
         vaccine.setVisible(true);
-        
+
     }//GEN-LAST:event_searchVaccineMenuActionPerformed
 
     private void pdvMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pdvMenuActionPerformed
         // TODO add your handling code here:
-        
+
         PdvScreen pdv = new PdvScreen();
         pdv.setVisible(true);
-        
+
     }//GEN-LAST:event_pdvMenuActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void totalSalesDayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalSalesDayActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+        TotalSalesScreen totalSales = new TotalSalesScreen();
+        totalSales.setVisible(true);
+
+    }//GEN-LAST:event_totalSalesDayActionPerformed
 
     private void historySalesMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_historySalesMenuActionPerformed
         // TODO add your handling code here:
-        
+
         HistorySalesScreen history = new HistorySalesScreen();
         history.setVisible(true);
-        
+
     }//GEN-LAST:event_historySalesMenuActionPerformed
 
     private void exitMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitMenuMouseClicked
         // TODO add your handling code here:
-        
-        
+
+        int op;
+
+        op = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja sair?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if (op == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+
+
     }//GEN-LAST:event_exitMenuMouseClicked
+
+    private void changeUserMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeUserMenuActionPerformed
+        // TODO add your handling code here:
+
+        LoginScreen loginScreen = new LoginScreen();
+        this.dispose();
+        loginScreen.setVisible(true);
+
+    }//GEN-LAST:event_changeUserMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -564,32 +590,32 @@ public class DashboardScreen extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addAnimalMenu;
     private javax.swing.JMenuItem addCustomerMenu;
-    private javax.swing.JMenuItem addEmployeeMenu;
-    private javax.swing.JMenuItem addProductsMenu;
-    private javax.swing.JMenuItem addSupplierMenu;
+    public javax.swing.JMenuItem addEmployeeMenu;
+    public javax.swing.JMenuItem addProductsMenu;
+    public javax.swing.JMenuItem addSupplierMenu;
     private javax.swing.JMenuItem changeUserMenu;
     private javax.swing.JMenu customerMenu;
-    private javax.swing.JMenu employeeMenu;
+    public javax.swing.JMenu employeeMenu;
     private javax.swing.JMenu exitMenu;
-    private javax.swing.JMenuItem historySalesMenu;
+    public javax.swing.JMenuItem historySalesMenu;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JDesktopPane painel_desktop;
     private javax.swing.JMenuItem pdvMenu;
-    private javax.swing.JMenu productsMenu;
+    public javax.swing.JMenu productsMenu;
     private javax.swing.JMenu salesMenu;
     private javax.swing.JMenuItem searchAnimalMenu;
     private javax.swing.JMenuItem searchCustomerMenu;
-    private javax.swing.JMenuItem searchEmployeeMenu;
-    private javax.swing.JMenuItem searchProductMenu;
-    private javax.swing.JMenuItem searchSupplierMenu;
+    public javax.swing.JMenuItem searchEmployeeMenu;
+    public javax.swing.JMenuItem searchProductMenu;
+    public javax.swing.JMenuItem searchSupplierMenu;
     private javax.swing.JMenuItem searchVaccineMenu;
     private javax.swing.JMenu settingsMenu;
-    private javax.swing.JMenuItem stockManagementMenu;
-    private javax.swing.JMenu supplierMenu;
+    public javax.swing.JMenuItem stockManagementMenu;
+    public javax.swing.JMenu supplierMenu;
+    public javax.swing.JMenuItem totalSalesDay;
     private javax.swing.JMenuItem vaccineControllerMenu;
     private javax.swing.JMenu vaccineMenu;
     // End of variables declaration//GEN-END:variables
