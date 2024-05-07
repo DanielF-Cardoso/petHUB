@@ -4,7 +4,12 @@
  */
 package br.com.pethub.view;
 
+import br.com.pethub.dao.ProductsDAO;
+import br.com.pethub.model.Products;
 import java.awt.Toolkit;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,12 +17,33 @@ import java.awt.Toolkit;
  */
 public class StockManagementScreen extends javax.swing.JFrame {
 
+    int productId, stock_new;
+
+    public void listTable() {
+
+        ProductsDAO dao = new ProductsDAO();
+        List<Products> listProducts = dao.listProducts();
+        DefaultTableModel data = (DefaultTableModel) productsTable.getModel();
+        data.setNumRows(0);
+
+        for (Products c : listProducts) {
+            data.addRow(new Object[]{
+                c.getId(),
+                c.getProduct(),
+                c.getPrice(),
+                c.getStock_qty(),
+                c.getSuppliers().getName()
+
+            });
+        }
+    }
+
     /**
      * Creates new form Frmcliente
      */
     public StockManagementScreen() {
         initComponents();
-        
+
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/com/pethub/images/icones/icone_pethub.png")));
 
     }
@@ -36,20 +62,25 @@ public class StockManagementScreen extends javax.swing.JFrame {
         jLabel24 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        searchField = new javax.swing.JTextField();
+        searchBtn = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        qtyStockField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        qtyField = new javax.swing.JTextField();
+        addBtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        productsTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("PetHUB | Controle de Estoque");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(28, 74, 137));
         jPanel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -90,20 +121,27 @@ public class StockManagementScreen extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(28, 74, 137));
         jLabel4.setText("Produto:");
 
-        jButton1.setForeground(new java.awt.Color(28, 74, 137));
-        jButton1.setText("Pesquisar");
+        searchBtn.setForeground(new java.awt.Color(28, 74, 137));
+        searchBtn.setText("Pesquisar");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
 
         jLabel5.setForeground(new java.awt.Color(28, 74, 137));
         jLabel5.setText("Estoque Atual:");
 
+        qtyStockField.setEditable(false);
+
         jLabel6.setForeground(new java.awt.Color(28, 74, 137));
         jLabel6.setText("Quantidade:");
 
-        jButton2.setForeground(new java.awt.Color(28, 74, 137));
-        jButton2.setText("Adicionar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        addBtn.setForeground(new java.awt.Color(28, 74, 137));
+        addBtn.setText("Adicionar");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                addBtnActionPerformed(evt);
             }
         });
 
@@ -117,19 +155,19 @@ public class StockManagementScreen extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(qtyStockField, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3)))
+                        .addComponent(qtyField)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -138,29 +176,34 @@ public class StockManagementScreen extends javax.swing.JFrame {
                 .addGap(9, 9, 9)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchBtn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(qtyStockField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(qtyField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addBtn))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Lista de Produtos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(28, 74, 137))); // NOI18N
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        productsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Código", "Produto", "Preço", "Qtd. Estoquie", "Fornecedor"
+                "Código", "Produto", "Preço", "Qtd. Estoque", "Fornecedor"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        productsTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                productsTableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(productsTable);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -205,9 +248,66 @@ public class StockManagementScreen extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+
+        try {
+
+            int qtyStock, qty;
+
+            qtyStock = Integer.parseInt(qtyStockField.getText());
+            qty = Integer.parseInt(qtyField.getText());
+
+            stock_new = qtyStock + qty;
+
+            ProductsDAO dao = new ProductsDAO();
+            dao.updateStock(productId, stock_new);
+
+            JOptionPane.showMessageDialog(null, "Estoque atualizado com sucesso");
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Selecione o produto ou informe a nova quantidade" + e);
+
+        }
+
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+
+        listTable();
+
+    }//GEN-LAST:event_formWindowActivated
+
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        // TODO add your handling code here:
+
+        String name = "%" + searchField.getText() + "%";
+
+        ProductsDAO dao = new ProductsDAO();
+        List<Products> listProducts = dao.searchProducts(name);
+        DefaultTableModel data = (DefaultTableModel) productsTable.getModel();
+        data.setNumRows(0);
+
+        for (Products c : listProducts) {
+            data.addRow(new Object[]{
+                c.getId(),
+                c.getProduct(),
+                c.getPrice(),
+                c.getStock_qty(),
+                c.getSuppliers().getName(),});
+        }
+
+    }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void productsTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_productsTableMouseClicked
+        // TODO add your handling code here:
+
+        productId = Integer.parseInt(productsTable.getValueAt(productsTable.getSelectedRow(), 0).toString());
+        searchField.setText(productsTable.getValueAt(productsTable.getSelectedRow(), 1).toString());
+        qtyStockField.setText(productsTable.getValueAt(productsTable.getSelectedRow(), 3).toString());
+
+    }//GEN-LAST:event_productsTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -372,8 +472,7 @@ public class StockManagementScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton addBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel4;
@@ -383,9 +482,10 @@ public class StockManagementScreen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JTable productsTable;
+    private javax.swing.JTextField qtyField;
+    private javax.swing.JTextField qtyStockField;
+    private javax.swing.JButton searchBtn;
+    private javax.swing.JTextField searchField;
     // End of variables declaration//GEN-END:variables
 }

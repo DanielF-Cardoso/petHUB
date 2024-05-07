@@ -275,6 +275,11 @@ public class ProductsScreen extends javax.swing.JFrame {
 
         jButton1.setForeground(new java.awt.Color(28, 74, 137));
         jButton1.setText("Pesquisar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -354,7 +359,7 @@ public class ProductsScreen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(314, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton4)
@@ -440,7 +445,7 @@ public class ProductsScreen extends javax.swing.JFrame {
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
         // TODO add your handling code here:
         
-        jTabbedPane1.setSelectedIndex(0); //Ao clicar na tabela, enviar para a tela 1
+        jTabbedPane1.setSelectedIndex(0);
 
         idField.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
         productField.setText(table.getValueAt(table.getSelectedRow(), 1).toString());
@@ -514,6 +519,10 @@ public class ProductsScreen extends javax.swing.JFrame {
     private void priceFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_priceFieldActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
