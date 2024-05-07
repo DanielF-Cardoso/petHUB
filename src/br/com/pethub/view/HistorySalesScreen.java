@@ -4,7 +4,10 @@
  */
 package br.com.pethub.view;
 
+import br.com.pethub.dao.ItemSaleDAO;
 import br.com.pethub.dao.SalesDAO;
+import br.com.pethub.model.ItemSale;
+import br.com.pethub.model.Products;
 import br.com.pethub.model.Sales;
 import br.com.pethub.view.DetailsSaleScreen;
 import java.awt.Toolkit;
@@ -164,6 +167,9 @@ public class HistorySalesScreen extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(historyTable);
+        if (historyTable.getColumnModel().getColumnCount() > 0) {
+            historyTable.getColumnModel().getColumn(0).setHeaderValue("Código");
+        }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -232,7 +238,29 @@ public class HistorySalesScreen extends javax.swing.JFrame {
         detailsScreen.totalsaleField.setText(historyTable.getValueAt(historyTable.getSelectedRow(), 3).toString());
         detailsScreen.noteSaleField.setText(historyTable.getValueAt(historyTable.getSelectedRow(), 4).toString());
 
+        int sales_id = Integer.parseInt(historyTable.getValueAt(historyTable.getSelectedRow(), 0).toString());
+        
+        ItemSale item = new ItemSale();
+        ItemSaleDAO itemDAO = new ItemSaleDAO();
+        List<ItemSale> listItem = itemDAO.ListItemSales(sales_id);
+        
+        DefaultTableModel data = (DefaultTableModel) detailsScreen.productsTable.getModel();
+        data.setNumRows(0);
+        
+        for (ItemSale c : listItem) {
+           
+            data.addRow(new Object[]{
+                c.getProduct().getId(),
+                c.getProduct().getProduct(),
+                c.getQty(),
+                c.getProduct().getPrice(),
+                c.getSubtotal()
+
+            });
+        }        
+        
         detailsScreen.setVisible(true);
+        this.dispose();
 
     }//GEN-LAST:event_historyTableMouseClicked
 

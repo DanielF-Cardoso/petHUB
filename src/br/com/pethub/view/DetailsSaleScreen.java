@@ -147,7 +147,7 @@ public class DetailsSaleScreen extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Produto", "Qtd Comprada", "Valor", "SubTotal"
+                "Produto", "Qtd Comprada", "Valor", "SubTotal"
             }
         ));
         jScrollPane1.setViewportView(productsTable);

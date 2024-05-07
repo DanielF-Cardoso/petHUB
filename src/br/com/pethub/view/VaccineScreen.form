@@ -31,16 +31,14 @@
               <Component id="jTabbedPane1" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="350" max="-2" attributes="0"/>
               <Component id="jButton3" linkSize="2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jButton2" linkSize="2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="jButton4" linkSize="2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jButton5" linkSize="2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="291" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -52,7 +50,6 @@
               <Component id="jTabbedPane1" pref="313" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton2" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton4" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton5" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton3" linkSize="3" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
@@ -587,14 +584,6 @@
         </Container>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jButton2">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="89" green="4a" red="1c" type="rgb"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="SALVAR"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">

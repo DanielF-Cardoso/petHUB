@@ -16,21 +16,19 @@ import java.util.List;
  *
  * @author danie
  */
-
 public class SalesDAO {
 
     private Connection con;
 
-    public SalesDAO(){
+    public SalesDAO() {
         this.con = new ConnectionFactory().getConnection();
     }
 
-    public void addSales(Sales obj){
+    public void addSales(Sales obj) {
 
         try {
 
             //Criar o comando sql
-
             String sql = "insert into tb_sales (client_id, sale_date, total_sale, note)"
                     + "values (?,?,?,?)";
 
@@ -43,20 +41,19 @@ public class SalesDAO {
             stmt.execute();
             stmt.close();
 
-
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
         }
 
     }
 
-    public int returnLastSale(){
+    public int returnLastSale() {
         int idSale = 0;
         try {
             String sql = "select max(id) id from tb_sales";
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
-            if(rs.next()){
+            if (rs.next()) {
                 Sales sales = new Sales();
                 sales.setId(rs.getInt("id"));
                 idSale = sales.getId();
@@ -69,7 +66,7 @@ public class SalesDAO {
 
     public List<Sales> listSales(LocalDate date_start, LocalDate date_end) {
         try {
-            
+
             List<Sales> listSale = new ArrayList<>();
 
             String sql = "select s.id, date_format(s.sale_date, '%d/%m/%y') as date_formatted, c.name, s.total_sale, s.note from tb_sales as s "
@@ -104,5 +101,26 @@ public class SalesDAO {
         }
     }
 
+    public double returnTotalSalesDay(LocalDate sale_date) {
+
+        try {
+            double totalSale = 0;
+
+            String sql = "select sum(total_sale) as total from tb_sales where sale_date = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, sale_date.toString());
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                totalSale = rs.getDouble("total");
+            }
+            return totalSale;
+            
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        }
+
+    }
 
 }
