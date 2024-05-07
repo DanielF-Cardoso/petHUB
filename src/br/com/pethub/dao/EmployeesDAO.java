@@ -212,7 +212,7 @@ public class EmployeesDAO {
             if (rs.next()) {
 
                 //Usuario Admin
-                if (rs.getString("access_level").equals("Admin")) {
+                if (rs.getString("access_level").equals("Administrador")) {
                     JOptionPane.showMessageDialog(null, "Bem-vindo ao PetHUB!");
                     DashboardScreen screen = new DashboardScreen();
                     screen.userLogin = rs.getString("name");

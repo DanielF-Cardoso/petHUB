@@ -250,7 +250,6 @@ public class HistorySalesScreen extends javax.swing.JFrame {
         for (ItemSale c : listItem) {
            
             data.addRow(new Object[]{
-                c.getProduct().getId(),
                 c.getProduct().getProduct(),
                 c.getQty(),
                 c.getProduct().getPrice(),
