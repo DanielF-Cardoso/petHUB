@@ -77,9 +77,9 @@ public class ProductsScreen extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        addBnt = new javax.swing.JButton();
+        editBnt = new javax.swing.JButton();
+        deleteBnt = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("PetHUB | Cadastro de Produtos");
@@ -173,6 +173,11 @@ public class ProductsScreen extends javax.swing.JFrame {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        cbSuppliers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbSuppliersActionPerformed(evt);
             }
         });
 
@@ -326,27 +331,27 @@ public class ProductsScreen extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Consulta de Produtos", jPanel3);
 
-        jButton3.setForeground(new java.awt.Color(28, 74, 137));
-        jButton3.setText("NOVO");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        addBnt.setForeground(new java.awt.Color(28, 74, 137));
+        addBnt.setText("NOVO");
+        addBnt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                addBntActionPerformed(evt);
             }
         });
 
-        jButton4.setForeground(new java.awt.Color(28, 74, 137));
-        jButton4.setText("EDITAR");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        editBnt.setForeground(new java.awt.Color(28, 74, 137));
+        editBnt.setText("EDITAR");
+        editBnt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                editBntActionPerformed(evt);
             }
         });
 
-        jButton5.setForeground(new java.awt.Color(28, 74, 137));
-        jButton5.setText("EXCLUIR");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        deleteBnt.setForeground(new java.awt.Color(28, 74, 137));
+        deleteBnt.setText("EXCLUIR");
+        deleteBnt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                deleteBntActionPerformed(evt);
             }
         });
 
@@ -360,15 +365,15 @@ public class ProductsScreen extends javax.swing.JFrame {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(260, 260, 260)
-                .addComponent(jButton3)
+                .addComponent(addBnt)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(editBnt)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
+                .addComponent(deleteBnt)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton3, jButton4, jButton5});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addBnt, deleteBnt, editBnt});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -378,13 +383,13 @@ public class ProductsScreen extends javax.swing.JFrame {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(editBnt)
+                    .addComponent(deleteBnt)
+                    .addComponent(addBnt, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton3, jButton4, jButton5});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addBnt, deleteBnt, editBnt});
 
         pack();
         setLocationRelativeTo(null);
@@ -414,7 +419,7 @@ public class ProductsScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cbSuppliersAncestorAdded
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void addBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBntActionPerformed
         // TODO add your handling code here:
         try {
 
@@ -435,7 +440,7 @@ public class ProductsScreen extends javax.swing.JFrame {
         } catch (Exception e) {
         }
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_addBntActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
@@ -462,7 +467,7 @@ public class ProductsScreen extends javax.swing.JFrame {
         cbSuppliers.getModel().setSelectedItem(f);
     }//GEN-LAST:event_tableMouseClicked
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void editBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBntActionPerformed
         // TODO add your handling code here:
         
         Products obj = new Products();
@@ -481,9 +486,9 @@ public class ProductsScreen extends javax.swing.JFrame {
         dao.editProducts(obj);
         
         new CleanFields().cleanFields(jPanel2, jPanel3);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_editBntActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void deleteBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBntActionPerformed
         // TODO add your handling code here:
         
         Products obj = new Products();
@@ -494,7 +499,7 @@ public class ProductsScreen extends javax.swing.JFrame {
         dao.deleteProducts(obj);
         
         new CleanFields().cleanFields(jPanel2, jPanel3);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_deleteBntActionPerformed
 
     private void searchFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyPressed
         // TODO add your handling code here:
@@ -523,6 +528,10 @@ public class ProductsScreen extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void cbSuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSuppliersActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbSuppliersActionPerformed
 
     /**
      * @param args the command line arguments
@@ -575,12 +584,12 @@ public class ProductsScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addBnt;
     private javax.swing.JComboBox cbSuppliers;
+    private javax.swing.JButton deleteBnt;
+    private javax.swing.JButton editBnt;
     private javax.swing.JTextField idField;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;

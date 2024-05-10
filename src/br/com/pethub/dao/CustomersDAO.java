@@ -232,4 +232,39 @@ public class CustomersDAO {
     }        
     
     
+     public Customers consultCustomers(String name){
+        try {
+
+            String sql = "select * from tb_customers where name = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
+
+            Customers obj = new Customers();
+            
+            if(rs.next()){
+                
+                obj.setId(rs.getInt("id"));
+                obj.setName(rs.getString("name"));
+                obj.setRg(rs.getString("rg"));
+                obj.setCpf(rs.getString("cpf"));
+                obj.setEmail(rs.getString("email"));
+                obj.setLandline(rs.getString("landline"));
+                obj.setPhone(rs.getString("phone"));
+                obj.setCep(rs.getString("cep"));
+                obj.setAddress(rs.getString("address"));
+                obj.setNumber(rs.getInt("number"));
+                obj.setComplement(rs.getString("complement"));
+                obj.setDistrict(rs.getString("district"));
+                obj.setCity(rs.getString("city"));
+                obj.setState(rs.getString("state"));
+            }
+
+            return obj;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
+            return null;
+        }
+    }    
 }
