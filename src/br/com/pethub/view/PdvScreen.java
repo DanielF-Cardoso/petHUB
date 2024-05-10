@@ -8,10 +8,12 @@ import br.com.pethub.dao.CustomersDAO;
 import br.com.pethub.dao.ProductsDAO;
 import br.com.pethub.model.Customers;
 import br.com.pethub.model.Products;
+import br.com.pethub.utils.CleanFields;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -77,7 +79,7 @@ public class PdvScreen extends javax.swing.JFrame {
         jPanel11 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         totalField = new javax.swing.JTextField();
-        jButton4 = new javax.swing.JButton();
+        deleteBtn = new javax.swing.JButton();
         finishField = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -201,6 +203,11 @@ public class PdvScreen extends javax.swing.JFrame {
 
         dateField.setEditable(false);
         dateField.setForeground(new java.awt.Color(28, 74, 137));
+        dateField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dateFieldActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -392,8 +399,13 @@ public class PdvScreen extends javax.swing.JFrame {
         totalField.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         totalField.setForeground(new java.awt.Color(28, 74, 137));
 
-        jButton4.setForeground(new java.awt.Color(28, 74, 137));
-        jButton4.setText("Cancelar Venda");
+        deleteBtn.setForeground(new java.awt.Color(28, 74, 137));
+        deleteBtn.setText("Cancelar Venda");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         finishField.setForeground(new java.awt.Color(28, 74, 137));
         finishField.setText("Finalizar Venda");
@@ -412,23 +424,27 @@ public class PdvScreen extends javax.swing.JFrame {
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(totalField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(finishField, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(totalField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13)
-                    .addComponent(finishField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(totalField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel13))
+                    .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(finishField, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(deleteBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
+
+        jPanel11Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {deleteBtn, finishField, totalField});
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -564,13 +580,32 @@ public class PdvScreen extends javax.swing.JFrame {
 
     private void finishFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishFieldActionPerformed
         // TODO add your handling code here:
-        
+
         PaymentScreen payment = new PaymentScreen();
         payment.totalField.setText(String.valueOf(total));
         payment.customer = obj;
         payment.cart = cart;
         payment.setVisible(true);
+
     }//GEN-LAST:event_finishFieldActionPerformed
+
+    private void dateFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dateFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_dateFieldActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+        int op;
+
+        op = JOptionPane.showConfirmDialog(null, "Você tem certeza que deseja cancelar a venda?", "Confirmação", JOptionPane.YES_NO_OPTION);
+
+        if (op == JOptionPane.YES_OPTION) {
+            new CleanFields().cleanFields(jPanel8, jPanel9);
+            totalField.setText(null);
+            cart.setNumRows(0);
+        }
+
+    }//GEN-LAST:event_deleteBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -640,12 +675,12 @@ public class PdvScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addProduct;
-    private javax.swing.JTable cartTable;
-    private javax.swing.JFormattedTextField cpfField;
-    private javax.swing.JTextField dateField;
+    public javax.swing.JTable cartTable;
+    public javax.swing.JFormattedTextField cpfField;
+    public javax.swing.JTextField dateField;
+    private javax.swing.JButton deleteBtn;
     private javax.swing.JButton finishField;
-    private javax.swing.JTextField idField;
-    private javax.swing.JButton jButton4;
+    public javax.swing.JTextField idField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -659,19 +694,19 @@ public class PdvScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
+    public javax.swing.JPanel jPanel1;
+    public javax.swing.JPanel jPanel10;
+    public javax.swing.JPanel jPanel11;
+    public javax.swing.JPanel jPanel7;
+    public javax.swing.JPanel jPanel8;
+    public javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField nameField;
-    private javax.swing.JTextField priceField;
-    private javax.swing.JTextField productField;
-    private javax.swing.JTextField qtyField;
+    public javax.swing.JTextField nameField;
+    public javax.swing.JTextField priceField;
+    public javax.swing.JTextField productField;
+    public javax.swing.JTextField qtyField;
     private javax.swing.JButton searchClientBtn;
     private javax.swing.JButton searchProductsBtn;
-    private javax.swing.JTextField totalField;
+    public javax.swing.JTextField totalField;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,8 +6,10 @@ package br.com.pethub.view;
 
 import br.com.pethub.dao.SuppliersDAO;
 import br.com.pethub.model.Suppliers;
+import br.com.pethub.utils.CEPUtils;
 import br.com.pethub.utils.CleanFields;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
 
@@ -42,12 +44,13 @@ public class SupplierScreen extends javax.swing.JFrame {
             });
         }
     }
+
     /**
      * Creates new form Frmcliente
      */
     public SupplierScreen() {
         initComponents();
-        
+
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/com/pethub/images/icones/icone_pethub.png")));
 
     }
@@ -85,6 +88,7 @@ public class SupplierScreen extends javax.swing.JFrame {
         cepField = new javax.swing.JFormattedTextField();
         jLabel9 = new javax.swing.JLabel();
         addressField = new javax.swing.JTextField();
+        findCep = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         phoneField = new javax.swing.JFormattedTextField();
@@ -239,6 +243,11 @@ public class SupplierScreen extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        cepField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                cepFieldKeyPressed(evt);
+            }
+        });
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(28, 74, 137));
@@ -251,6 +260,13 @@ public class SupplierScreen extends javax.swing.JFrame {
             }
         });
 
+        findCep.setText("Preencher CEP");
+        findCep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                findCepActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -259,7 +275,9 @@ public class SupplierScreen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel10)
                 .addGap(23, 23, 23)
-                .addComponent(cepField, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(cepField, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
+                    .addComponent(findCep, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -302,14 +320,19 @@ public class SupplierScreen extends javax.swing.JFrame {
                     .addComponent(numberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
                     .addComponent(complementField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel13)
-                    .addComponent(districtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel14)
-                    .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15)
-                    .addComponent(ufField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(districtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14)
+                            .addComponent(cityField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel15)
+                            .addComponent(ufField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(findCep)))
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -648,7 +671,7 @@ public class SupplierScreen extends javax.swing.JFrame {
                 c.getPhone(),
                 c.getCep(),
                 c.getAddress(),
-                c.getNumber(), 
+                c.getNumber(),
                 c.getComplement(),
                 c.getDistrict(),
                 c.getCity(),
@@ -659,12 +682,12 @@ public class SupplierScreen extends javax.swing.JFrame {
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
         // TODO add your handling code here:
-        
+
         jTabbedPane1.setSelectedIndex(0); //Ao clicar na tabela, enviar para a tela 1
 
         idField.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
         nameField.setText(table.getValueAt(table.getSelectedRow(), 1).toString());
-        cnpjField.setText(table.getValueAt(table.getSelectedRow(), 2).toString()); 
+        cnpjField.setText(table.getValueAt(table.getSelectedRow(), 2).toString());
         emailField.setText(table.getValueAt(table.getSelectedRow(), 3).toString());
         landlineField.setText(table.getValueAt(table.getSelectedRow(), 4).toString());
         phoneField.setText(table.getValueAt(table.getSelectedRow(), 5).toString());
@@ -679,8 +702,8 @@ public class SupplierScreen extends javax.swing.JFrame {
 
     private void editBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBntActionPerformed
         // TODO add your handling code here:
-        
-         try {
+
+        try {
 
             Suppliers obj = new Suppliers();
             obj.setName(nameField.getText());
@@ -700,7 +723,7 @@ public class SupplierScreen extends javax.swing.JFrame {
 
             SuppliersDAO dao = new SuppliersDAO();
             dao.editSuppliers(obj);
-            
+
             new CleanFields().cleanFields(jPanel2, jPanel4);
 
         } catch (Exception e) {
@@ -709,7 +732,7 @@ public class SupplierScreen extends javax.swing.JFrame {
 
     private void deleteBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBntActionPerformed
         // TODO add your handling code here:
-        
+
         try {
 
             Suppliers obj = new Suppliers();
@@ -723,12 +746,23 @@ public class SupplierScreen extends javax.swing.JFrame {
 
         } catch (Exception e) {
         }
-        
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_deleteBntActionPerformed
+
+    private void findCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findCepActionPerformed
+        // TODO add your handling code here:
+        CEPUtils.buscarCEP(cepField, addressField, districtField, cityField, ufField);
+    }//GEN-LAST:event_findCepActionPerformed
+
+    private void cepFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cepFieldKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+
+            CEPUtils.buscarCEP(cepField, addressField, districtField, cityField, ufField);
+
+        }
+    }//GEN-LAST:event_cepFieldKeyPressed
 
     /**
      * @param args the command line arguments
@@ -902,6 +936,7 @@ public class SupplierScreen extends javax.swing.JFrame {
     private javax.swing.JTextField districtField;
     private javax.swing.JButton editBnt;
     private javax.swing.JTextField emailField;
+    private javax.swing.JButton findCep;
     private javax.swing.JTextField idField;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;

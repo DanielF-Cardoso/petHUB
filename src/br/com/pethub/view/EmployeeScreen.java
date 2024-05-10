@@ -256,6 +256,11 @@ public class EmployeeScreen extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        cepField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cepFieldActionPerformed(evt);
+            }
+        });
         cepField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 cepFieldKeyPressed(evt);
@@ -907,6 +912,10 @@ public class EmployeeScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         CEPUtils.buscarCEP(cepField, addressField, districtField, cityField, ufField);
     }//GEN-LAST:event_findCepActionPerformed
+
+    private void cepFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cepFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cepFieldActionPerformed
 
     /**
      * @param args the command line arguments
