@@ -417,7 +417,7 @@ public class DashboardScreen extends javax.swing.JFrame {
         this.setVisible(true);
 
         Date date_now = new Date();
-        SimpleDateFormat dateBrazil = new SimpleDateFormat("dd/MM/yyyy HH:mmta e");
+        SimpleDateFormat dateBrazil = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         String formattedDate = dateBrazil.format(date_now);
         dateLabel.setText(formattedDate);
 
