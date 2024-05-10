@@ -1,7 +1,6 @@
 package br.com.pethub.dao;
 
 import br.com.pethub.jdbc.ConnectionFactory;
-import br.com.pethub.model.Customers;
 import br.com.pethub.model.Products;
 import br.com.pethub.model.Suppliers;
 import java.sql.Connection;
