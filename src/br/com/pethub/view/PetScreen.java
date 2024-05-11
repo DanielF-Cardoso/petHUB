@@ -9,9 +9,10 @@ import br.com.pethub.dao.CustomersDAO;
 import br.com.pethub.model.Pets;
 import br.com.pethub.model.Customers;
 
-
 import br.com.pethub.utils.CleanFields;
 import java.awt.Toolkit;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,8 +21,8 @@ import javax.swing.table.DefaultTableModel;
  * @author danie
  */
 public class PetScreen extends javax.swing.JFrame {
-    
-        public void listTable() {
+
+    public void listTable() {
 
         PetsDAO dao = new PetsDAO();
         List<Pets> listPets = dao.listPets();
@@ -48,9 +49,9 @@ public class PetScreen extends javax.swing.JFrame {
      */
     public PetScreen() {
         initComponents();
-        
+
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/com/pethub/images/icones/icone_pethub.png")));
-  
+
     }
 
     /**
@@ -439,24 +440,34 @@ public class PetScreen extends javax.swing.JFrame {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
-        
+
         try {
+
+            String birthText = birthField.getText();
 
             Pets obj = new Pets();
             obj.setPet_name(pet_nameField.getText());
             obj.setGender(cbGender.getSelectedItem().toString());
-            obj.setBirth(birthField.getText());
             obj.setPet_weight(Double.parseDouble(pet_weightField.getText()));
             obj.setSpecies(speciesField.getText());
             obj.setBreed(breedField.getText());
 
-            Customers f = new Customers();
-            f = (Customers)cbCustomers.getSelectedItem();
-            obj.setCustumers(f);
+                        
+            SimpleDateFormat dateFormatBr = new SimpleDateFormat("dd/MM/yyyy");
+            Date birthDate = dateFormatBr.parse(birthText);
+            SimpleDateFormat dateFormatMysql = new SimpleDateFormat("yyyy-MM-dd");
+            String dateMysql = dateFormatMysql.format(birthDate);
+            obj.setBirth(dateMysql);    
+            System.out.println(dateMysql);
             
+            Customers f = new Customers();
+            f = (Customers) cbCustomers.getSelectedItem();
+            obj.setCustumers(f);
+
             PetsDAO dao = new PetsDAO();
             dao.addPets(obj);
- 
+            
+
             new CleanFields().cleanFields(jPanel2, jPanel3);
 
         } catch (Exception e) {
@@ -466,7 +477,7 @@ public class PetScreen extends javax.swing.JFrame {
     private void editBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBntActionPerformed
         // TODO add your handling code here:
         Pets obj = new Pets();
-        
+
         obj.setId(Integer.parseInt(idField.getText()));
         obj.setPet_name(pet_nameField.getText());
         obj.setGender(cbGender.getSelectedItem().toString());
@@ -474,41 +485,41 @@ public class PetScreen extends javax.swing.JFrame {
         obj.setPet_weight(Double.parseDouble(pet_weightField.getText()));
         obj.setSpecies(speciesField.getText());
         obj.setBreed(breedField.getText());
-        
+
         Customers f = new Customers();
-        f = (Customers)cbCustomers.getSelectedItem();
-        
+        f = (Customers) cbCustomers.getSelectedItem();
+
         obj.setCustumers(f);
-        
+
         PetsDAO dao = new PetsDAO();
         dao.editPets(obj);
-        
+
         new CleanFields().cleanFields(jPanel2, jPanel3);
-        
+
     }//GEN-LAST:event_editBntActionPerformed
 
     private void deleteBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBntActionPerformed
         // TODO add your handling code here:
-        
+
         Pets obj = new Pets();
-        
+
         obj.setId(Integer.parseInt(idField.getText()));
-        
+
         PetsDAO dao = new PetsDAO();
         dao.deletePets(obj);
-        
+
         new CleanFields().cleanFields(jPanel2, jPanel3);
-        
+
     }//GEN-LAST:event_deleteBntActionPerformed
 
     private void cbCustomersAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbCustomersAncestorAdded
         // TODO add your handling code here:
-        
-         CustomersDAO dao = new CustomersDAO();
+
+        CustomersDAO dao = new CustomersDAO();
         List<Customers> listCustomers = dao.listCustomers();
         cbCustomers.removeAll();
-        
-        for(Customers f : listCustomers){
+
+        for (Customers f : listCustomers) {
             cbCustomers.addItem(f);
         }
     }//GEN-LAST:event_cbCustomersAncestorAdded
@@ -520,8 +531,7 @@ public class PetScreen extends javax.swing.JFrame {
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
         // TODO add your handling code here:
-        
-                
+
         jTabbedPane1.setSelectedIndex(0);
 
         idField.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
@@ -532,19 +542,18 @@ public class PetScreen extends javax.swing.JFrame {
         speciesField.setText(table.getValueAt(table.getSelectedRow(), 5).toString());
         breedField.setText(table.getValueAt(table.getSelectedRow(), 6).toString());
 
-        
         Customers f = new Customers();
         CustomersDAO dao = new CustomersDAO();
-        
+
         f = dao.consultCustomers(table.getValueAt(table.getSelectedRow(), 4).toString());
-        
+
         cbCustomers.removeAllItems();
         cbCustomers.getModel().setSelectedItem(f);
     }//GEN-LAST:event_tableMouseClicked
 
     private void searchFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyPressed
         // TODO add your handling code here:
-        
+
         String name = "%" + searchField.getText() + "%";
 
         PetsDAO dao = new PetsDAO();
@@ -561,8 +570,7 @@ public class PetScreen extends javax.swing.JFrame {
                 c.getPet_weight(),
                 c.getSpecies(),
                 c.getBreed(),
-                c.getCustumers().getName(),
-            });
+                c.getCustumers().getName(),});
         }
     }//GEN-LAST:event_searchFieldKeyPressed
 

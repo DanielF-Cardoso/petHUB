@@ -1,8 +1,6 @@
 
 package br.com.pethub.model;
 
-import java.util.Date;
-
 
 public class Pets {
     

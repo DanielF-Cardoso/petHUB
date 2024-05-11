@@ -31,6 +31,8 @@ public class PetsDAO {
                     + "values (?,?,?,?,?,?,?)";
 
             PreparedStatement stmt = con.prepareStatement(sql);
+            
+            
             stmt.setString(1, obj.getPet_name());
             stmt.setString(2, obj.getGender());
             stmt.setString(3, obj.getBirth());
@@ -44,7 +46,7 @@ public class PetsDAO {
             stmt.close();
 
             JOptionPane.showMessageDialog(null, "Animal cadastrado com sucesso!");
-
+            
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
         }
