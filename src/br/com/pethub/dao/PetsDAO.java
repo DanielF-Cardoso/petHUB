@@ -60,7 +60,7 @@ public class PetsDAO {
         try {
 
             //Criar o comando sql
-            String sql = "update tb_pets set pets_name=?, gender=?, birth=?, pet_weight=?, species=?, breed=?, for_id=? where id=?";
+            String sql = "update tb_pets set pet_name=?, gender=?, birth=?, pet_weight=?, species=?, breed=?, for_id=? where id=?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, obj.getPet_name());
@@ -112,10 +112,9 @@ public class PetsDAO {
      
      public List<Pets> listPets() {
         try {
-
             List<Pets> listPets = new ArrayList<>();
 
-            String sql = "select p.id, p.pet_name, p.gender, p.birth, p.pet_weight, p.species, p.breed, f.name from tb_pets as p "
+            String sql = "select p.id, p.pet_name, p.gender, date_format(p.birth, '%d/%m/%Y') as date_formatted, p.pet_weight, p.species, p.breed, f.name from tb_pets as p "
                     + "inner join tb_customers as f on (p.for_id = f.id)";
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
@@ -128,7 +127,7 @@ public class PetsDAO {
                 obj.setId(rs.getInt("p.id"));
                 obj.setPet_name(rs.getString("p.pet_name"));
                 obj.setGender(rs.getString("p.gender"));
-                obj.setBirth(rs.getString("p.birth"));
+                obj.setBirth(rs.getString("date_formatted"));
                 obj.setPet_weight(rs.getDouble("p.pet_weight"));
                 obj.setSpecies(rs.getString("p.species"));
                 obj.setBreed(rs.getString("p.breed"));

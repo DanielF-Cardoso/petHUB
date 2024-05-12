@@ -9,7 +9,7 @@ package br.com.pethub.model;
  * @author danie
  */
 public class Customers {
-    
+
     private int id;
     private String name;
     private String rg;
@@ -35,6 +35,10 @@ public class Customers {
 
     public String getName() {
         return name;
+    }
+
+    public String toString() {
+        return this.getName();
     }
 
     public void setName(String name) {
@@ -136,7 +140,5 @@ public class Customers {
     public void setState(String state) {
         this.state = state;
     }
-    
-    
-    
+
 }

@@ -14,6 +14,7 @@ import java.awt.Toolkit;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -32,15 +33,13 @@ public class PetScreen extends javax.swing.JFrame {
         for (Pets c : listPets) {
             data.addRow(new Object[]{
                 c.getId(),
+                c.getCustumers().getName(),
                 c.getPet_name(),
                 c.getGender(),
                 c.getBirth(),
                 c.getPet_weight(),
                 c.getSpecies(),
-                c.getBreed(),
-                c.getCustumers().getName()
-
-            });
+                c.getBreed(),});
         }
     }
 
@@ -51,7 +50,6 @@ public class PetScreen extends javax.swing.JFrame {
         initComponents();
 
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/com/pethub/images/icones/icone_pethub.png")));
-
     }
 
     /**
@@ -80,11 +78,12 @@ public class PetScreen extends javax.swing.JFrame {
         birthField = new javax.swing.JFormattedTextField();
         jLabel22 = new javax.swing.JLabel();
         pet_weightField = new javax.swing.JTextField();
-        jLabel23 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
-        speciesField = new javax.swing.JTextField();
+        searchClientField = new javax.swing.JTextField();
         breedField = new javax.swing.JTextField();
-        cbCustomers = new javax.swing.JComboBox();
+        CustomersField = new javax.swing.JComboBox();
+        jLabel23 = new javax.swing.JLabel();
+        speciesField = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         searchField = new javax.swing.JTextField();
@@ -154,10 +153,15 @@ public class PetScreen extends javax.swing.JFrame {
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(28, 74, 137));
-        jLabel18.setText("Cliente/Propríetario");
+        jLabel18.setText("Cliente/Propríetario:");
 
         jButton6.setForeground(new java.awt.Color(28, 74, 137));
         jButton6.setText("Buscar Cliente");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(28, 74, 137));
@@ -197,23 +201,23 @@ public class PetScreen extends javax.swing.JFrame {
             }
         });
 
-        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(28, 74, 137));
-        jLabel23.setText("Especie:");
-
         jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(28, 74, 137));
         jLabel25.setText("Raça:");
 
-        cbCustomers.addAncestorListener(new javax.swing.event.AncestorListener() {
+        CustomersField.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                cbCustomersAncestorAdded(evt);
+                CustomersFieldAncestorAdded(evt);
             }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
+
+        jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(28, 74, 137));
+        jLabel23.setText("Especie:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -223,41 +227,46 @@ public class PetScreen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel19)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pet_nameField))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel21)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(birthField, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel22)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pet_weightField, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel23)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(speciesField, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel25)
-                            .addComponent(jLabel20)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel18)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbCustomers, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(cbGender, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(breedField))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(searchClientField, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(CustomersField, 0, 200, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(birthField, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel22)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pet_weightField, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel25)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(breedField))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(pet_nameField)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbGender, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel23)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(speciesField)))))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,7 +277,8 @@ public class PetScreen extends javax.swing.JFrame {
                     .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18)
                     .addComponent(jButton6)
-                    .addComponent(cbCustomers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchClientField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CustomersField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(9, 9, 9)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
@@ -280,11 +290,11 @@ public class PetScreen extends javax.swing.JFrame {
                     .addComponent(jLabel21)
                     .addComponent(birthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel25)
-                    .addComponent(jLabel23)
                     .addComponent(pet_weightField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22)
-                    .addComponent(speciesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(breedField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(breedField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel23)
+                    .addComponent(speciesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
@@ -334,7 +344,7 @@ public class PetScreen extends javax.swing.JFrame {
                 .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 55, Short.MAX_VALUE)
+                .addGap(0, 106, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -397,7 +407,7 @@ public class PetScreen extends javax.swing.JFrame {
                 .addComponent(editBnt)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deleteBnt)
-                .addGap(262, 262, 262))
+                .addGap(281, 281, 281))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addBtn, deleteBnt, editBnt});
@@ -443,30 +453,25 @@ public class PetScreen extends javax.swing.JFrame {
 
         try {
 
-            String birthText = birthField.getText();
-
             Pets obj = new Pets();
             obj.setPet_name(pet_nameField.getText());
             obj.setGender(cbGender.getSelectedItem().toString());
             obj.setPet_weight(Double.parseDouble(pet_weightField.getText()));
             obj.setSpecies(speciesField.getText());
-            obj.setBreed(breedField.getText());
+            obj.setBreed(searchClientField.getText());
 
-                        
             SimpleDateFormat dateFormatBr = new SimpleDateFormat("dd/MM/yyyy");
-            Date birthDate = dateFormatBr.parse(birthText);
+            Date birthDate = dateFormatBr.parse(birthField.getText());
             SimpleDateFormat dateFormatMysql = new SimpleDateFormat("yyyy-MM-dd");
             String dateMysql = dateFormatMysql.format(birthDate);
-            obj.setBirth(dateMysql);    
-            System.out.println(dateMysql);
-            
+            obj.setBirth(dateMysql);
+
             Customers f = new Customers();
-            f = (Customers) cbCustomers.getSelectedItem();
+            f = (Customers) CustomersField.getSelectedItem();
             obj.setCustumers(f);
 
             PetsDAO dao = new PetsDAO();
             dao.addPets(obj);
-            
 
             new CleanFields().cleanFields(jPanel2, jPanel3);
 
@@ -476,26 +481,33 @@ public class PetScreen extends javax.swing.JFrame {
 
     private void editBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBntActionPerformed
         // TODO add your handling code here:
-        Pets obj = new Pets();
+        try {
+            Pets obj = new Pets();
 
-        obj.setId(Integer.parseInt(idField.getText()));
-        obj.setPet_name(pet_nameField.getText());
-        obj.setGender(cbGender.getSelectedItem().toString());
-        obj.setBirth(birthField.getText());
-        obj.setPet_weight(Double.parseDouble(pet_weightField.getText()));
-        obj.setSpecies(speciesField.getText());
-        obj.setBreed(breedField.getText());
+            obj.setId(Integer.parseInt(idField.getText()));
+            obj.setPet_name(pet_nameField.getText());
+            obj.setGender(cbGender.getSelectedItem().toString());
+            obj.setPet_weight(Double.parseDouble(pet_weightField.getText()));
+            obj.setSpecies(speciesField.getText());
+            obj.setBreed(searchClientField.getText());
 
-        Customers f = new Customers();
-        f = (Customers) cbCustomers.getSelectedItem();
+            SimpleDateFormat dateFormatBr = new SimpleDateFormat("dd/MM/yyyy");
+            Date birthDate = dateFormatBr.parse(birthField.getText());
+            SimpleDateFormat dateFormatMysql = new SimpleDateFormat("yyyy-MM-dd");
+            String dateMysql = dateFormatMysql.format(birthDate);
+            obj.setBirth(dateMysql);
 
-        obj.setCustumers(f);
+            Customers f = new Customers();
+            f = (Customers) CustomersField.getSelectedItem();
 
-        PetsDAO dao = new PetsDAO();
-        dao.editPets(obj);
+            obj.setCustumers(f);
 
-        new CleanFields().cleanFields(jPanel2, jPanel3);
+            PetsDAO dao = new PetsDAO();
+            dao.editPets(obj);
 
+            new CleanFields().cleanFields(jPanel2, jPanel3);
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_editBntActionPerformed
 
     private void deleteBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBntActionPerformed
@@ -512,17 +524,18 @@ public class PetScreen extends javax.swing.JFrame {
 
     }//GEN-LAST:event_deleteBntActionPerformed
 
-    private void cbCustomersAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_cbCustomersAncestorAdded
+    private void CustomersFieldAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_CustomersFieldAncestorAdded
         // TODO add your handling code here:
 
         CustomersDAO dao = new CustomersDAO();
         List<Customers> listCustomers = dao.listCustomers();
-        cbCustomers.removeAll();
+        CustomersField.removeAll();
 
+        CustomersField.addItem(null);
         for (Customers f : listCustomers) {
-            cbCustomers.addItem(f);
+            CustomersField.addItem(f);
         }
-    }//GEN-LAST:event_cbCustomersAncestorAdded
+    }//GEN-LAST:event_CustomersFieldAncestorAdded
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         // TODO add your handling code here:
@@ -532,23 +545,22 @@ public class PetScreen extends javax.swing.JFrame {
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
         // TODO add your handling code here:
 
-        jTabbedPane1.setSelectedIndex(0);
-
-        idField.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
-        pet_nameField.setText(table.getValueAt(table.getSelectedRow(), 1).toString());
-        cbGender.setSelectedItem(table.getValueAt(table.getSelectedRow(), 2).toString());
-        birthField.setText(table.getValueAt(table.getSelectedRow(), 3).toString());
-        pet_weightField.setText(table.getValueAt(table.getSelectedRow(), 4).toString());
-        speciesField.setText(table.getValueAt(table.getSelectedRow(), 5).toString());
-        breedField.setText(table.getValueAt(table.getSelectedRow(), 6).toString());
-
         Customers f = new Customers();
         CustomersDAO dao = new CustomersDAO();
 
-        f = dao.consultCustomers(table.getValueAt(table.getSelectedRow(), 4).toString());
+        jTabbedPane1.setSelectedIndex(0);
 
-        cbCustomers.removeAllItems();
-        cbCustomers.getModel().setSelectedItem(f);
+        idField.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
+        f = dao.consultCustomers(table.getValueAt(table.getSelectedRow(), 1).toString());
+        pet_nameField.setText(table.getValueAt(table.getSelectedRow(), 2).toString());
+        cbGender.setSelectedItem(table.getValueAt(table.getSelectedRow(), 3).toString());
+        birthField.setText(table.getValueAt(table.getSelectedRow(), 4).toString());
+        pet_weightField.setText(table.getValueAt(table.getSelectedRow(), 5).toString());
+        speciesField.setText(table.getValueAt(table.getSelectedRow(), 6).toString());
+        breedField.setText(table.getValueAt(table.getSelectedRow(), 7).toString());
+
+        CustomersField.removeAllItems();
+        CustomersField.getModel().setSelectedItem(f);
     }//GEN-LAST:event_tableMouseClicked
 
     private void searchFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchFieldKeyPressed
@@ -573,6 +585,31 @@ public class PetScreen extends javax.swing.JFrame {
                 c.getCustumers().getName(),});
         }
     }//GEN-LAST:event_searchFieldKeyPressed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+
+        String searchTerm = searchClientField.getText().toLowerCase();
+
+        CustomersField.removeAllItems();
+
+        CustomersDAO dao = new CustomersDAO();
+        List<Customers> listCustomers = dao.listCustomers();
+
+        try {
+            for (Customers f : listCustomers) {
+                if (f.getName().toLowerCase().contains(searchTerm)) {
+                    CustomersField.addItem(f);
+                }
+            }
+            if (CustomersField.getItemCount() == 0) {
+                throw new Exception("Cliente não localizado");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -625,10 +662,10 @@ public class PetScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox CustomersField;
     private javax.swing.JButton addBtn;
     private javax.swing.JFormattedTextField birthField;
     private javax.swing.JTextField breedField;
-    private javax.swing.JComboBox cbCustomers;
     private javax.swing.JComboBox<String> cbGender;
     private javax.swing.JButton deleteBnt;
     private javax.swing.JButton editBnt;
@@ -653,6 +690,7 @@ public class PetScreen extends javax.swing.JFrame {
     public javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField pet_nameField;
     private javax.swing.JTextField pet_weightField;
+    private javax.swing.JTextField searchClientField;
     private javax.swing.JTextField searchField;
     private javax.swing.JTextField speciesField;
     private javax.swing.JTable table;
