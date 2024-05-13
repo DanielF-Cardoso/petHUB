@@ -4,7 +4,21 @@
  */
 package br.com.pethub.view;
 
+import br.com.pethub.dao.CustomersDAO;
+import br.com.pethub.dao.PetsDAO;
+import br.com.pethub.dao.VaccineDAO;
+import br.com.pethub.model.Customers;
+import br.com.pethub.utils.CleanFields;
+import br.com.pethub.model.Pets;
+import br.com.pethub.model.Vaccine;
+
+import javax.swing.*;
 import java.awt.Toolkit;
+import java.awt.event.ItemEvent;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,15 +26,33 @@ import java.awt.Toolkit;
  */
 public class VaccineScreen extends javax.swing.JFrame {
 
+    public void listTable() {
+        VaccineDAO dao = new VaccineDAO();
+        List<Vaccine> listVaccines = dao.listVaccines();
+        DefaultTableModel data = (DefaultTableModel) table.getModel();
+        data.setNumRows(0);
+
+        for (Vaccine v : listVaccines) {
+            data.addRow(new Object[]{
+                v.getId(),
+                v.getCustumers().getName(),
+                v.getPets().getPet_name(),
+                v.getVaccine_name(),
+                v.getVaccine_application(),
+                v.getVaccine_expiration(),
+                v.getNote()
+            });
+        }
+    }
+
     /**
      * Creates new form Frmcliente
      */
     public VaccineScreen() {
         initComponents();
-        
+
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/com/pethub/images/icones/icone_pethub.png")));
 
-        
     }
 
     /**
@@ -39,34 +71,40 @@ public class VaccineScreen extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        searchClientBtn = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        vaccine_name = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
+        dateField = new javax.swing.JFormattedTextField();
         jLabel8 = new javax.swing.JLabel();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        expirationField = new javax.swing.JFormattedTextField();
+        jLabel5 = new javax.swing.JLabel();
+        petField = new JComboBox<Pets>();
+        searchClientField = new javax.swing.JTextField();
+        idField = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        noteField = new javax.swing.JTextArea();
+        CustomersField = new JComboBox<Customers>();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        table = new javax.swing.JTable();
+        addBtn = new javax.swing.JButton();
+        editBtn = new javax.swing.JButton();
+        deleteBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("PetHUB | Controle de Vacina");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(28, 74, 137));
         jPanel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -112,22 +150,11 @@ public class VaccineScreen extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(28, 74, 137));
         jLabel4.setText("Nome do Cliente:");
 
-        jButton6.setForeground(new java.awt.Color(28, 74, 137));
-        jButton6.setText("Buscar Cliente");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        searchClientBtn.setForeground(new java.awt.Color(28, 74, 137));
+        searchClientBtn.setText("Buscar Cliente");
+        searchClientBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(28, 74, 137));
-        jLabel5.setText("Nome do Animal:");
-
-        jTextField3.setForeground(new java.awt.Color(28, 74, 137));
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                searchClientBtnActionPerformed(evt);
             }
         });
 
@@ -138,10 +165,10 @@ public class VaccineScreen extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(28, 74, 137));
         jLabel6.setText("Nome da Vacina:");
 
-        jTextField4.setForeground(new java.awt.Color(28, 74, 137));
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        vaccine_name.setForeground(new java.awt.Color(28, 74, 137));
+        vaccine_name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                vaccine_nameActionPerformed(evt);
             }
         });
 
@@ -150,7 +177,7 @@ public class VaccineScreen extends javax.swing.JFrame {
         jLabel7.setText("Data da Aplicação:");
 
         try {
-            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            dateField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -160,10 +187,14 @@ public class VaccineScreen extends javax.swing.JFrame {
         jLabel8.setText("Data de Vencimento:");
 
         try {
-            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            expirationField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(28, 74, 137));
+        jLabel5.setText("Nome do Animal:");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -171,53 +202,64 @@ public class VaccineScreen extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(petField, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6))
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(vaccine_name, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(expirationField, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(petField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(vaccine_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(expirationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jTextField5.setForeground(new java.awt.Color(28, 74, 137));
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        searchClientField.setForeground(new java.awt.Color(28, 74, 137));
+        searchClientField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                searchClientFieldActionPerformed(evt);
             }
         });
 
-        jTextField6.setForeground(new java.awt.Color(28, 74, 137));
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        idField.setEditable(false);
+        idField.setForeground(new java.awt.Color(28, 74, 137));
+        idField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                idFieldActionPerformed(evt);
             }
         });
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Observações", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(28, 74, 137))); // NOI18N
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
+        noteField.setColumns(20);
+        noteField.setRows(5);
+        jScrollPane2.setViewportView(noteField);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -233,33 +275,46 @@ public class VaccineScreen extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        CustomersField.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CustomersFieldItemStateChanged(evt);
+            }
+        });
+        CustomersField.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                CustomersFieldAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchClientField, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchClientBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 1, Short.MAX_VALUE)))
+                        .addComponent(CustomersField, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -269,19 +324,18 @@ public class VaccineScreen extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel4)
-                    .addComponent(jButton6)
-                    .addComponent(jLabel5)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(searchClientBtn)
+                    .addComponent(searchClientField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CustomersField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(5, 5, 5)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(19, 19, 19)
+                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 9, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Dados Pessoais", jPanel2);
+        jTabbedPane1.addTab("Registrar Vacina", jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -298,8 +352,13 @@ public class VaccineScreen extends javax.swing.JFrame {
 
         jButton1.setForeground(new java.awt.Color(28, 74, 137));
         jButton1.setText("Pesquisar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -307,7 +366,12 @@ public class VaccineScreen extends javax.swing.JFrame {
                 "Código", "Nome Cliente", "Nome Animal", "Nome da Vacina", "Data de Aplicação", "Data de Vencimento", "Observação"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(table);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -340,14 +404,29 @@ public class VaccineScreen extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Consulta de Vacinas", jPanel3);
 
-        jButton3.setForeground(new java.awt.Color(28, 74, 137));
-        jButton3.setText("NOVO");
+        addBtn.setForeground(new java.awt.Color(28, 74, 137));
+        addBtn.setText("NOVO");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addBtnActionPerformed(evt);
+            }
+        });
 
-        jButton4.setForeground(new java.awt.Color(28, 74, 137));
-        jButton4.setText("EDITAR");
+        editBtn.setForeground(new java.awt.Color(28, 74, 137));
+        editBtn.setText("EDITAR");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
-        jButton5.setForeground(new java.awt.Color(28, 74, 137));
-        jButton5.setText("EXCLUIR");
+        deleteBtn.setForeground(new java.awt.Color(28, 74, 137));
+        deleteBtn.setText("EXCLUIR");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -360,31 +439,31 @@ public class VaccineScreen extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(350, 350, 350)
-                .addComponent(jButton3)
+                .addComponent(addBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(editBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
+                .addComponent(deleteBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton3, jButton4, jButton5});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addBtn, deleteBtn, editBtn});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 313, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4)
-                    .addComponent(jButton5)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15))
+                    .addComponent(editBtn)
+                    .addComponent(deleteBtn)
+                    .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton3, jButton4, jButton5});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addBtn, deleteBtn, editBtn});
 
         pack();
         setLocationRelativeTo(null);
@@ -394,25 +473,241 @@ public class VaccineScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField9ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void idFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_idFieldActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void searchClientFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchClientFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_searchClientFieldActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void vaccine_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vaccine_nameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_vaccine_nameActionPerformed
 
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+    private void searchClientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchClientBtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        String searchTerm = searchClientField.getText().toLowerCase();
+
+        CustomersField.removeAllItems();
+
+        CustomersDAO dao = new CustomersDAO();
+        List<Customers> listCustomers = dao.listCustomers();
+
+        try {
+            for (Customers f : listCustomers) {
+                if (f.getName().toLowerCase().contains(searchTerm)) {
+                    CustomersField.addItem(f);
+                }
+            }
+            if (CustomersField.getItemCount() == 0) {
+                throw new Exception("Cliente não localizado");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+
+    }//GEN-LAST:event_searchClientBtnActionPerformed
+
+    private void CustomersFieldAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_CustomersFieldAncestorAdded
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+
+        CustomersDAO dao = new CustomersDAO();
+        List<Customers> listCustomers = dao.listCustomers();
+        CustomersField.removeAll();
+
+        CustomersField.addItem(null);
+        for (Customers f : listCustomers) {
+            CustomersField.addItem(f);
+        }
+
+    }//GEN-LAST:event_CustomersFieldAncestorAdded
+
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
+        // TODO add your handling code here:     
+        try {
+
+            Vaccine obj = new Vaccine();
+            Customers f = new Customers();
+            Pets p = new Pets();
+
+            f = (Customers) CustomersField.getSelectedItem();
+            obj.setCustumers(f);
+
+            p = (Pets) petField.getSelectedItem();
+            obj.setPets(p);
+
+            obj.setVaccine_name(vaccine_name.getText());
+
+            SimpleDateFormat dateFormatBr = new SimpleDateFormat("dd/MM/yyyy");
+            Date vaccineApplication = dateFormatBr.parse(dateField.getText());
+            SimpleDateFormat dateFormatMysql = new SimpleDateFormat("yyyy-MM-dd");
+            String dateMysql = dateFormatMysql.format(vaccineApplication);
+            obj.setVaccine_application(dateMysql);
+
+            SimpleDateFormat dateFormatBr2 = new SimpleDateFormat("dd/MM/yyyy");
+            Date vaccineExpiration = dateFormatBr2.parse(dateField.getText());
+            SimpleDateFormat dateFormatMysql2 = new SimpleDateFormat("yyyy-MM-dd");
+            String dateMysqlExpiration = dateFormatMysql2.format(vaccineExpiration);
+            obj.setVaccine_expiration(dateMysqlExpiration);
+
+            obj.setNote(noteField.getText());
+
+            VaccineDAO dao = new VaccineDAO();
+            dao.addVaccine(obj);
+
+            new CleanFields().cleanFields(jPanel2, jPanel4);
+            noteField.setText(null);
+
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_addBtnActionPerformed
+
+    private void CustomersFieldItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CustomersFieldItemStateChanged
+        // TODO add your handling code here:
+
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            Customers selectedCustomer = (Customers) evt.getItem();
+
+            PetsDAO petsDao = new PetsDAO();
+            List<Pets> petsList = petsDao.getPetsByCustomer(selectedCustomer);
+
+            petField.removeAllItems();
+
+            try {
+                if (petsList.isEmpty()) {
+                    throw new Exception("O cliente selecionado não possui animais cadastrados!");
+                }
+
+                for (Pets pet : petsList) {
+                    petField.addItem(pet);
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.getMessage());
+            }
+        }
+
+    }//GEN-LAST:event_CustomersFieldItemStateChanged
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+
+        Date date_now = new Date();
+        SimpleDateFormat dateBrazil = new SimpleDateFormat("dd/MM/yyyy");
+        String formattedDate = dateBrazil.format(date_now);
+        dateField.setText(formattedDate);
+
+        listTable();
+
+    }//GEN-LAST:event_formWindowActivated
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+        String name = "%" + jTextField9.getText() + "%";
+
+        VaccineDAO dao = new VaccineDAO();
+        List<Vaccine> listVaccines = dao.searchVaccines(name);
+        DefaultTableModel data = (DefaultTableModel) table.getModel();
+        data.setNumRows(0);
+
+        for (Vaccine v : listVaccines) {
+            data.addRow(new Object[]{
+                v.getId(),
+                v.getCustumers().getName(),
+                v.getPets().getPet_name(),
+                v.getVaccine_name(),
+                v.getVaccine_application(),
+                v.getVaccine_expiration(),
+                v.getNote()
+            });
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
+        // TODO add your handling code here:
+
+        Customers f = new Customers();
+        CustomersDAO dao = new CustomersDAO();
+
+        Pets p = new Pets();
+        PetsDAO petsDao = new PetsDAO();
+
+        jTabbedPane1.setSelectedIndex(0);
+
+        idField.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
+        f = dao.consultCustomers(table.getValueAt(table.getSelectedRow(), 1).toString());
+        CustomersField.removeAllItems();
+        CustomersField.getModel().setSelectedItem(f);
+        p = petsDao.getPetByName(table.getValueAt(table.getSelectedRow(), 2).toString());
+        petField.removeAllItems();
+        petField.getModel().setSelectedItem(p);
+        vaccine_name.setText(table.getValueAt(table.getSelectedRow(), 3).toString());
+        dateField.setText(table.getValueAt(table.getSelectedRow(), 4).toString());
+        expirationField.setText(table.getValueAt(table.getSelectedRow(), 5).toString());
+        noteField.setText(table.getValueAt(table.getSelectedRow(), 6).toString());
+
+
+    }//GEN-LAST:event_tableMouseClicked
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+
+        Vaccine obj = new Vaccine();
+
+        obj.setId(Integer.parseInt(idField.getText()));
+
+        VaccineDAO dao = new VaccineDAO();
+        dao.deleteVaccine(obj);
+
+            new CleanFields().cleanFields(jPanel2, jPanel4, jPanel5);
+            noteField.setText(null);
+
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        // TODO add your handling code here:
+
+        try {
+            Vaccine obj = new Vaccine();
+
+            obj.setId(Integer.parseInt(idField.getText()));
+            obj.setVaccine_name(vaccine_name.getText());
+
+            SimpleDateFormat dateFormatBr = new SimpleDateFormat("dd/MM/yyyy");
+            Date date = dateFormatBr.parse(dateField.getText());
+            SimpleDateFormat dateFormatMysql = new SimpleDateFormat("yyyy-MM-dd");
+            String dateMysql = dateFormatMysql.format(date);
+            obj.setVaccine_application(dateMysql);
+
+            Date expirationDate = dateFormatBr.parse(expirationField.getText());
+            String expirationDateMysql = dateFormatMysql.format(expirationDate);
+            obj.setVaccine_expiration(expirationDateMysql);
+
+            obj.setNote(noteField.getText());
+
+            Customers f = new Customers();
+            f = (Customers) CustomersField.getSelectedItem();
+            obj.setCustumers(f);
+
+            Pets p = new Pets();
+            p = (Pets) petField.getSelectedItem();
+            obj.setPets(p);
+
+            VaccineDAO dao = new VaccineDAO();
+            dao.editVaccine(obj);
+
+            new CleanFields().cleanFields(jPanel2, jPanel4);
+            noteField.setText(null);
+
+        } catch (Exception e) {
+            // Handle exception
+        }
+
+    }//GEN-LAST:event_editBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -465,13 +760,14 @@ public class VaccineScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private JComboBox<Customers> CustomersField;
+    private javax.swing.JButton addBtn;
+    private javax.swing.JFormattedTextField dateField;
+    private javax.swing.JButton deleteBtn;
+    private javax.swing.JButton editBtn;
+    private javax.swing.JFormattedTextField expirationField;
+    private javax.swing.JTextField idField;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel24;
@@ -489,12 +785,12 @@ public class VaccineScreen extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextArea noteField;
+    private JComboBox<Pets> petField;
+    private javax.swing.JButton searchClientBtn;
+    private javax.swing.JTextField searchClientField;
+    private javax.swing.JTable table;
+    private javax.swing.JTextField vaccine_name;
     // End of variables declaration//GEN-END:variables
 }

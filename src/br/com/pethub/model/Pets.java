@@ -26,6 +26,10 @@ public class Pets {
         return pet_name;
     }
 
+    public String toString() {
+        return this.getPet_name();
+    }
+
     public void setPet_name(String pet_name) {
         this.pet_name = pet_name;
     }

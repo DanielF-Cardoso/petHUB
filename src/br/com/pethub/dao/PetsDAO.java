@@ -154,7 +154,7 @@ public class PetsDAO {
             List<Pets> listPets = new ArrayList<>();
 
             String sql = "select p.id, p.pet_name, p.gender, p.birth, p.pet_weight, p.species, p.breed, f.name from tb_pets as p "
-                    + "inner join tb_customers as f on (p.for_id = f.id) where p.product like ?";
+                    + "inner join tb_customers as f on (p.for_id = f.id) where p.pet_name like ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, name);
 
@@ -186,6 +186,71 @@ public class PetsDAO {
             JOptionPane.showMessageDialog(null, "Erro: " + e);
             return null;
         }
+    }
+
+    public List<Pets> getPetsByCustomer(Customers customer) {
+        try {
+            List<Pets> listPets = new ArrayList<>();
+
+            String sql = "SELECT * FROM tb_pets WHERE for_id = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, customer.getId());
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Pets obj = new Pets();
+
+                obj.setId(rs.getInt("id"));
+                obj.setPet_name(rs.getString("pet_name"));
+                obj.setGender(rs.getString("gender"));
+                obj.setBirth(rs.getString("birth"));
+                obj.setPet_weight(rs.getDouble("pet_weight"));
+                obj.setSpecies(rs.getString("species"));
+                obj.setBreed(rs.getString("breed"));
+
+                obj.setCustumers(customer);
+
+                listPets.add(obj);
+            }
+
+            return listPets;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
+            return null;
+        }
+    }
+
+    public Pets getPetByName(String name) {
+        try {
+            String sql = "SELECT * FROM tb_pets WHERE pet_name = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, name);
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                Pets obj = new Pets();
+                Customers f = new Customers();
+
+                obj.setId(rs.getInt("id"));
+                obj.setPet_name(rs.getString("pet_name"));
+                obj.setGender(rs.getString("gender"));
+                obj.setBirth(rs.getString("birth"));
+                obj.setPet_weight(rs.getDouble("pet_weight"));
+                obj.setSpecies(rs.getString("species"));
+                obj.setBreed(rs.getString("breed"));
+
+                f.setId(rs.getInt("for_id"));
+                obj.setCustumers(f);
+
+                return obj;
+            }
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
+        }
+        return null;
     }
 
 }
