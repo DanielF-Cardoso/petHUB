@@ -8,6 +8,8 @@ O petHUB é um gerenciador de petshop, pensado para facilitar o gerenciamento de
 
 Este projeto foi desenvolvido como parte da atividade avaliativa A3 da disciplina de Programação de Soluções Computacionais.
 
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white) ![NetBeans IDE](https://img.shields.io/badge/NetBeansIDE-1B6AC6.svg?style=for-the-badge&logo=apache-netbeans-ide&logoColor=white)
+
 ## Funcionalidades
 
 - Controle de clientes
