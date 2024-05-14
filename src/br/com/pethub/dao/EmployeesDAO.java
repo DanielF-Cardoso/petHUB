@@ -211,7 +211,6 @@ public class EmployeesDAO {
 
             if (rs.next()) {
 
-                //Usuario Admin
                 if (rs.getString("access_level").equals("Administrador")) {
                     JOptionPane.showMessageDialog(null, "Bem-vindo ao PetHUB!");
                     DashboardScreen screen = new DashboardScreen();
@@ -220,8 +219,8 @@ public class EmployeesDAO {
                     rs.close();
                     stmt.close();
                     return true;
-                } //Usuario Funcionario
-                else if (rs.getString("access_level").equals("Usuário")) {
+                } 
+                else if (rs.getString("access_level").equals("Vendedor")) {
                     JOptionPane.showMessageDialog(null, "Bem-vindo ao PetHUB!");
                     DashboardScreen screen = new DashboardScreen();
                     screen.userLogin = rs.getString("name");
@@ -231,12 +230,30 @@ public class EmployeesDAO {
                     screen.employeeMenu.setVisible(false);
                     screen.supplierMenu.setVisible(false);
                     screen.addProductsMenu.setVisible(false);
+                    screen.vaccineMenu.setVisible(false);
                     
                     screen.setVisible(true);
                     rs.close();
                     stmt.close();
                     return true;
                 }
+                else if (rs.getString("access_level").equals("Veterinário")) {
+                    JOptionPane.showMessageDialog(null, "Bem-vindo ao PetHUB!");
+                    DashboardScreen screen = new DashboardScreen();
+                    screen.userLogin = rs.getString("name");
+                    
+                    screen.totalSalesDay.setVisible(false);
+                    screen.historySalesMenu.setVisible(false);
+                    screen.employeeMenu.setVisible(false);
+                    screen.supplierMenu.setVisible(false);
+                    screen.addProductsMenu.setVisible(false);
+                    screen.salesMenu.setVisible(false);
+                    
+                    screen.setVisible(true);
+                    rs.close();
+                    stmt.close();
+                    return true;
+                }                
 
             } else {
                 JOptionPane.showMessageDialog(null, "Dados incorretos. Por favor, verifique suas credenciais e tente novamente.");

@@ -633,7 +633,7 @@ public class DashboardScreen extends javax.swing.JFrame {
     private javax.swing.JDesktopPane painel_desktop;
     private javax.swing.JMenuItem pdvMenu;
     public javax.swing.JMenu productsMenu;
-    private javax.swing.JMenu salesMenu;
+    public javax.swing.JMenu salesMenu;
     private javax.swing.JMenuItem searchAnimalMenu;
     private javax.swing.JMenuItem searchCustomerMenu;
     public javax.swing.JMenuItem searchEmployeeMenu;
@@ -645,6 +645,6 @@ public class DashboardScreen extends javax.swing.JFrame {
     public javax.swing.JMenu supplierMenu;
     public javax.swing.JMenuItem totalSalesDay;
     private javax.swing.JMenuItem vaccineControllerMenu;
-    private javax.swing.JMenu vaccineMenu;
+    public javax.swing.JMenu vaccineMenu;
     // End of variables declaration//GEN-END:variables
 }

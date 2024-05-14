@@ -441,7 +441,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
 
         acess_levelField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         acess_levelField.setForeground(new java.awt.Color(28, 74, 137));
-        acess_levelField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Usuário", "Administrador", " " }));
+        acess_levelField.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Vendedor", "Veterinário", "Administrador", " " }));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);

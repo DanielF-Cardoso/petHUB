@@ -806,10 +806,11 @@
                       <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
-                        <StringItem index="0" value="Usu&#xe1;rio"/>
-                        <StringItem index="1" value="Administrador"/>
-                        <StringItem index="2" value=" "/>
+                      <StringArray count="4">
+                        <StringItem index="0" value="Vendedor"/>
+                        <StringItem index="1" value="Veterin&#xe1;rio"/>
+                        <StringItem index="2" value="Administrador"/>
+                        <StringItem index="3" value=" "/>
                       </StringArray>
                     </Property>
                   </Properties>
