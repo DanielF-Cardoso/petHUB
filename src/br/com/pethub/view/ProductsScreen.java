@@ -11,7 +11,9 @@ import br.com.pethub.model.Suppliers;
 import br.com.pethub.utils.CleanFields;
 import java.awt.Toolkit;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author danie
@@ -36,12 +38,13 @@ public class ProductsScreen extends javax.swing.JFrame {
             });
         }
     }
+
     /**
      * Creates new form Frmcliente
      */
     public ProductsScreen() {
         initComponents();
-        
+
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/com/pethub/images/icones/icone_pethub.png")));
 
     }
@@ -362,7 +365,7 @@ public class ProductsScreen extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 764, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1))
             .addGroup(layout.createSequentialGroup()
                 .addGap(260, 260, 260)
                 .addComponent(addBnt)
@@ -397,7 +400,7 @@ public class ProductsScreen extends javax.swing.JFrame {
 
     private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_searchFieldActionPerformed
 
     private void idFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idFieldActionPerformed
@@ -413,31 +416,39 @@ public class ProductsScreen extends javax.swing.JFrame {
         SuppliersDAO dao = new SuppliersDAO();
         List<Suppliers> listSuppliers = dao.listSuppliers();
         cbSuppliers.removeAll();
-        
-        for(Suppliers f : listSuppliers){
+
+        for (Suppliers f : listSuppliers) {
             cbSuppliers.addItem(f);
         }
     }//GEN-LAST:event_cbSuppliersAncestorAdded
 
     private void addBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBntActionPerformed
         // TODO add your handling code here:
-        try {
+        if (productField.getText().trim().isEmpty()
+                || priceField.getText().trim().isEmpty()
+                || stock_qtyField.getText().trim().isEmpty()
+                || cbSuppliers.getSelectedItem() == null) {
 
-            Products obj = new Products();
-            obj.setProduct(productField.getText());
-            obj.setPrice(Double.parseDouble(priceField.getText()));
-            obj.setStock_qty(Integer.parseInt(stock_qtyField.getText()));
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos antes de cadastrar um produto.");
+        } else {
+            try {
 
-            Suppliers f = new Suppliers();
-            f = (Suppliers)cbSuppliers.getSelectedItem();
-            obj.setSuppliers(f);
-            
-            ProductsDAO dao = new ProductsDAO();
-            dao.addProducts(obj);
- 
-            new CleanFields().cleanFields(jPanel2, jPanel3);
+                Products obj = new Products();
+                obj.setProduct(productField.getText());
+                obj.setPrice(Double.parseDouble(priceField.getText()));
+                obj.setStock_qty(Integer.parseInt(stock_qtyField.getText()));
 
-        } catch (Exception e) {
+                Suppliers f = new Suppliers();
+                f = (Suppliers) cbSuppliers.getSelectedItem();
+                obj.setSuppliers(f);
+
+                ProductsDAO dao = new ProductsDAO();
+                dao.addProducts(obj);
+
+                new CleanFields().cleanFields(jPanel2, jPanel5);
+
+            } catch (Exception e) {
+            }
         }
 
     }//GEN-LAST:event_addBntActionPerformed
@@ -449,7 +460,7 @@ public class ProductsScreen extends javax.swing.JFrame {
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
         // TODO add your handling code here:
-        
+
         jTabbedPane1.setSelectedIndex(0);
 
         idField.setText(table.getValueAt(table.getSelectedRow(), 0).toString());
@@ -457,47 +468,58 @@ public class ProductsScreen extends javax.swing.JFrame {
         priceField.setText(table.getValueAt(table.getSelectedRow(), 2).toString());
         stock_qtyField.setText(table.getValueAt(table.getSelectedRow(), 3).toString());
 
-        
         Suppliers f = new Suppliers();
         SuppliersDAO dao = new SuppliersDAO();
-        
+
         f = dao.consultSuppliers(table.getValueAt(table.getSelectedRow(), 4).toString());
-        
+
         cbSuppliers.removeAllItems();
         cbSuppliers.getModel().setSelectedItem(f);
     }//GEN-LAST:event_tableMouseClicked
 
     private void editBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBntActionPerformed
         // TODO add your handling code here:
-        
-        Products obj = new Products();
-        
-        obj.setId(Integer.parseInt(idField.getText()));
-        obj.setProduct(productField.getText());
-        obj.setPrice(Double.parseDouble(priceField.getText()));
-        obj.setStock_qty(Integer.parseInt(stock_qtyField.getText()));
-        
-        Suppliers f = new Suppliers();
-        f = (Suppliers)cbSuppliers.getSelectedItem();
-        
-        obj.setSuppliers(f);
-        
-        ProductsDAO dao = new ProductsDAO();
-        dao.editProducts(obj);
-        
-        new CleanFields().cleanFields(jPanel2, jPanel3);
+
+        if (productField.getText().trim().isEmpty()
+                || priceField.getText().trim().isEmpty()
+                || stock_qtyField.getText().trim().isEmpty()
+                || cbSuppliers.getSelectedItem() == null) {
+
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos antes de editar um produto.");
+        } else {
+            try {
+                Products obj = new Products();
+
+                obj.setId(Integer.parseInt(idField.getText()));
+                obj.setProduct(productField.getText());
+                obj.setPrice(Double.parseDouble(priceField.getText()));
+                obj.setStock_qty(Integer.parseInt(stock_qtyField.getText()));
+
+                Suppliers f = new Suppliers();
+                f = (Suppliers) cbSuppliers.getSelectedItem();
+
+                obj.setSuppliers(f);
+
+                ProductsDAO dao = new ProductsDAO();
+                dao.editProducts(obj);
+
+                new CleanFields().cleanFields(jPanel2, jPanel5);
+            } catch (Exception e) {
+            }
+
+        }
     }//GEN-LAST:event_editBntActionPerformed
 
     private void deleteBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBntActionPerformed
         // TODO add your handling code here:
-        
+
         Products obj = new Products();
-        
+
         obj.setId(Integer.parseInt(idField.getText()));
-        
+
         ProductsDAO dao = new ProductsDAO();
         dao.deleteProducts(obj);
-        
+
         new CleanFields().cleanFields(jPanel2, jPanel3);
     }//GEN-LAST:event_deleteBntActionPerformed
 
@@ -516,8 +538,7 @@ public class ProductsScreen extends javax.swing.JFrame {
                 c.getProduct(),
                 c.getPrice(),
                 c.getStock_qty(),
-                c.getSuppliers().getName(),
-            });
+                c.getSuppliers().getName(),});
         }
     }//GEN-LAST:event_searchFieldKeyPressed
 

@@ -36,7 +36,7 @@
           </Group>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="320" max="-2" attributes="0"/>
-              <Component id="jButton3" linkSize="2" min="-2" max="-2" attributes="0"/>
+              <Component id="addBtn" linkSize="2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="editBtn" linkSize="2" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -55,7 +55,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="editBtn" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="deleteBnt" linkSize="3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton3" linkSize="3" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
+                  <Component id="addBtn" linkSize="3" alignment="3" min="-2" pref="37" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
           </Group>
@@ -267,7 +267,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Nome:"/>
+                <Property name="text" type="java.lang.String" value="*Nome:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="nameField">
@@ -325,7 +325,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="addressField" pref="221" max="32767" attributes="0"/>
+                                  <Component id="addressField" pref="197" max="32767" attributes="0"/>
                                   <EmptySpace min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -380,7 +380,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="CEP:"/>
+                    <Property name="text" type="java.lang.String" value="*CEP:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel11">
@@ -391,7 +391,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="N&#xb0;:"/>
+                    <Property name="text" type="java.lang.String" value="*N&#xb0;:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="numberField">
@@ -433,7 +433,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Bairro:"/>
+                    <Property name="text" type="java.lang.String" value="*Bairro:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="districtField">
@@ -454,7 +454,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Cidade:"/>
+                    <Property name="text" type="java.lang.String" value="*Cidade:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="cityField">
@@ -475,7 +475,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="UF:"/>
+                    <Property name="text" type="java.lang.String" value="*UF:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="ufField">
@@ -544,7 +544,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Endere&#xe7;o:"/>
+                    <Property name="text" type="java.lang.String" value="*Endere&#xe7;o:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JTextField" name="addressField">
@@ -575,7 +575,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Email:"/>
+                <Property name="text" type="java.lang.String" value="*Email:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel6">
@@ -586,7 +586,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Celular:"/>
+                <Property name="text" type="java.lang.String" value="*Celular:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="phoneField">
@@ -628,7 +628,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="RG:"/>
+                <Property name="text" type="java.lang.String" value="*RG:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="rgField">
@@ -649,7 +649,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="CPF:"/>
+                <Property name="text" type="java.lang.String" value="*CPF:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JFormattedTextField" name="cpfField">
@@ -658,7 +658,7 @@
                   <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                  <Format format="##.###.###-##" subtype="-1" type="5"/>
+                  <Format format="###.###.###-##" subtype="-1" type="5"/>
                 </Property>
               </Properties>
             </Component>
@@ -752,7 +752,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Senha:"/>
+                    <Property name="text" type="java.lang.String" value="*Senha:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JPasswordField" name="passwordField">
@@ -783,7 +783,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Cargo:"/>
+                    <Property name="text" type="java.lang.String" value="*Cargo:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel21">
@@ -794,7 +794,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="N&#xed;vel de Acesso:"/>
+                    <Property name="text" type="java.lang.String" value="*N&#xed;vel de Acesso:"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JComboBox" name="acess_levelField">
@@ -1036,7 +1036,7 @@
         </Container>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="addBtn">
       <Properties>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="89" green="4a" red="1c" type="rgb"/>
@@ -1044,7 +1044,7 @@
         <Property name="text" type="java.lang.String" value="NOVO"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addBtnActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="editBtn">

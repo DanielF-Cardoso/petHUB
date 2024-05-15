@@ -7,10 +7,12 @@ package br.com.pethub.view;
 import br.com.pethub.dao.EmployeesDAO;
 import br.com.pethub.model.Employees;
 import br.com.pethub.utils.CEPUtils;
+import br.com.pethub.utils.CPFCNPJUtils;
 import br.com.pethub.utils.CleanFields;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -54,7 +56,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
      */
     public EmployeeScreen() {
         initComponents();
-        
+
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/br/com/pethub/images/icones/icone_pethub.png")));
 
     }
@@ -118,7 +120,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
-        jButton3 = new javax.swing.JButton();
+        addBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
         deleteBnt = new javax.swing.JButton();
 
@@ -181,7 +183,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(28, 74, 137));
-        jLabel4.setText("Nome:");
+        jLabel4.setText("*Nome:");
 
         nameField.setForeground(new java.awt.Color(28, 74, 137));
         nameField.addActionListener(new java.awt.event.ActionListener() {
@@ -196,11 +198,11 @@ public class EmployeeScreen extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(28, 74, 137));
-        jLabel10.setText("CEP:");
+        jLabel10.setText("*CEP:");
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(28, 74, 137));
-        jLabel11.setText("N°:");
+        jLabel11.setText("*N°:");
 
         numberField.setForeground(new java.awt.Color(28, 74, 137));
         numberField.addActionListener(new java.awt.event.ActionListener() {
@@ -222,7 +224,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(28, 74, 137));
-        jLabel13.setText("Bairro:");
+        jLabel13.setText("*Bairro:");
 
         districtField.setForeground(new java.awt.Color(28, 74, 137));
         districtField.addActionListener(new java.awt.event.ActionListener() {
@@ -233,7 +235,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(28, 74, 137));
-        jLabel14.setText("Cidade:");
+        jLabel14.setText("*Cidade:");
 
         cityField.setForeground(new java.awt.Color(28, 74, 137));
         cityField.addActionListener(new java.awt.event.ActionListener() {
@@ -244,7 +246,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(28, 74, 137));
-        jLabel15.setText("UF:");
+        jLabel15.setText("*UF:");
 
         ufField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         ufField.setForeground(new java.awt.Color(28, 74, 137));
@@ -269,7 +271,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(28, 74, 137));
-        jLabel9.setText("Endereço:");
+        jLabel9.setText("*Endereço:");
 
         addressField.setForeground(new java.awt.Color(28, 74, 137));
         addressField.addActionListener(new java.awt.event.ActionListener() {
@@ -314,7 +316,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(addressField, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                        .addComponent(addressField, javax.swing.GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -353,11 +355,11 @@ public class EmployeeScreen extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(28, 74, 137));
-        jLabel5.setText("Email:");
+        jLabel5.setText("*Email:");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(28, 74, 137));
-        jLabel6.setText("Celular:");
+        jLabel6.setText("*Celular:");
 
         phoneField.setForeground(new java.awt.Color(28, 74, 137));
         try {
@@ -379,7 +381,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(28, 74, 137));
-        jLabel16.setText("RG:");
+        jLabel16.setText("*RG:");
 
         rgField.setForeground(new java.awt.Color(28, 74, 137));
         try {
@@ -390,11 +392,11 @@ public class EmployeeScreen extends javax.swing.JFrame {
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(28, 74, 137));
-        jLabel17.setText("CPF:");
+        jLabel17.setText("*CPF:");
 
         cpfField.setForeground(new java.awt.Color(28, 74, 137));
         try {
-            cpfField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-##")));
+            cpfField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -419,7 +421,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(28, 74, 137));
-        jLabel19.setText("Senha:");
+        jLabel19.setText("*Senha:");
 
         passwordField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         passwordField.setForeground(new java.awt.Color(28, 74, 137));
@@ -433,11 +435,11 @@ public class EmployeeScreen extends javax.swing.JFrame {
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(28, 74, 137));
-        jLabel20.setText("Cargo:");
+        jLabel20.setText("*Cargo:");
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(28, 74, 137));
-        jLabel21.setText("Nível de Acesso:");
+        jLabel21.setText("*Nível de Acesso:");
 
         acess_levelField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         acess_levelField.setForeground(new java.awt.Color(28, 74, 137));
@@ -640,11 +642,11 @@ public class EmployeeScreen extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Consulta de Funcionarios", jPanel3);
 
-        jButton3.setForeground(new java.awt.Color(28, 74, 137));
-        jButton3.setText("NOVO");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        addBtn.setForeground(new java.awt.Color(28, 74, 137));
+        addBtn.setText("NOVO");
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                addBtnActionPerformed(evt);
             }
         });
 
@@ -675,7 +677,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(320, 320, 320)
-                .addComponent(jButton3)
+                .addComponent(addBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(editBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -683,7 +685,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {deleteBnt, editBtn, jButton3});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addBtn, deleteBnt, editBtn});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -695,11 +697,11 @@ public class EmployeeScreen extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(editBtn)
                     .addComponent(deleteBnt)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(17, 17, 17))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {deleteBnt, editBtn, jButton3});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {addBtn, deleteBnt, editBtn});
 
         pack();
         setLocationRelativeTo(null);
@@ -745,36 +747,69 @@ public class EmployeeScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_responsibilityFieldActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
-        try {
 
-            Employees obj = new Employees();
-            obj.setName(nameField.getText());
-            obj.setRg(rgField.getText());
-            obj.setCpf(cpfField.getText());
-            obj.setEmail(emailField.getText());
-            obj.setPassword(passwordField.getText());
-            obj.setResponsibility(responsibilityField.getText());
-            obj.setAccess_level(acess_levelField.getSelectedItem().toString());
-            obj.setLandline(landlineField.getText());
-            obj.setPhone(phoneField.getText());
-            obj.setAddress(addressField.getText());
-            obj.setCep(cepField.getText());
-            obj.setNumber(Integer.parseInt(numberField.getText()));
-            obj.setComplement(complementField.getText());
-            obj.setDistrict(districtField.getText());
-            obj.setCity(cityField.getText());
-            obj.setState(ufField.getSelectedItem().toString());
+        if (nameField.getText().trim().isEmpty()
+                || rgField.getText().trim().isEmpty()
+                || emailField.getText().trim().isEmpty()
+                || phoneField.getText().trim().isEmpty()
+                || cepField.getText().trim().isEmpty()
+                || addressField.getText().trim().isEmpty()
+                || numberField.getText().trim().isEmpty()
+                || districtField.getText().trim().isEmpty()
+                || cityField.getText().trim().isEmpty()
+                || ufField.getSelectedItem() == null
+                || responsibilityField.getText().trim().isEmpty()
+                || passwordField.getText().trim().isEmpty()
+                || acess_levelField.getSelectedItem() == null) {
 
-            EmployeesDAO dao = new EmployeesDAO();
-            dao.addEmployees(obj);
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos antes de cadastrar um funcionário.");
+        } else {
 
-            new CleanFields().cleanFields(jPanel2, jPanel4);
+            if (!emailField.getText().trim().contains("@")) {
+                JOptionPane.showMessageDialog(null, "O email informado é inválido.");
+            } else if (!nameField.getText().matches("^[a-zA-Z\\s]*$")) {
+                JOptionPane.showMessageDialog(null, "O nome informado é inválido. Ele deve conter apenas letras.");
+            } else {
+                CPFCNPJUtils cpfUtils = new CPFCNPJUtils();
+                String cpf = cpfField.getText().trim().replaceAll("\\D", "");
+                if (!cpfUtils.isCPFValid(cpf)) {
+                    JOptionPane.showMessageDialog(null, "O CPF informado é invalido.");
+                } else {
 
-        } catch (Exception e) {
+                    try {
+
+                        Employees obj = new Employees();
+                        obj.setName(nameField.getText());
+                        obj.setRg(rgField.getText());
+                        obj.setCpf(cpfField.getText());
+                        obj.setEmail(emailField.getText());
+                        obj.setPassword(passwordField.getText());
+                        obj.setResponsibility(responsibilityField.getText());
+                        obj.setAccess_level(acess_levelField.getSelectedItem().toString());
+                        obj.setLandline(landlineField.getText());
+                        obj.setPhone(phoneField.getText());
+                        obj.setAddress(addressField.getText());
+                        obj.setCep(cepField.getText());
+                        obj.setNumber(Integer.parseInt(numberField.getText()));
+                        obj.setComplement(complementField.getText());
+                        obj.setDistrict(districtField.getText());
+                        obj.setCity(cityField.getText());
+                        obj.setState(ufField.getSelectedItem().toString());
+
+                        EmployeesDAO dao = new EmployeesDAO();
+                        dao.addEmployees(obj);
+
+                        new CleanFields().cleanFields(jPanel2, jPanel4);
+
+                    } catch (Exception e) {
+                    }
+
+                }
+            }
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_addBtnActionPerformed
 
     private void tableAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tableAncestorAdded
         // TODO add your handling code here:
@@ -847,35 +882,69 @@ public class EmployeeScreen extends javax.swing.JFrame {
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
         // TODO add your handling code here:
-        try {
 
-            Employees obj = new Employees();
-            obj.setName(nameField.getText());
-            obj.setRg(rgField.getText());
-            obj.setCpf(cpfField.getText());
-            obj.setEmail(emailField.getText());
-            obj.setPassword(passwordField.getText());
-            obj.setResponsibility(responsibilityField.getText());
-            obj.setAccess_level(acess_levelField.getSelectedItem().toString());
-            obj.setLandline(landlineField.getText());
-            obj.setPhone(phoneField.getText());
-            obj.setAddress(addressField.getText());
-            obj.setCep(cepField.getText());
-            obj.setNumber(Integer.parseInt(numberField.getText()));
-            obj.setComplement(complementField.getText());
-            obj.setDistrict(districtField.getText());
-            obj.setCity(cityField.getText());
-            obj.setState(ufField.getSelectedItem().toString());
+        if (nameField.getText().trim().isEmpty()
+                || rgField.getText().trim().isEmpty()
+                || emailField.getText().trim().isEmpty()
+                || phoneField.getText().trim().isEmpty()
+                || cepField.getText().trim().isEmpty()
+                || addressField.getText().trim().isEmpty()
+                || numberField.getText().trim().isEmpty()
+                || districtField.getText().trim().isEmpty()
+                || cityField.getText().trim().isEmpty()
+                || ufField.getSelectedItem() == null
+                || responsibilityField.getText().trim().isEmpty()
+                || passwordField.getText().trim().isEmpty()
+                || acess_levelField.getSelectedItem() == null) {
 
-            obj.setId(Integer.parseInt(idField.getText()));
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos antes de editar um funcionário.");
+        } else {
 
-            EmployeesDAO dao = new EmployeesDAO();
-            dao.editEmployees(obj);
+            if (!emailField.getText().trim().contains("@")) {
+                JOptionPane.showMessageDialog(null, "O email informado é inválido.");
+            } else if (!nameField.getText().matches("^[a-zA-Z\\s]*$")) {
+                JOptionPane.showMessageDialog(null, "O nome informado é inválido. Ele deve conter apenas letras.");
+            } else {
+                CPFCNPJUtils cpfUtils = new CPFCNPJUtils();
+                String cpf = cpfField.getText().trim().replaceAll("\\D", "");
+                if (!cpfUtils.isCPFValid(cpf)) {
+                    JOptionPane.showMessageDialog(null, "O CPF informado é invalido.");
+                } else {
 
-            new CleanFields().cleanFields(jPanel2, jPanel4);
+                    try {
 
-        } catch (Exception e) {
+                        Employees obj = new Employees();
+                        obj.setName(nameField.getText());
+                        obj.setRg(rgField.getText());
+                        obj.setCpf(cpfField.getText());
+                        obj.setEmail(emailField.getText());
+                        obj.setPassword(passwordField.getText());
+                        obj.setResponsibility(responsibilityField.getText());
+                        obj.setAccess_level(acess_levelField.getSelectedItem().toString());
+                        obj.setLandline(landlineField.getText());
+                        obj.setPhone(phoneField.getText());
+                        obj.setAddress(addressField.getText());
+                        obj.setCep(cepField.getText());
+                        obj.setNumber(Integer.parseInt(numberField.getText()));
+                        obj.setComplement(complementField.getText());
+                        obj.setDistrict(districtField.getText());
+                        obj.setCity(cityField.getText());
+                        obj.setState(ufField.getSelectedItem().toString());
+
+                        obj.setId(Integer.parseInt(idField.getText()));
+
+                        EmployeesDAO dao = new EmployeesDAO();
+                        dao.editEmployees(obj);
+
+                        new CleanFields().cleanFields(jPanel2, jPanel4);
+
+                    } catch (Exception e) {
+                    }
+
+                }
+            }
         }
+
 
     }//GEN-LAST:event_editBtnActionPerformed
 
@@ -969,6 +1038,7 @@ public class EmployeeScreen extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> acess_levelField;
+    private javax.swing.JButton addBtn;
     private javax.swing.JTextField addressField;
     private javax.swing.JFormattedTextField cepField;
     private javax.swing.JTextField cityField;
@@ -981,7 +1051,6 @@ public class EmployeeScreen extends javax.swing.JFrame {
     private javax.swing.JButton findCep;
     private javax.swing.JTextField idField;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -7,11 +7,13 @@ package br.com.pethub.view;
 import br.com.pethub.dao.SuppliersDAO;
 import br.com.pethub.model.Suppliers;
 import br.com.pethub.utils.CEPUtils;
+import br.com.pethub.utils.CPFCNPJUtils;
 import br.com.pethub.utils.CleanFields;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -169,7 +171,7 @@ public class SupplierScreen extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(28, 74, 137));
-        jLabel4.setText("Nome:");
+        jLabel4.setText("Razão Social:");
 
         nameField.setForeground(new java.awt.Color(28, 74, 137));
         nameField.addActionListener(new java.awt.event.ActionListener() {
@@ -621,28 +623,54 @@ public class SupplierScreen extends javax.swing.JFrame {
 
     private void newBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBntActionPerformed
         // TODO add your handling code here:
-        try {
 
-            Suppliers obj = new Suppliers();
-            obj.setName(nameField.getText());
-            obj.setCnpj(cnpjField.getText());
-            obj.setEmail(emailField.getText());
-            obj.setLandline(landlineField.getText());
-            obj.setPhone(phoneField.getText());
-            obj.setAddress(addressField.getText());
-            obj.setCep(cepField.getText());
-            obj.setNumber(Integer.parseInt(numberField.getText()));
-            obj.setComplement(complementField.getText());
-            obj.setDistrict(districtField.getText());
-            obj.setCity(cityField.getText());
-            obj.setState(ufField.getSelectedItem().toString());
+        if (nameField.getText().trim().isEmpty()
+                || cnpjField.getText().trim().isEmpty()
+                || emailField.getText().trim().isEmpty()
+                || phoneField.getText().trim().isEmpty()
+                || cepField.getText().trim().isEmpty()
+                || addressField.getText().trim().isEmpty()
+                || numberField.getText().trim().isEmpty()
+                || districtField.getText().trim().isEmpty()
+                || cityField.getText().trim().isEmpty()
+                || ufField.getSelectedItem() == null) {
 
-            SuppliersDAO dao = new SuppliersDAO();
-            dao.addSuppliers(obj);
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos antes de cadastrar um fornecedor.");
+        } else {
 
-            new CleanFields().cleanFields(jPanel2, jPanel4);
+            if (!emailField.getText().trim().contains("@")) {
+                JOptionPane.showMessageDialog(null, "O email informado é inválido.");
+            } else {
+                CPFCNPJUtils cpfCnpjUtils = new CPFCNPJUtils();
+                String cnpj = cnpjField.getText().trim().replaceAll("\\D", "");
+                if (!cpfCnpjUtils.isCNPJValid(cnpj)) {
+                    JOptionPane.showMessageDialog(null, "O CNPJ informado é inválido.");
+                } else {
+                    try {
 
-        } catch (Exception e) {
+                        Suppliers obj = new Suppliers();
+                        obj.setName(nameField.getText());
+                        obj.setCnpj(cnpjField.getText());
+                        obj.setEmail(emailField.getText());
+                        obj.setLandline(landlineField.getText());
+                        obj.setPhone(phoneField.getText());
+                        obj.setAddress(addressField.getText());
+                        obj.setCep(cepField.getText());
+                        obj.setNumber(Integer.parseInt(numberField.getText()));
+                        obj.setComplement(complementField.getText());
+                        obj.setDistrict(districtField.getText());
+                        obj.setCity(cityField.getText());
+                        obj.setState(ufField.getSelectedItem().toString());
+
+                        SuppliersDAO dao = new SuppliersDAO();
+                        dao.addSuppliers(obj);
+
+                        new CleanFields().cleanFields(jPanel2, jPanel4);
+
+                    } catch (Exception e) {
+                    }
+                }
+            }
         }
 
     }//GEN-LAST:event_newBntActionPerformed
@@ -703,31 +731,58 @@ public class SupplierScreen extends javax.swing.JFrame {
     private void editBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBntActionPerformed
         // TODO add your handling code here:
 
-        try {
+        if (nameField.getText().trim().isEmpty()
+                || cnpjField.getText().trim().isEmpty()
+                || emailField.getText().trim().isEmpty()
+                || phoneField.getText().trim().isEmpty()
+                || cepField.getText().trim().isEmpty()
+                || addressField.getText().trim().isEmpty()
+                || numberField.getText().trim().isEmpty()
+                || districtField.getText().trim().isEmpty()
+                || cityField.getText().trim().isEmpty()
+                || ufField.getSelectedItem() == null) {
 
-            Suppliers obj = new Suppliers();
-            obj.setName(nameField.getText());
-            obj.setCnpj(cnpjField.getText());
-            obj.setEmail(emailField.getText());
-            obj.setLandline(landlineField.getText());
-            obj.setPhone(phoneField.getText());
-            obj.setAddress(addressField.getText());
-            obj.setCep(cepField.getText());
-            obj.setNumber(Integer.parseInt(numberField.getText()));
-            obj.setComplement(complementField.getText());
-            obj.setDistrict(districtField.getText());
-            obj.setCity(cityField.getText());
-            obj.setState(ufField.getSelectedItem().toString());
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos antes de cadastrar um fornecedor.");
+        } else {
 
-            obj.setId(Integer.parseInt(idField.getText()));
+            if (!emailField.getText().trim().contains("@")) {
+                JOptionPane.showMessageDialog(null, "O email informado é inválido.");
+            } else {
+                CPFCNPJUtils cpfCnpjUtils = new CPFCNPJUtils();
+                String cnpj = cnpjField.getText().trim().replaceAll("\\D", "");
+                if (!cpfCnpjUtils.isCNPJValid(cnpj)) {
+                    JOptionPane.showMessageDialog(null, "O CNPJ informado é inválido.");
+                } else {
 
-            SuppliersDAO dao = new SuppliersDAO();
-            dao.editSuppliers(obj);
+                    try {
 
-            new CleanFields().cleanFields(jPanel2, jPanel4);
+                        Suppliers obj = new Suppliers();
+                        obj.setName(nameField.getText());
+                        obj.setCnpj(cnpjField.getText());
+                        obj.setEmail(emailField.getText());
+                        obj.setLandline(landlineField.getText());
+                        obj.setPhone(phoneField.getText());
+                        obj.setAddress(addressField.getText());
+                        obj.setCep(cepField.getText());
+                        obj.setNumber(Integer.parseInt(numberField.getText()));
+                        obj.setComplement(complementField.getText());
+                        obj.setDistrict(districtField.getText());
+                        obj.setCity(cityField.getText());
+                        obj.setState(ufField.getSelectedItem().toString());
 
-        } catch (Exception e) {
+                        obj.setId(Integer.parseInt(idField.getText()));
+
+                        SuppliersDAO dao = new SuppliersDAO();
+                        dao.editSuppliers(obj);
+
+                        new CleanFields().cleanFields(jPanel2, jPanel4);
+
+                    } catch (Exception e) {
+                    }
+                }
+            }
         }
+
     }//GEN-LAST:event_editBntActionPerformed
 
     private void deleteBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBntActionPerformed
