@@ -167,7 +167,7 @@ public class PdvScreen extends javax.swing.JFrame {
 
         cpfField.setForeground(new java.awt.Color(28, 74, 137));
         try {
-            cpfField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-##")));
+            cpfField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
@@ -190,7 +190,6 @@ public class PdvScreen extends javax.swing.JFrame {
         jLabel19.setForeground(new java.awt.Color(28, 74, 137));
         jLabel19.setText("Nome:");
 
-        nameField.setEditable(false);
         nameField.setForeground(new java.awt.Color(28, 74, 137));
 
         searchClientBtn.setForeground(new java.awt.Color(28, 74, 137));
@@ -255,12 +254,14 @@ public class PdvScreen extends javax.swing.JFrame {
         jLabel20.setForeground(new java.awt.Color(28, 74, 137));
         jLabel20.setText("Código:");
 
+        productField.setEditable(false);
         productField.setForeground(new java.awt.Color(28, 74, 137));
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(28, 74, 137));
         jLabel21.setText("Produto:");
 
+        priceField.setEditable(false);
         priceField.setForeground(new java.awt.Color(28, 74, 137));
 
         searchProductsBtn.setForeground(new java.awt.Color(28, 74, 137));
@@ -503,7 +504,11 @@ public class PdvScreen extends javax.swing.JFrame {
 
             obj = dao.searchCustomerByCPF(cpfField.getText());
 
-            nameField.setText(obj.getName());
+            if (obj == null) {
+                JOptionPane.showMessageDialog(null, "Cliente não cadastrado.");
+            } else {
+                nameField.setText(obj.getName());
+            }
 
         }
 
@@ -521,7 +526,11 @@ public class PdvScreen extends javax.swing.JFrame {
 
         obj = dao.searchCustomerByCPF(cpfField.getText());
 
-        nameField.setText(obj.getName());
+        if (obj == null) {
+            JOptionPane.showMessageDialog(null, "Cliente não cadastrado.");
+        } else {
+            nameField.setText(obj.getName());
+        }
 
     }//GEN-LAST:event_searchClientBtnActionPerformed
 
@@ -529,15 +538,17 @@ public class PdvScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-
-            Products obj = new Products();
             ProductsDAO dao = new ProductsDAO();
+            Products product = dao.searchProductsByCode(Integer.parseInt(idField.getText()));
 
-            obj = dao.searchProductsByCode(Integer.parseInt(idField.getText()));
-
-            productField.setText(obj.getProduct());
-            priceField.setText(String.valueOf(obj.getPrice()));
-
+            if (product == null) {
+                JOptionPane.showMessageDialog(null, "PRODUTO NÃO CADASTRADO");
+                productField.setText("");
+                priceField.setText("");
+            } else {
+                productField.setText(product.getProduct());
+                priceField.setText(String.valueOf(product.getPrice()));
+            }
         }
 
     }//GEN-LAST:event_idFieldKeyPressed
@@ -558,34 +569,47 @@ public class PdvScreen extends javax.swing.JFrame {
     private void addProductActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addProductActionPerformed
         // TODO add your handling code here:
 
-        qty = Integer.parseInt(qtyField.getText());
-        price = Double.parseDouble(priceField.getText());
+        ProductsDAO dao = new ProductsDAO();
+        int stock = dao.returnStock(Integer.parseInt(idField.getText()));
 
-        subtotal = qty * price;
+        if (stock <= 0) {
+            JOptionPane.showMessageDialog(null, "PRODUTO SEM ESTOQUE");
+        } else {
+            qty = Integer.parseInt(qtyField.getText());
+            price = Double.parseDouble(priceField.getText());
 
-        total += subtotal;
-        totalField.setText(String.valueOf(total));
+            subtotal = qty * price;
 
-        cart = (DefaultTableModel) cartTable.getModel();
+            total += subtotal;
+            totalField.setText(String.valueOf(total));
 
-        cart.addRow(new Object[]{
-            idField.getText(),
-            productField.getText(),
-            qtyField.getText(),
-            priceField.getText(),
-            subtotal
-        });
+            cart = (DefaultTableModel) cartTable.getModel();
+
+            cart.addRow(new Object[]{
+                    idField.getText(),
+                    productField.getText(),
+                    qtyField.getText(),
+                    priceField.getText(),
+                    subtotal
+            });
+        }
 
     }//GEN-LAST:event_addProductActionPerformed
 
     private void finishFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_finishFieldActionPerformed
         // TODO add your handling code here:
 
-        PaymentScreen payment = new PaymentScreen();
-        payment.totalField.setText(String.valueOf(total));
-        payment.customer = obj;
-        payment.cart = cart;
-        payment.setVisible(true);
+        if(!nameField.getText().isEmpty() && cartTable.getRowCount() > 0){
+            PaymentScreen payment = new PaymentScreen();
+            payment.totalField.setText(String.valueOf(total));
+            payment.customer = obj;
+            payment.cart = cart;
+            payment.setVisible(true);
+        } else if (nameField.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Não é possível finalizar uma venda sem indicar o cliente.");
+        } else if (cartTable.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Não é possível finalizar uma venda sem produtos no carrinho.");
+        }
 
     }//GEN-LAST:event_finishFieldActionPerformed
 

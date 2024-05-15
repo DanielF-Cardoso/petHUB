@@ -316,6 +316,11 @@ public class PaymentScreen extends javax.swing.JFrame {
 
         total_paid = cash + card + bank_check;
 
+        if (total_paid < total_sale) {
+            JOptionPane.showMessageDialog(null, "O valor pago é menor que o total da venda. Por favor, verifique os valores e tente novamente.");
+            return;
+        }
+
         change = total_paid - total_sale;
 
         changeField.setText(String.valueOf(change));

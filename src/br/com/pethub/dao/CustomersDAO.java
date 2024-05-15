@@ -192,19 +192,20 @@ public class CustomersDAO {
             JOptionPane.showMessageDialog(null, "Erro: " + e);
             return null;
         }
-    }    
-    
+    }
+
     public Customers searchCustomerByCPF (String cpf){
         try {
 
             String sql = "select * from tb_customers where cpf = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, cpf);
-            
+
             ResultSet rs = stmt.executeQuery();
-            Customers obj = new Customers();
+            Customers obj = null;
 
             if (rs.next()){
+                obj = new Customers();
                 obj.setId(rs.getInt("id"));
                 obj.setName(rs.getString("name"));
                 obj.setRg(rs.getString("rg"));
@@ -219,17 +220,16 @@ public class CustomersDAO {
                 obj.setDistrict(rs.getString("district"));
                 obj.setCity(rs.getString("city"));
                 obj.setState(rs.getString("state"));
-                
-            }
-            
-            return obj;
 
+            }
+
+            return obj;
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro: " + e);
             return null;
         }
-    }        
+    }
     
     
      public Customers consultCustomers(String name){

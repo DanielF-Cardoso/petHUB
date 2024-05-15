@@ -167,17 +167,16 @@ public class ProductsDAO {
 
     public Products searchProductsByCode(int id) {
         try {
-
             String sql = "select p.id, p.product, p.price, p.stock_qty, f.name from tb_products as p "
                     + "inner join tb_suppliers as f on (p.for_id = f.id) where p.id = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, id);
 
             ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
-            Products obj = new Products();
-            Suppliers f = new Suppliers();
 
             if (rs.next()) {
+                Products obj = new Products();
+                Suppliers f = new Suppliers();
 
                 obj.setId(rs.getInt("p.id"));
                 obj.setProduct(rs.getString("p.product"));
@@ -188,14 +187,13 @@ public class ProductsDAO {
 
                 obj.setSuppliers(f);
 
+                return obj;
             }
 
-            return obj;
-
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Produto não encontrado");
-            return null;
+            JOptionPane.showMessageDialog(null, "Erro ao buscar produto: " + e.getMessage());
         }
+        return null;
     }
 
     public void updateStock(int id, int stock_new) {

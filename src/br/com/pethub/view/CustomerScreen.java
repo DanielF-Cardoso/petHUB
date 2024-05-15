@@ -386,7 +386,7 @@ public class CustomerScreen extends javax.swing.JFrame {
 
         cpfField.setForeground(new java.awt.Color(28, 74, 137));
         try {
-            cpfField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-##")));
+            cpfField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
