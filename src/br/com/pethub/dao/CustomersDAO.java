@@ -20,19 +20,23 @@ public class CustomersDAO {
 
     private Connection con;
 
-    public CustomersDAO(){
+    public CustomersDAO() {
         this.con = new ConnectionFactory().getConnection();
     }
 
-    public void addCustomer(Customers obj){
-    
+    public void addCustomer(Customers obj) {
+
         try {
+            Customers existingCustomer = searchCustomerByCPF(obj.getCpf());
+            if (existingCustomer != null) {
+                JOptionPane.showMessageDialog(null, "Já existe um cliente cadastrado com este CPF.");
+                return;
+            }
 
             //Criar o comando sql
-
-            String sql = "insert into tb_customers (name, rg, cpf, email, landline, phone, cep, address, number," +
-                    "complement, district, city, state)" +
-                    "values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            String sql = "insert into tb_customers (name, rg, cpf, email, landline, phone, cep, address, number,"
+                    + "complement, district, city, state)"
+                    + "values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, obj.getName());
@@ -53,22 +57,20 @@ public class CustomersDAO {
             stmt.close();
 
             JOptionPane.showMessageDialog(null, "Cliente cadastrado com sucesso!");
-            
+
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
         }
-        
+
     }
-    
-    public void editCustomer(Customers obj){
-    
-            try {
+
+    public void editCustomer(Customers obj) {
+
+        try {
 
             //Criar o comando sql
-
-            String sql = "update tb_customers set name = ?, rg = ?, cpf = ?, email = ?, landline = ?, phone = ?, cep = ?, address = ?, number = ?," +
-                    "complement = ?, district = ?, city = ?, state = ? where id = ?";
-
+            String sql = "update tb_customers set name = ?, rg = ?, cpf = ?, email = ?, landline = ?, phone = ?, cep = ?, address = ?, number = ?,"
+                    + "complement = ?, district = ?, city = ?, state = ? where id = ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, obj.getName());
@@ -90,19 +92,29 @@ public class CustomersDAO {
             stmt.close();
 
             JOptionPane.showMessageDialog(null, "Cliente editado com sucesso!");
-            
+
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
         }
-        
+
     }
-    
-    public void deleteCustomer(Customers obj){
-    
-                try {
+
+    public void deleteCustomer(Customers obj) {
+        SalesDAO salesDAO = new SalesDAO();
+        salesDAO.deleteSalesByCustomerId(obj.getId());
+
+        PetsDAO petsDAO = new PetsDAO();
+        petsDAO.deletePetsByCustomerId(obj.getId());
+
+        VaccineDAO vaccineDAO = new VaccineDAO();
+        vaccineDAO.deleteVaccinesByCustomerId(obj.getId());
+
+        ItemSaleDAO itemSaleDAO = new ItemSaleDAO();
+        itemSaleDAO.deleteItemsSaleByCustomerId(obj.getId());
+
+        try {
 
             //Criar o comando sql
-
             String sql = "delete from tb_customers where id = ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -111,15 +123,15 @@ public class CustomersDAO {
             stmt.execute();
             stmt.close();
 
-            JOptionPane.showMessageDialog(null, "Cliente excluido com sucesso!");
-            
+            JOptionPane.showMessageDialog(null, "Cliente e seus registros relacionados foram excluídos com sucesso!");
+
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
         }
-    
+
     }
-    
-    public List<Customers>  listCustomers(){
+
+    public List<Customers> listCustomers() {
         try {
 
             List<Customers> listCustomer = new ArrayList<>();
@@ -128,7 +140,7 @@ public class CustomersDAO {
             PreparedStatement stmt = con.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
 
-            while(rs.next()){
+            while (rs.next()) {
                 Customers obj = new Customers();
                 obj.setId(rs.getInt("id"));
                 obj.setName(rs.getString("name"));
@@ -155,8 +167,8 @@ public class CustomersDAO {
             return null;
         }
     }
-    
-    public List<Customers>  searchCustomer(String name){
+
+    public List<Customers> searchCustomer(String name) {
         try {
 
             List<Customers> listCustomer = new ArrayList<>();
@@ -166,7 +178,7 @@ public class CustomersDAO {
             stmt.setString(1, name);
             ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
 
-            while(rs.next()){
+            while (rs.next()) {
                 Customers obj = new Customers();
                 obj.setId(rs.getInt("id"));
                 obj.setName(rs.getString("name"));
@@ -194,7 +206,7 @@ public class CustomersDAO {
         }
     }
 
-    public Customers searchCustomerByCPF (String cpf){
+    public Customers searchCustomerByCPF(String cpf) {
         try {
 
             String sql = "select * from tb_customers where cpf = ?";
@@ -204,7 +216,7 @@ public class CustomersDAO {
             ResultSet rs = stmt.executeQuery();
             Customers obj = null;
 
-            if (rs.next()){
+            if (rs.next()) {
                 obj = new Customers();
                 obj.setId(rs.getInt("id"));
                 obj.setName(rs.getString("name"));
@@ -230,9 +242,8 @@ public class CustomersDAO {
             return null;
         }
     }
-    
-    
-     public Customers consultCustomers(String name){
+
+    public Customers consultCustomers(String name) {
         try {
 
             String sql = "select * from tb_customers where name = ?";
@@ -241,9 +252,9 @@ public class CustomersDAO {
             ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
 
             Customers obj = new Customers();
-            
-            if(rs.next()){
-                
+
+            if (rs.next()) {
+
                 obj.setId(rs.getInt("id"));
                 obj.setName(rs.getString("name"));
                 obj.setRg(rs.getString("rg"));
@@ -266,5 +277,5 @@ public class CustomersDAO {
             JOptionPane.showMessageDialog(null, "Erro: " + e);
             return null;
         }
-    }    
+    }
 }

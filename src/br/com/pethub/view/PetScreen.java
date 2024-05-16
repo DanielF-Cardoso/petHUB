@@ -77,13 +77,13 @@ public class PetScreen extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         birthField = new javax.swing.JFormattedTextField();
         jLabel22 = new javax.swing.JLabel();
-        pet_weightField = new javax.swing.JTextField();
         jLabel25 = new javax.swing.JLabel();
         searchClientField = new javax.swing.JTextField();
         breedField = new javax.swing.JTextField();
         CustomersField = new javax.swing.JComboBox();
         jLabel23 = new javax.swing.JLabel();
         speciesField = new javax.swing.JTextField();
+        pet_weightField = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         searchField = new javax.swing.JTextField();
@@ -194,13 +194,6 @@ public class PetScreen extends javax.swing.JFrame {
         jLabel22.setForeground(new java.awt.Color(28, 74, 137));
         jLabel22.setText("Peso Atual:");
 
-        pet_weightField.setForeground(new java.awt.Color(28, 74, 137));
-        pet_weightField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pet_weightFieldActionPerformed(evt);
-            }
-        });
-
         jLabel25.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(28, 74, 137));
         jLabel25.setText("Raça:");
@@ -218,6 +211,12 @@ public class PetScreen extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(28, 74, 137));
         jLabel23.setText("Especie:");
+
+        try {
+            pet_weightField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -247,7 +246,7 @@ public class PetScreen extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel22)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(pet_weightField, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(pet_weightField, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel25)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -290,11 +289,11 @@ public class PetScreen extends javax.swing.JFrame {
                     .addComponent(jLabel21)
                     .addComponent(birthField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel25)
-                    .addComponent(pet_weightField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel22)
                     .addComponent(breedField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel23)
-                    .addComponent(speciesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(speciesField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pet_weightField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(9, Short.MAX_VALUE))
         );
 
@@ -405,14 +404,14 @@ public class PetScreen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jTabbedPane1)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(293, 293, 293)
                 .addComponent(addBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(editBnt)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(deleteBnt)
-                .addGap(281, 281, 281))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {addBtn, deleteBnt, editBnt});
@@ -449,38 +448,55 @@ public class PetScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_pet_nameFieldActionPerformed
 
-    private void pet_weightFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pet_weightFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pet_weightFieldActionPerformed
-
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
 
-        try {
+        if (speciesField.getText().trim().isEmpty()
+                || breedField.getText().trim().isEmpty()
+                || pet_weightField.getText().trim().isEmpty()
+                || birthField.getText().trim().isEmpty()
+                || pet_nameField.getText().trim().isEmpty()
+                || CustomersField.getSelectedItem() == null
+                || cbGender.getSelectedItem() == null) {
 
-            Pets obj = new Pets();
-            obj.setPet_name(pet_nameField.getText());
-            obj.setGender(cbGender.getSelectedItem().toString());
-            obj.setPet_weight(Double.parseDouble(pet_weightField.getText()));
-            obj.setSpecies(speciesField.getText());
-            obj.setBreed(searchClientField.getText());
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos antes de cadastrar um pet.");
+        } else {
+            if (!pet_nameField.getText().matches("^[a-zA-Z\\s]*$")) {
+                JOptionPane.showMessageDialog(null, "O nome informado é inválido. Ele deve conter apenas letras.");
+            } else {
+                String petWeight = pet_weightField.getText().trim();
+                if (!petWeight.matches("[0-9]*\\.?[0-9]+")) {
+                    JOptionPane.showMessageDialog(null, "O peso do animal deve ser um número.");
+                } else {
 
-            SimpleDateFormat dateFormatBr = new SimpleDateFormat("dd/MM/yyyy");
-            Date birthDate = dateFormatBr.parse(birthField.getText());
-            SimpleDateFormat dateFormatMysql = new SimpleDateFormat("yyyy-MM-dd");
-            String dateMysql = dateFormatMysql.format(birthDate);
-            obj.setBirth(dateMysql);
+                    try {
 
-            Customers f = new Customers();
-            f = (Customers) CustomersField.getSelectedItem();
-            obj.setCustumers(f);
+                        Pets obj = new Pets();
+                        obj.setPet_name(pet_nameField.getText());
+                        obj.setGender(cbGender.getSelectedItem().toString());
+                        obj.setPet_weight(Double.parseDouble(pet_weightField.getText()));
+                        obj.setSpecies(speciesField.getText());
+                        obj.setBreed(breedField.getText());
 
-            PetsDAO dao = new PetsDAO();
-            dao.addPets(obj);
+                        SimpleDateFormat dateFormatBr = new SimpleDateFormat("dd/MM/yyyy");
+                        Date birthDate = dateFormatBr.parse(birthField.getText());
+                        SimpleDateFormat dateFormatMysql = new SimpleDateFormat("yyyy-MM-dd");
+                        String dateMysql = dateFormatMysql.format(birthDate);
+                        obj.setBirth(dateMysql);
 
-            new CleanFields().cleanFields(jPanel2, jPanel3);
+                        Customers f = new Customers();
+                        f = (Customers) CustomersField.getSelectedItem();
+                        obj.setCustumers(f);
 
-        } catch (Exception e) {
+                        PetsDAO dao = new PetsDAO();
+                        dao.addPets(obj);
+
+                        new CleanFields().cleanFields(jPanel2, jPanel3);
+
+                    } catch (Exception e) {
+                    }
+                }
+            }
         }
     }//GEN-LAST:event_addBtnActionPerformed
 
@@ -698,7 +714,7 @@ public class PetScreen extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField pet_nameField;
-    private javax.swing.JTextField pet_weightField;
+    private javax.swing.JFormattedTextField pet_weightField;
     private javax.swing.JTextField searchClientField;
     private javax.swing.JTextField searchField;
     private javax.swing.JTextField speciesField;

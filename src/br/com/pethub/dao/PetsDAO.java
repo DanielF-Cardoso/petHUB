@@ -1,4 +1,3 @@
-
 package br.com.pethub.dao;
 
 import br.com.pethub.jdbc.ConnectionFactory;
@@ -12,16 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-
 public class PetsDAO {
-    
+
     private Connection con;
 
     public PetsDAO() {
         this.con = new ConnectionFactory().getConnection();
     }
-    
-    
+
     public void addPets(Pets obj) {
 
         try {
@@ -31,31 +28,28 @@ public class PetsDAO {
                     + "values (?,?,?,?,?,?,?)";
 
             PreparedStatement stmt = con.prepareStatement(sql);
-            
-            
+
             stmt.setString(1, obj.getPet_name());
             stmt.setString(2, obj.getGender());
             stmt.setString(3, obj.getBirth());
             stmt.setDouble(4, obj.getPet_weight());
             stmt.setString(5, obj.getSpecies());
             stmt.setString(6, obj.getBreed());
-            
+
             stmt.setInt(7, obj.getCustumers().getId());
 
             stmt.execute();
             stmt.close();
 
             JOptionPane.showMessageDialog(null, "Animal cadastrado com sucesso!");
-            
+
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
         }
 
     }
-    
-    
-    
-     public void editPets(Pets obj) {
+
+    public void editPets(Pets obj) {
 
         try {
 
@@ -84,9 +78,8 @@ public class PetsDAO {
         }
 
     }
-     
-     
-     public void deletePets(Pets obj) {
+
+    public void deletePets(Pets obj) {
 
         try {
 
@@ -107,10 +100,8 @@ public class PetsDAO {
         }
 
     }
-     
-     
-     
-     public List<Pets> listPets() {
+
+    public List<Pets> listPets() {
         try {
             List<Pets> listPets = new ArrayList<>();
 
@@ -146,9 +137,8 @@ public class PetsDAO {
             return null;
         }
     }
-     
-     
-     public List<Pets> searchPets(String name) {
+
+    public List<Pets> searchPets(String name) {
         try {
 
             List<Pets> listPets = new ArrayList<>();
@@ -251,6 +241,23 @@ public class PetsDAO {
             JOptionPane.showMessageDialog(null, "Erro: " + e);
         }
         return null;
+    }
+
+    public void deletePetsByCustomerId(int customerId) {
+        try {
+            VaccineDAO vaccineDAO = new VaccineDAO();
+            vaccineDAO.deleteVaccinesByCustomerId(customerId);
+
+            String sql = "delete from tb_pets where for_id = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, customerId);
+
+            stmt.execute();
+            stmt.close();
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro ao deletar pets: " + erro);
+        }
     }
 
 }

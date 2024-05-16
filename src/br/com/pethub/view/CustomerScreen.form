@@ -763,8 +763,8 @@
                         <Column editable="true" title="RG" type="java.lang.Object"/>
                         <Column editable="true" title="CPF" type="java.lang.Object"/>
                         <Column editable="true" title="E-mail" type="java.lang.Object"/>
-                        <Column editable="true" title="Celular" type="java.lang.Object"/>
                         <Column editable="true" title="Telefone" type="java.lang.Object"/>
+                        <Column editable="true" title="Celular" type="java.lang.Object"/>
                         <Column editable="true" title="CEP" type="java.lang.Object"/>
                         <Column editable="true" title="Endere&#xe7;o" type="java.lang.Object"/>
                         <Column editable="true" title="N&#xb0;" type="java.lang.Object"/>

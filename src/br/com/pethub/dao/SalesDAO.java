@@ -123,4 +123,23 @@ public class SalesDAO {
 
     }
 
+    public void deleteSalesByCustomerId(int customerId) {
+        try {
+            // Primeiro, deleta todos os itens de venda associados a este cliente
+            ItemSaleDAO itemSaleDAO = new ItemSaleDAO();
+            itemSaleDAO.deleteItemsSaleByCustomerId(customerId);
+
+            // Depois, deleta as vendas do cliente
+            String sql = "delete from tb_sales where client_id = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, customerId);
+
+            stmt.execute();
+            stmt.close();
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro ao deletar vendas: " + erro);
+        }
+    }
+
 }

@@ -181,4 +181,18 @@ public class VaccineDAO {
         }
     }
 
+    public void deleteVaccinesByCustomerId(int customerId) {
+        try {
+            String sql = "delete from tb_vaccines where for_id = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, customerId);
+
+            stmt.execute();
+            stmt.close();
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro ao deletar vacinas: " + erro);
+        }
+    }
+
 }

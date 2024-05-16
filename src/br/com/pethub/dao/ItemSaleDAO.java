@@ -87,4 +87,18 @@ public class ItemSaleDAO {
         }
     }
 
+    public void deleteItemsSaleByCustomerId(int customerId) {
+        try {
+            String sql = "delete from tb_itemssales where sale_id in (select id from tb_sales where client_id = ?)";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setInt(1, customerId);
+
+            stmt.execute();
+            stmt.close();
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro ao deletar itens de venda: " + erro);
+        }
+    }
+
 }

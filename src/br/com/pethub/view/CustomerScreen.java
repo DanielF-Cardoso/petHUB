@@ -499,7 +499,7 @@ public class CustomerScreen extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Nome", "RG", "CPF", "E-mail", "Celular", "Telefone", "CEP", "Endereço", "N°", "Comp", "Bairro", "Cidade", "UF"
+                "Código", "Nome", "RG", "CPF", "E-mail", "Telefone", "Celular", "CEP", "Endereço", "N°", "Comp", "Bairro", "Cidade", "UF"
             }
         ));
         table.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -727,17 +727,21 @@ public class CustomerScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         try {
+            int op = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o cliente? A exclusão apagará todos os registros no sistema relacionados a esse cliente.", "Confirmação", JOptionPane.YES_NO_OPTION);
 
-            Customers obj = new Customers();
+            if (op == JOptionPane.YES_OPTION) {
+                Customers obj = new Customers();
 
-            obj.setId(Integer.parseInt(idField.getText()));
+                obj.setId(Integer.parseInt(idField.getText()));
 
-            CustomersDAO dao = new CustomersDAO();
-            dao.deleteCustomer(obj);
+                CustomersDAO dao = new CustomersDAO();
+                dao.deleteCustomer(obj);
 
-            new CleanFields().cleanFields(jPanel2, jPanel4);
+                new CleanFields().cleanFields(jPanel2, jPanel4);
+            }
 
         } catch (Exception e) {
+            // Handle exception
         }
 
     }//GEN-LAST:event_deleteBtnActionPerformed

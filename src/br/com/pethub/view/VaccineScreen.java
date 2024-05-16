@@ -525,42 +525,51 @@ public class VaccineScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_CustomersFieldAncestorAdded
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        // TODO add your handling code here:     
-        try {
+        // TODO add your handling code here:
+        if (vaccine_name.getText().trim().isEmpty()
+                || dateField.getText().trim().isEmpty()
+                || expirationField.getText().trim().isEmpty()
+                || CustomersField.getSelectedItem() == null
+                || petField.getSelectedItem() == null) {
 
-            Vaccine obj = new Vaccine();
-            Customers f = new Customers();
-            Pets p = new Pets();
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos antes de cadastrar uma vacina.");
+        } else {
+            try {
 
-            f = (Customers) CustomersField.getSelectedItem();
-            obj.setCustumers(f);
+                Vaccine obj = new Vaccine();
+                Customers f = new Customers();
+                Pets p = new Pets();
 
-            p = (Pets) petField.getSelectedItem();
-            obj.setPets(p);
+                f = (Customers) CustomersField.getSelectedItem();
+                obj.setCustumers(f);
 
-            obj.setVaccine_name(vaccine_name.getText());
+                p = (Pets) petField.getSelectedItem();
+                obj.setPets(p);
 
-            SimpleDateFormat dateFormatBr = new SimpleDateFormat("dd/MM/yyyy");
-            Date vaccineApplication = dateFormatBr.parse(dateField.getText());
-            SimpleDateFormat dateFormatMysql = new SimpleDateFormat("yyyy-MM-dd");
-            String dateMysql = dateFormatMysql.format(vaccineApplication);
-            obj.setVaccine_application(dateMysql);
+                obj.setVaccine_name(vaccine_name.getText());
 
-            SimpleDateFormat dateFormatBr2 = new SimpleDateFormat("dd/MM/yyyy");
-            Date vaccineExpiration = dateFormatBr2.parse(dateField.getText());
-            SimpleDateFormat dateFormatMysql2 = new SimpleDateFormat("yyyy-MM-dd");
-            String dateMysqlExpiration = dateFormatMysql2.format(vaccineExpiration);
-            obj.setVaccine_expiration(dateMysqlExpiration);
+                SimpleDateFormat dateFormatBr = new SimpleDateFormat("dd/MM/yyyy");
+                Date vaccineApplication = dateFormatBr.parse(dateField.getText());
+                SimpleDateFormat dateFormatMysql = new SimpleDateFormat("yyyy-MM-dd");
+                String dateMysql = dateFormatMysql.format(vaccineApplication);
+                obj.setVaccine_application(dateMysql);
 
-            obj.setNote(noteField.getText());
+                SimpleDateFormat dateFormatBr2 = new SimpleDateFormat("dd/MM/yyyy");
+                Date vaccineExpiration = dateFormatBr2.parse(dateField.getText());
+                SimpleDateFormat dateFormatMysql2 = new SimpleDateFormat("yyyy-MM-dd");
+                String dateMysqlExpiration = dateFormatMysql2.format(vaccineExpiration);
+                obj.setVaccine_expiration(dateMysqlExpiration);
 
-            VaccineDAO dao = new VaccineDAO();
-            dao.addVaccine(obj);
+                obj.setNote(noteField.getText());
 
-            new CleanFields().cleanFields(jPanel2, jPanel4);
-            noteField.setText(null);
+                VaccineDAO dao = new VaccineDAO();
+                dao.addVaccine(obj);
 
-        } catch (Exception e) {
+                new CleanFields().cleanFields(jPanel2, jPanel4);
+                noteField.setText(null);
+
+            } catch (Exception e) {
+            }
         }
 
     }//GEN-LAST:event_addBtnActionPerformed
