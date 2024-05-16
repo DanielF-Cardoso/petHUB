@@ -6,11 +6,20 @@ package br.com.pethub.dao;
 
 import br.com.pethub.jdbc.ConnectionFactory;
 import br.com.pethub.model.Customers;
+import java.io.InputStream;
 
 import javax.swing.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -278,4 +287,25 @@ public class CustomersDAO {
             return null;
         }
     }
+
+    public void clientsReport() {
+        try {
+            String sql = "select * from tb_customers";
+
+            InputStream inputStream = getClass().getResourceAsStream("/br/com/pethub/reports/clientsReport.jrxml");
+            JasperDesign jd = JRXmlLoader.load(inputStream);
+            JRDesignQuery query = new JRDesignQuery();
+            query.setText(sql);
+            jd.setQuery(query);
+
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
+
+            JasperViewer.viewReport(jp, false);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
+        }
+    }
+
 }

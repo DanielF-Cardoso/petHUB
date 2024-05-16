@@ -3,6 +3,14 @@ package br.com.pethub.dao;
 import br.com.pethub.jdbc.ConnectionFactory;
 import br.com.pethub.model.Products;
 import br.com.pethub.model.Suppliers;
+import java.io.InputStream;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,6 +18,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class ProductsDAO {
 
@@ -218,19 +228,40 @@ public class ProductsDAO {
             String sql = "select stock_qty from tb_products where id= ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, id);
-            
+
             ResultSet rs = stmt.executeQuery();
-            
-            if(rs.next()){
+
+            if (rs.next()) {
                 Products products = new Products();
-                
+
                 stock_qty = (rs.getInt("stock_qty"));
             }
-            
+
             return stock_qty;
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void productsReport() {
+        try {
+            String sql = "select p.id, p.product, p.price, p.stock_qty, f.name from tb_products as p "
+                    + "inner join tb_suppliers as f on (p.for_id = f.id)";
+
+            InputStream inputStream = getClass().getResourceAsStream("/br/com/pethub/reports/productsreport.jrxml");
+            JasperDesign jd = JRXmlLoader.load(inputStream);
+            JRDesignQuery query = new JRDesignQuery();
+            query.setText(sql);
+            jd.setQuery(query);
+
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
+
+            JasperViewer.viewReport(jp, false);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
         }
     }
 
