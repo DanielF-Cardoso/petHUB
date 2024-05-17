@@ -3,6 +3,7 @@ package br.com.pethub.dao;
 import br.com.pethub.jdbc.ConnectionFactory;
 import br.com.pethub.model.Customers;
 import br.com.pethub.model.Sales;
+import java.io.InputStream;
 import javax.swing.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,6 +12,14 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -116,7 +125,7 @@ public class SalesDAO {
                 totalSale = rs.getDouble("total");
             }
             return totalSale;
-            
+
         } catch (SQLException e) {
             throw new RuntimeException();
         }
@@ -139,6 +148,31 @@ public class SalesDAO {
 
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro ao deletar vendas: " + erro);
+        }
+    }
+
+    public void lastSaleReport() {
+        try {
+            String sql = "SELECT s.id, DATE_FORMAT(s.sale_date, '%d/%m/%y') AS date_formatted, c.*, p.*, i.*, s.total_sale, s.note "
+                    + "FROM tb_sales AS s "
+                    + "INNER JOIN tb_customers c ON (s.client_id = c.id) "
+                    + "INNER JOIN tb_itemssales i ON (s.id = i.sale_id) "
+                    + "INNER JOIN tb_products p ON (i.product_id = p.id) "
+                    + "WHERE s.id = (SELECT MAX(id) FROM tb_sales)";
+
+            InputStream inputStream = getClass().getResourceAsStream("/br/com/pethub/reports/lastSaleReport.jrxml");
+            JasperDesign jd = JRXmlLoader.load(inputStream);
+            JRDesignQuery query = new JRDesignQuery();
+            query.setText(sql);
+            jd.setQuery(query);
+
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
+
+            JasperViewer.viewReport(jp, false);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
         }
     }
 

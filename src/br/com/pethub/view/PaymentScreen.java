@@ -366,6 +366,17 @@ public class PaymentScreen extends javax.swing.JFrame {
 
         JOptionPane.showMessageDialog(null, "Venda registrada com sucesso!");
 
+        int response = JOptionPane.showConfirmDialog(null, "Deseja imprimir o cupom da venda?", "Confirmar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+
+        if (response == JOptionPane.YES_OPTION) {
+
+            SalesDAO dao = new SalesDAO();
+            dao.lastSaleReport();
+
+        } else {
+            this.dispose();
+        }
+
         this.dispose();
 
     }//GEN-LAST:event_finishFieldActionPerformed

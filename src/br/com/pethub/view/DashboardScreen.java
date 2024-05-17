@@ -372,6 +372,7 @@ public class DashboardScreen extends javax.swing.JFrame {
         reportsMenu.add(productsList);
 
         jMenuItem1.setForeground(new java.awt.Color(28, 74, 137));
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_relatorioprodutos.png"))); // NOI18N
         jMenuItem1.setText("Lista de Clientes");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
