@@ -911,24 +911,23 @@
                 <Component class="javax.swing.JTable" name="table">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="17" rowCount="0">
-                        <Column editable="true" title="C&#xf3;digo" type="java.lang.Object"/>
-                        <Column editable="true" title="Nome" type="java.lang.Object"/>
-                        <Column editable="true" title="RG" type="java.lang.Object"/>
-                        <Column editable="true" title="CPF" type="java.lang.Object"/>
-                        <Column editable="true" title="E-mail" type="java.lang.Object"/>
-                        <Column editable="true" title="Senha" type="java.lang.Object"/>
-                        <Column editable="true" title="Cargo" type="java.lang.Object"/>
-                        <Column editable="true" title="N&#xed;vel Acesso" type="java.lang.Object"/>
-                        <Column editable="true" title="Telefone" type="java.lang.Object"/>
-                        <Column editable="true" title="Celular" type="java.lang.Object"/>
-                        <Column editable="true" title="Cep" type="java.lang.Object"/>
-                        <Column editable="true" title="Endere&#xe7;o" type="java.lang.Object"/>
-                        <Column editable="true" title="N&#xb0;" type="java.lang.Object"/>
-                        <Column editable="true" title="Comp" type="java.lang.Object"/>
-                        <Column editable="true" title="Bairro" type="java.lang.Object"/>
-                        <Column editable="true" title="Cidade" type="java.lang.Object"/>
-                        <Column editable="true" title="UF" type="java.lang.Object"/>
+                      <Table columnCount="16" rowCount="0">
+                        <Column editable="false" title="C&#xf3;digo" type="java.lang.Object"/>
+                        <Column editable="false" title="Nome" type="java.lang.Object"/>
+                        <Column editable="false" title="RG" type="java.lang.Object"/>
+                        <Column editable="false" title="CPF" type="java.lang.Object"/>
+                        <Column editable="false" title="E-mail" type="java.lang.Object"/>
+                        <Column editable="false" title="Cargo" type="java.lang.Object"/>
+                        <Column editable="false" title="N&#xed;vel Acesso" type="java.lang.Object"/>
+                        <Column editable="false" title="Telefone" type="java.lang.Object"/>
+                        <Column editable="false" title="Celular" type="java.lang.Object"/>
+                        <Column editable="false" title="Cep" type="java.lang.Object"/>
+                        <Column editable="false" title="Endere&#xe7;o" type="java.lang.Object"/>
+                        <Column editable="false" title="N&#xb0;" type="java.lang.Object"/>
+                        <Column editable="false" title="Comp" type="java.lang.Object"/>
+                        <Column editable="false" title="Bairro" type="java.lang.Object"/>
+                        <Column editable="false" title="Cidade" type="java.lang.Object"/>
+                        <Column editable="false" title="UF" type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -954,11 +953,6 @@
                           <Renderer/>
                         </Column>
                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                          <Title/>
-                          <Editor/>
-                          <Renderer/>
-                        </Column>
-                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
                           <Title/>
                           <Editor/>
                           <Renderer/>

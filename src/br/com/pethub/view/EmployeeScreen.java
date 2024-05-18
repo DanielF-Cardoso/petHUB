@@ -35,7 +35,6 @@ public class EmployeeScreen extends javax.swing.JFrame {
                 c.getRg(),
                 c.getCpf(),
                 c.getEmail(),
-                c.getPassword(),
                 c.getResponsibility(),
                 c.getAccess_level(),
                 c.getLandline(),
@@ -583,9 +582,17 @@ public class EmployeeScreen extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Nome", "RG", "CPF", "E-mail", "Senha", "Cargo", "Nível Acesso", "Telefone", "Celular", "Cep", "Endereço", "N°", "Comp", "Bairro", "Cidade", "UF"
+                "Código", "Nome", "RG", "CPF", "E-mail", "Cargo", "Nível Acesso", "Telefone", "Celular", "Cep", "Endereço", "N°", "Comp", "Bairro", "Cidade", "UF"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         table.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 tableAncestorAdded(evt);
@@ -608,7 +615,6 @@ public class EmployeeScreen extends javax.swing.JFrame {
         jScrollPane1.setViewportView(table);
         if (table.getColumnModel().getColumnCount() > 0) {
             table.getColumnModel().getColumn(5).setResizable(false);
-            table.getColumnModel().getColumn(6).setResizable(false);
         }
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -835,7 +841,6 @@ public class EmployeeScreen extends javax.swing.JFrame {
                 c.getRg(),
                 c.getCpf(),
                 c.getEmail(),
-                c.getPassword(),
                 c.getResponsibility(),
                 c.getAccess_level(),
                 c.getLandline(),
@@ -866,18 +871,17 @@ public class EmployeeScreen extends javax.swing.JFrame {
         rgField.setText(table.getValueAt(table.getSelectedRow(), 2).toString());
         cpfField.setText(table.getValueAt(table.getSelectedRow(), 3).toString());
         emailField.setText(table.getValueAt(table.getSelectedRow(), 4).toString());
-        passwordField.setText(table.getValueAt(table.getSelectedRow(), 5).toString());
-        responsibilityField.setText(table.getValueAt(table.getSelectedRow(), 6).toString());
-        acess_levelField.setSelectedItem(table.getValueAt(table.getSelectedRow(), 7).toString());
-        landlineField.setText(table.getValueAt(table.getSelectedRow(), 8).toString());
-        phoneField.setText(table.getValueAt(table.getSelectedRow(), 9).toString());
-        cepField.setText(table.getValueAt(table.getSelectedRow(), 10).toString());
-        addressField.setText(table.getValueAt(table.getSelectedRow(), 11).toString());
-        numberField.setText(table.getValueAt(table.getSelectedRow(), 12).toString());
-        complementField.setText(table.getValueAt(table.getSelectedRow(), 13).toString());
-        districtField.setText(table.getValueAt(table.getSelectedRow(), 14).toString());
-        cityField.setText(table.getValueAt(table.getSelectedRow(), 15).toString());
-        ufField.setSelectedItem(table.getValueAt(table.getSelectedRow(), 16).toString());
+        responsibilityField.setText(table.getValueAt(table.getSelectedRow(), 5).toString());
+        acess_levelField.setSelectedItem(table.getValueAt(table.getSelectedRow(), 6).toString());
+        landlineField.setText(table.getValueAt(table.getSelectedRow(), 7).toString());
+        phoneField.setText(table.getValueAt(table.getSelectedRow(), 8).toString());
+        cepField.setText(table.getValueAt(table.getSelectedRow(), 9).toString());
+        addressField.setText(table.getValueAt(table.getSelectedRow(), 10).toString());
+        numberField.setText(table.getValueAt(table.getSelectedRow(), 11).toString());
+        complementField.setText(table.getValueAt(table.getSelectedRow(), 12).toString());
+        districtField.setText(table.getValueAt(table.getSelectedRow(), 13).toString());
+        cityField.setText(table.getValueAt(table.getSelectedRow(), 14).toString());
+        ufField.setSelectedItem(table.getValueAt(table.getSelectedRow(), 15).toString());
     }//GEN-LAST:event_tableMouseClicked
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
@@ -894,7 +898,6 @@ public class EmployeeScreen extends javax.swing.JFrame {
                 || cityField.getText().trim().isEmpty()
                 || ufField.getSelectedItem() == null
                 || responsibilityField.getText().trim().isEmpty()
-                || passwordField.getText().trim().isEmpty()
                 || acess_levelField.getSelectedItem() == null) {
 
             JOptionPane.showMessageDialog(null, "Preencha todos os campos antes de editar um funcionário.");
@@ -918,7 +921,9 @@ public class EmployeeScreen extends javax.swing.JFrame {
                         obj.setRg(rgField.getText());
                         obj.setCpf(cpfField.getText());
                         obj.setEmail(emailField.getText());
+                        if (passwordField != null) {
                         obj.setPassword(passwordField.getText());
+                        }
                         obj.setResponsibility(responsibilityField.getText());
                         obj.setAccess_level(acess_levelField.getSelectedItem().toString());
                         obj.setLandline(landlineField.getText());

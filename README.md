@@ -24,6 +24,7 @@ Este projeto foi desenvolvido como parte da atividade avaliativa A3 da disciplin
 
 - [json-20160810](https://repo1.maven.org/maven2/org/json/json/20160810/json-20160810.jar)
 - [mysql-connector](https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.0.31/mysql-connector-j-8.0.31.jar)
+- [jBCrypt](https://repo1.maven.org/maven2/de/svenkubiak/jBCrypt/0.4/jBCrypt-0.4.jar)
   
 ## Pacotes Externos
 

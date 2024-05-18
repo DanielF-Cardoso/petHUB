@@ -2,8 +2,10 @@ package br.com.pethub.dao;
 
 import br.com.pethub.jdbc.ConnectionFactory;
 import br.com.pethub.model.Employees;
+import br.com.pethub.utils.EncryptPassword;
 import br.com.pethub.view.DashboardScreen;
 import br.com.pethub.view.LoginScreen;
+import org.mindrot.jbcrypt.BCrypt;
 
 import javax.swing.*;
 import java.sql.Connection;
@@ -22,9 +24,7 @@ public class EmployeesDAO {
     }
 
     public void addEmployees(Employees obj) {
-
         try {
-
             //Criar o comando sql
             String sql = "insert into tb_employees (name, rg, cpf, email, password, responsibility, access_level, landline, phone, cep, address, number,"
                     + "complement, district, city, state)"
@@ -35,7 +35,11 @@ public class EmployeesDAO {
             stmt.setString(2, obj.getRg());
             stmt.setString(3, obj.getCpf());
             stmt.setString(4, obj.getEmail());
-            stmt.setString(5, obj.getPassword());
+
+            EncryptPassword encryptor = new EncryptPassword();
+            String encryptedPassword = encryptor.encryptPassword(obj.getPassword());
+            stmt.setString(5, encryptedPassword);
+
             stmt.setString(6, obj.getResponsibility());
             stmt.setString(7, obj.getAccess_level());
             stmt.setString(8, obj.getLandline());
@@ -59,32 +63,38 @@ public class EmployeesDAO {
     }
 
     public void editEmployees(Employees obj) {
-
         try {
-
-            //Criar o comando sql
             String sql = "update tb_employees set name = ?, rg = ?, cpf = ?, email = ?, "
-                    + "password = ?, responsibility = ?, access_level = ?, landline = ?, phone = ?, cep = ?, address = ?, number = ?,"
-                    + "complement = ?, district = ?, city = ?, state = ? where id = ?";
+                    + "responsibility = ?, access_level = ?, landline = ?, phone = ?, cep = ?, address = ?, number = ?,"
+                    + "complement = ?, district = ?, city = ?, state = ?"
+                    + (obj.getPassword() != null && !obj.getPassword().isEmpty() ? ", password = ? " : "")
+                    + "where id = ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, obj.getName());
             stmt.setString(2, obj.getRg());
             stmt.setString(3, obj.getCpf());
             stmt.setString(4, obj.getEmail());
-            stmt.setString(5, obj.getPassword());
-            stmt.setString(6, obj.getResponsibility());
-            stmt.setString(7, obj.getAccess_level());
-            stmt.setString(8, obj.getLandline());
-            stmt.setString(9, obj.getPhone());
-            stmt.setString(10, obj.getCep());
-            stmt.setString(11, obj.getAddress());
-            stmt.setInt(12, obj.getNumber());
-            stmt.setString(13, obj.getComplement());
-            stmt.setString(14, obj.getDistrict());
-            stmt.setString(15, obj.getCity());
-            stmt.setString(16, obj.getState());
-            stmt.setInt(17, obj.getId());
+            stmt.setString(5, obj.getResponsibility());
+            stmt.setString(6, obj.getAccess_level());
+            stmt.setString(7, obj.getLandline());
+            stmt.setString(8, obj.getPhone());
+            stmt.setString(9, obj.getCep());
+            stmt.setString(10, obj.getAddress());
+            stmt.setInt(11, obj.getNumber());
+            stmt.setString(12, obj.getComplement());
+            stmt.setString(13, obj.getDistrict());
+            stmt.setString(14, obj.getCity());
+            stmt.setString(15, obj.getState());
+
+            if (obj.getPassword() != null && !obj.getPassword().isEmpty()) {
+                EncryptPassword encryptor = new EncryptPassword();
+                String encryptedPassword = encryptor.encryptPassword(obj.getPassword());
+                stmt.setString(16, encryptedPassword);
+                stmt.setInt(17, obj.getId());
+            } else {
+                stmt.setInt(16, obj.getId());
+            }
 
             stmt.execute();
             stmt.close();
@@ -94,7 +104,6 @@ public class EmployeesDAO {
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
         }
-
     }
 
     public void deleteEmployees(Employees obj) {
@@ -134,7 +143,6 @@ public class EmployeesDAO {
                 obj.setRg(rs.getString("rg"));
                 obj.setCpf(rs.getString("cpf"));
                 obj.setEmail(rs.getString("email"));
-                obj.setPassword(rs.getString("password"));
                 obj.setResponsibility(rs.getString("responsibility"));
                 obj.setAccess_level(rs.getString("access_level"));
                 obj.setLandline(rs.getString("landline"));
@@ -175,7 +183,6 @@ public class EmployeesDAO {
                 obj.setRg(rs.getString("rg"));
                 obj.setCpf(rs.getString("cpf"));
                 obj.setEmail(rs.getString("email"));
-                obj.setPassword(rs.getString("password"));
                 obj.setResponsibility(rs.getString("responsibility"));
                 obj.setAccess_level(rs.getString("access_level"));
                 obj.setLandline(rs.getString("landline"));
@@ -201,60 +208,54 @@ public class EmployeesDAO {
 
     public boolean toLogin(String email, String password) {
         try {
-            String sql = "select * from tb_employees where email = ? and password = ?";
+            String sql = "select * from tb_employees where email = ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, email);
-            stmt.setString(2, password);
 
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
+                if (BCrypt.checkpw(password, rs.getString("password"))) {
+                    if (rs.getString("access_level").equals("Administrador")) {
+                        JOptionPane.showMessageDialog(null, "Bem-vindo ao PetHUB!");
+                        DashboardScreen screen = new DashboardScreen();
+                        screen.userLogin = rs.getString("name");
+                        screen.setVisible(true);
+                    } else if (rs.getString("access_level").equals("Vendedor")) {
+                        JOptionPane.showMessageDialog(null, "Bem-vindo ao PetHUB!");
+                        DashboardScreen screen = new DashboardScreen();
+                        screen.userLogin = rs.getString("name");
 
-                if (rs.getString("access_level").equals("Administrador")) {
-                    JOptionPane.showMessageDialog(null, "Bem-vindo ao PetHUB!");
-                    DashboardScreen screen = new DashboardScreen();
-                    screen.userLogin = rs.getString("name");
-                    screen.setVisible(true);
+                        screen.totalSalesDay.setVisible(false);
+                        screen.historySalesMenu.setVisible(false);
+                        screen.employeeMenu.setVisible(false);
+                        screen.supplierMenu.setVisible(false);
+                        screen.addProductsMenu.setVisible(false);
+                        screen.vaccineMenu.setVisible(false);
+
+                        screen.setVisible(true);
+                    } else if (rs.getString("access_level").equals("Veterinário")) {
+                        JOptionPane.showMessageDialog(null, "Bem-vindo ao PetHUB!");
+                        DashboardScreen screen = new DashboardScreen();
+                        screen.userLogin = rs.getString("name");
+
+                        screen.totalSalesDay.setVisible(false);
+                        screen.historySalesMenu.setVisible(false);
+                        screen.employeeMenu.setVisible(false);
+                        screen.supplierMenu.setVisible(false);
+                        screen.addProductsMenu.setVisible(false);
+                        screen.salesMenu.setVisible(false);
+
+                        screen.setVisible(true);
+                    }
                     rs.close();
                     stmt.close();
                     return true;
-                } 
-                else if (rs.getString("access_level").equals("Vendedor")) {
-                    JOptionPane.showMessageDialog(null, "Bem-vindo ao PetHUB!");
-                    DashboardScreen screen = new DashboardScreen();
-                    screen.userLogin = rs.getString("name");
-                    
-                    screen.totalSalesDay.setVisible(false);
-                    screen.historySalesMenu.setVisible(false);
-                    screen.employeeMenu.setVisible(false);
-                    screen.supplierMenu.setVisible(false);
-                    screen.addProductsMenu.setVisible(false);
-                    screen.vaccineMenu.setVisible(false);
-                    
-                    screen.setVisible(true);
-                    rs.close();
-                    stmt.close();
-                    return true;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Dados incorretos. Por favor, verifique suas credenciais e tente novamente.");
+                    return false;
                 }
-                else if (rs.getString("access_level").equals("Veterinário")) {
-                    JOptionPane.showMessageDialog(null, "Bem-vindo ao PetHUB!");
-                    DashboardScreen screen = new DashboardScreen();
-                    screen.userLogin = rs.getString("name");
-                    
-                    screen.totalSalesDay.setVisible(false);
-                    screen.historySalesMenu.setVisible(false);
-                    screen.employeeMenu.setVisible(false);
-                    screen.supplierMenu.setVisible(false);
-                    screen.addProductsMenu.setVisible(false);
-                    screen.salesMenu.setVisible(false);
-                    
-                    screen.setVisible(true);
-                    rs.close();
-                    stmt.close();
-                    return true;
-                }                
-
             } else {
                 JOptionPane.showMessageDialog(null, "Dados incorretos. Por favor, verifique suas credenciais e tente novamente.");
                 return false;
@@ -264,7 +265,6 @@ public class EmployeesDAO {
             JOptionPane.showMessageDialog(null, "Erro : " + erro);
             return false;
         }
-        return false;
     }
 
 }
