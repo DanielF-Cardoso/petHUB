@@ -71,6 +71,10 @@ public class DashboardScreen extends javax.swing.JFrame {
         stockManagementMenu = new javax.swing.JMenuItem();
         addProductsMenu = new javax.swing.JMenuItem();
         searchProductMenu = new javax.swing.JMenuItem();
+        servicesMenu = new javax.swing.JMenu();
+        servicesSchedule = new javax.swing.JMenuItem();
+        addServices = new javax.swing.JMenuItem();
+        listServices = new javax.swing.JMenuItem();
         vaccineMenu = new javax.swing.JMenu();
         vaccineControllerMenu = new javax.swing.JMenuItem();
         searchVaccineMenu = new javax.swing.JMenuItem();
@@ -125,7 +129,7 @@ public class DashboardScreen extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 767, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1000, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dateLabel)
@@ -295,6 +299,39 @@ public class DashboardScreen extends javax.swing.JFrame {
 
         jMenuBar1.add(productsMenu);
 
+        servicesMenu.setForeground(new java.awt.Color(255, 255, 255));
+        servicesMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_servicos.png"))); // NOI18N
+        servicesMenu.setText("Serviços");
+
+        servicesSchedule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_lista.png"))); // NOI18N
+        servicesSchedule.setText("Agenda de Serviços");
+        servicesSchedule.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                servicesScheduleActionPerformed(evt);
+            }
+        });
+        servicesMenu.add(servicesSchedule);
+
+        addServices.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_adicionar.png"))); // NOI18N
+        addServices.setText("Cadastro de Serviços");
+        addServices.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addServicesActionPerformed(evt);
+            }
+        });
+        servicesMenu.add(addServices);
+
+        listServices.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_buscar.png"))); // NOI18N
+        listServices.setText("Consulta de Serviços");
+        listServices.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                listServicesActionPerformed(evt);
+            }
+        });
+        servicesMenu.add(listServices);
+
+        jMenuBar1.add(servicesMenu);
+
         vaccineMenu.setForeground(new java.awt.Color(255, 255, 255));
         vaccineMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_vacina.png"))); // NOI18N
         vaccineMenu.setText("Vacinas");
@@ -336,7 +373,7 @@ public class DashboardScreen extends javax.swing.JFrame {
         salesMenu.add(pdvMenu);
 
         totalSalesDay.setForeground(new java.awt.Color(28, 74, 137));
-        totalSalesDay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_historico.png"))); // NOI18N
+        totalSalesDay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_vendas_dia.png"))); // NOI18N
         totalSalesDay.setText("Total de Vendas no Dia");
         totalSalesDay.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -615,6 +652,31 @@ public class DashboardScreen extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void addServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addServicesActionPerformed
+        // TODO add your handling code here:
+        
+        AddServicesScreen addServicesScreen = new AddServicesScreen();
+        addServicesScreen.setVisible(true);
+        
+    }//GEN-LAST:event_addServicesActionPerformed
+
+    private void listServicesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listServicesActionPerformed
+        // TODO add your handling code here:
+        
+        AddServicesScreen addServicesScreen = new AddServicesScreen();
+        addServicesScreen.jTabbedPane1.setSelectedIndex(1);
+        addServicesScreen.setVisible(true);
+        
+    }//GEN-LAST:event_listServicesActionPerformed
+
+    private void servicesScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_servicesScheduleActionPerformed
+        // TODO add your handling code here:
+        
+        ServicesScheduleScreen servicesScheduleScreen = new ServicesScheduleScreen();
+        servicesScheduleScreen.setVisible(true);
+        
+    }//GEN-LAST:event_servicesScheduleActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -667,6 +729,7 @@ public class DashboardScreen extends javax.swing.JFrame {
     private javax.swing.JMenuItem addCustomerMenu;
     public javax.swing.JMenuItem addEmployeeMenu;
     public javax.swing.JMenuItem addProductsMenu;
+    private javax.swing.JMenuItem addServices;
     public javax.swing.JMenuItem addSupplierMenu;
     private javax.swing.JMenuItem changeUserMenu;
     private javax.swing.JMenu customerMenu;
@@ -680,6 +743,7 @@ public class DashboardScreen extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem listServices;
     private javax.swing.JDesktopPane painel_desktop;
     private javax.swing.JMenuItem pdvMenu;
     private javax.swing.JMenuItem productsList;
@@ -692,6 +756,8 @@ public class DashboardScreen extends javax.swing.JFrame {
     public javax.swing.JMenuItem searchProductMenu;
     public javax.swing.JMenuItem searchSupplierMenu;
     private javax.swing.JMenuItem searchVaccineMenu;
+    private javax.swing.JMenu servicesMenu;
+    private javax.swing.JMenuItem servicesSchedule;
     private javax.swing.JMenu settingsMenu;
     public javax.swing.JMenuItem stockManagementMenu;
     public javax.swing.JMenu supplierMenu;
