@@ -11,6 +11,7 @@ import net.sf.jasperreports.engine.design.JRDesignQuery;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -249,8 +250,9 @@ public class ProductsDAO {
             String sql = "select p.id, p.product, p.price, p.stock_qty, f.name from tb_products as p "
                     + "inner join tb_suppliers as f on (p.for_id = f.id)";
 
-            InputStream inputStream = getClass().getResourceAsStream("/br/com/pethub/reports/productsreport.jrxml");
+            InputStream inputStream = getClass().getResourceAsStream("/br/com/pethub/reports/productsReport.jrxml");
             JasperDesign jd = JRXmlLoader.load(inputStream);
+
             JRDesignQuery query = new JRDesignQuery();
             query.setText(sql);
             jd.setQuery(query);
