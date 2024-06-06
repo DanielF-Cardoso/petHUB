@@ -12,6 +12,8 @@ import br.com.pethub.model.Pets;
 import br.com.pethub.model.Schedule;
 import br.com.pethub.model.Services;
 import java.awt.Toolkit;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -70,6 +72,7 @@ public class ServicesScheduleScreen extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         dateEndField = new javax.swing.JFormattedTextField();
         searchBtn = new javax.swing.JButton();
+        servicesTodayBtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         servicesTable = new javax.swing.JTable();
@@ -132,7 +135,7 @@ public class ServicesScheduleScreen extends javax.swing.JFrame {
         }
 
         jLabel3.setForeground(new java.awt.Color(28, 74, 137));
-        jLabel3.setText("Até:");
+        jLabel3.setText("Até*:");
 
         try {
             dateEndField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -148,12 +151,20 @@ public class ServicesScheduleScreen extends javax.swing.JFrame {
             }
         });
 
+        servicesTodayBtn.setForeground(new java.awt.Color(28, 74, 137));
+        servicesTodayBtn.setText("Listar Serviços de Hoje");
+        servicesTodayBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                servicesTodayBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(341, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(dateStartField, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -163,7 +174,9 @@ public class ServicesScheduleScreen extends javax.swing.JFrame {
                 .addComponent(dateEndField, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(searchBtn)
-                .addGap(340, 340, 340))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(servicesTodayBtn)
+                .addGap(254, 254, 254))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,7 +187,8 @@ public class ServicesScheduleScreen extends javax.swing.JFrame {
                     .addComponent(dateStartField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(dateEndField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(searchBtn))
+                    .addComponent(searchBtn)
+                    .addComponent(servicesTodayBtn))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -390,7 +404,65 @@ public class ServicesScheduleScreen extends javax.swing.JFrame {
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
         // TODO add your handling code here:
 
+        try {
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate dateStart = LocalDate.parse(dateStartField.getText(), format);
+            LocalDate dateEnd;
+
+            String dateEndText = dateEndField.getText().trim();
+            if (dateEndText.isEmpty() || dateEndText.equals("//")) {
+                dateEnd = dateStart;
+            } else {
+                dateEnd = LocalDate.parse(dateEndText, format);
+            }
+
+            ServicesDAO services_dao = new ServicesDAO();
+            List<Schedule> list = services_dao.listSchedules(dateStart, dateEnd);
+
+            DefaultTableModel data = (DefaultTableModel) servicesTable.getModel();
+            data.setNumRows(0);
+
+            for (Schedule s : list) {
+                data.addRow(new Object[]{
+                    s.getId(),
+                    s.getDate(),
+                    s.getCustumers().getName(),
+                    s.getPets().getPet_name(),
+                    s.getServices().getService_name(),
+                    s.getTime(),
+                    s.getStatus(),
+                    s.getTotal_Value()
+                });
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Nenhum registro encontrado");
+        }
+
     }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void servicesTodayBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_servicesTodayBtnActionPerformed
+        // TODO add your handling code here:
+
+        ServicesDAO services_dao = new ServicesDAO();
+        List<Schedule> listSchedulesForToday = services_dao.listSchedulesForToday();
+
+        DefaultTableModel data = (DefaultTableModel) servicesTable.getModel();
+        data.setNumRows(0);
+
+        for (Schedule s : listSchedulesForToday) {
+            data.addRow(new Object[]{
+                s.getId(),
+                s.getCustumers().getName(),
+                s.getPets().getPet_name(),
+                s.getServices().getService_name(),
+                s.getDate(),
+                s.getTime(),
+                s.getStatus(),
+                s.getTotal_Value()
+            });
+        }
+
+    }//GEN-LAST:event_servicesTodayBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1466,5 +1538,6 @@ public class ServicesScheduleScreen extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton searchBtn;
     public javax.swing.JTable servicesTable;
+    private javax.swing.JButton servicesTodayBtn;
     // End of variables declaration//GEN-END:variables
 }

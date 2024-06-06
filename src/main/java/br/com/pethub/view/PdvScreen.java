@@ -357,9 +357,7 @@ public class PdvScreen extends javax.swing.JFrame {
         );
 
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Carrinho de Compras", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 12), new java.awt.Color(28, 74, 137))); // NOI18N
-        jPanel10.setForeground(new java.awt.Color(0, 0, 0));
 
-        cartTable.setBackground(new java.awt.Color(255, 255, 255));
         cartTable.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         cartTable.setForeground(new java.awt.Color(28, 74, 137));
         cartTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -369,8 +367,23 @@ public class PdvScreen extends javax.swing.JFrame {
             new String [] {
                 "Código", "Produto", "Quantidade", "Preço", "Subtotal"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(cartTable);
+        if (cartTable.getColumnModel().getColumnCount() > 0) {
+            cartTable.getColumnModel().getColumn(0).setResizable(false);
+            cartTable.getColumnModel().getColumn(1).setResizable(false);
+            cartTable.getColumnModel().getColumn(2).setResizable(false);
+            cartTable.getColumnModel().getColumn(3).setResizable(false);
+            cartTable.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);

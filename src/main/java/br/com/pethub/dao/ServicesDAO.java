@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -185,6 +186,97 @@ public class ServicesDAO {
         }
     }
 
+    public List<Schedule> listSchedules(LocalDate date_start, LocalDate date_end) {
+        try {
+            List<Schedule> listSchedules = new ArrayList<>();
+
+            String sql = "SELECT s.*, c.name as customer_name, p.pet_name as pet_name, sv.service_name as service_name, DATE_FORMAT(s.date, '%d/%m/%Y') AS date_formatted FROM tb_service_schedules s "
+                    + "JOIN tb_customers c ON s.for_id = c.id "
+                    + "JOIN tb_pets p ON s.for_pet = p.id "
+                    + "JOIN tb_services sv ON s.service_id = sv.id "
+                    + "WHERE s.date >= ? AND s.date < ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, date_start.toString());
+            stmt.setString(2, date_end.plusDays(1).toString());
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Schedule obj = new Schedule();
+                Customers customer = new Customers();
+                Pets pet = new Pets();
+                Services service = new Services();
+
+                obj.setId(rs.getInt("id"));
+                obj.setDate(rs.getString("date_formatted"));
+                obj.setTime(rs.getString("time"));
+                obj.setStatus(rs.getString("status"));
+                obj.setTotal_Value(rs.getDouble("total_value"));
+
+                customer.setName(rs.getString("customer_name"));
+                obj.setCustumers(customer);
+
+                pet.setPet_name(rs.getString("pet_name"));
+                obj.setPets(pet);
+
+                service.setService_name(rs.getString("service_name"));
+                obj.setServices(service);
+
+                listSchedules.add(obj);
+            }
+
+            return listSchedules;
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
+            return null;
+        }
+    }
+
+    public List<Schedule> listSchedulesForToday() {
+        List<Schedule> listSchedulesForToday = new ArrayList<>();
+
+        String sql = "SELECT s.*, c.name as customer_name, p.pet_name as pet_name, sv.service_name as service_name, DATE_FORMAT(s.date, '%d/%m/%Y') AS date_formatted FROM tb_service_schedules s "
+                + "JOIN tb_customers c ON s.for_id = c.id "
+                + "JOIN tb_pets p ON s.for_pet = p.id "
+                + "JOIN tb_services sv ON s.service_id = sv.id "
+                + "WHERE s.date = CURDATE()";
+
+        try {
+            PreparedStatement stmt = con.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Schedule obj = new Schedule();
+                Customers customer = new Customers();
+                Pets pet = new Pets();
+                Services service = new Services();
+
+                obj.setId(rs.getInt("id"));
+                obj.setDate(rs.getString("date_formatted"));
+                obj.setTime(rs.getString("time"));
+                obj.setStatus(rs.getString("status"));
+                obj.setTotal_Value(rs.getDouble("total_value"));
+
+                customer.setName(rs.getString("customer_name"));
+                obj.setCustumers(customer);
+
+                pet.setPet_name(rs.getString("pet_name"));
+                obj.setPets(pet);
+
+                service.setService_name(rs.getString("service_name"));
+                obj.setServices(service);
+
+                listSchedulesForToday.add(obj);
+            }
+
+            return listSchedulesForToday;
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro: " + erro);
+            return null;
+        }
+    }
+
     public Services getServicesByName(String name) {
         try {
             String sql = "SELECT * FROM tb_services WHERE service_name = ?";
@@ -274,6 +366,23 @@ public class ServicesDAO {
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
         }
+    }
+
+    public boolean checkScheduleConflict(Schedule obj) {
+        try {
+            String sql = "SELECT * FROM tb_service_schedules WHERE time = ? AND service_id = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, obj.getTime());
+            stmt.setInt(2, obj.getServices().getId());
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return true;
+            }
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro: " + erro);
+        }
+        return false;
     }
 
 }
