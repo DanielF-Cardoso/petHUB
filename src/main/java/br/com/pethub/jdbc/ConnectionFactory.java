@@ -6,21 +6,44 @@ package br.com.pethub.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.util.Properties;
+import java.io.InputStream;
 
 /**
  *
  * @author danie
  */
+
 public class ConnectionFactory {
-    
-    public Connection getConnection(){
-        
+
+    private String host;
+    private String username;
+    private String password;
+    private String database;
+    private String port;
+
+    public ConnectionFactory() {
         try {
-            return DriverManager.getConnection("jdbc:mysql://190.115.196.66/s3_privado", "u3_0rKFINXhUG", "pHb9CedFIX=FzZI+X=1mv3oS");
+            InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
+            Properties prop = new Properties();
+            prop.load(input);
+
+            host = prop.getProperty("host");
+            port = prop.getProperty("port");
+            database = prop.getProperty("database");
+            username = prop.getProperty("username");
+            password = prop.getProperty("password");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Connection getConnection() {
+        try {
+            String url = "jdbc:mysql://" + host + ":" + port + "/" + database;
+            return DriverManager.getConnection(url, username, password);
         } catch (Exception erro) {
             throw new RuntimeException(erro);
         }
-        
     }
-    
 }
