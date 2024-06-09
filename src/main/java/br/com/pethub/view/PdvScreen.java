@@ -618,6 +618,16 @@ public class PdvScreen extends javax.swing.JFrame {
             payment.customer = obj;
             payment.cart = cart;
             payment.setVisible(true);
+
+            nameField.setText(null);
+            cpfField.setText(null);
+            idField.setText(null);
+            productField.setText(null);
+            priceField.setText(null);
+            qtyField.setText(null);
+            totalField.setText(null);
+            cart.setRowCount(0);
+
         } else if (nameField.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Não é possível finalizar uma venda sem indicar o cliente.");
         } else if (cartTable.getRowCount() == 0) {

@@ -42,7 +42,6 @@ public class CustomersDAO {
                 return;
             }
 
-            //Criar o comando sql
             String sql = "insert into tb_customers (name, rg, cpf, email, landline, phone, cep, address, number,"
                     + "complement, district, city, state)"
                     + "values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -77,7 +76,6 @@ public class CustomersDAO {
 
         try {
 
-            //Criar o comando sql
             String sql = "update tb_customers set name = ?, rg = ?, cpf = ?, email = ?, landline = ?, phone = ?, cep = ?, address = ?, number = ?,"
                     + "complement = ?, district = ?, city = ?, state = ? where id = ?";
 
@@ -123,7 +121,6 @@ public class CustomersDAO {
 
         try {
 
-            //Criar o comando sql
             String sql = "delete from tb_customers where id = ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -147,7 +144,7 @@ public class CustomersDAO {
 
             String sql = "select * from tb_customers";
             PreparedStatement stmt = con.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
+            ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 Customers obj = new Customers();
@@ -185,7 +182,7 @@ public class CustomersDAO {
             String sql = "select * from tb_customers where name like ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, name);
-            ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
+            ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 Customers obj = new Customers();
@@ -258,7 +255,7 @@ public class CustomersDAO {
             String sql = "select * from tb_customers where name = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, name);
-            ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
+            ResultSet rs = stmt.executeQuery();
 
             Customers obj = new Customers();
 

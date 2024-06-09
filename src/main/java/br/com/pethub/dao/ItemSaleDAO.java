@@ -33,7 +33,6 @@ public class ItemSaleDAO {
     public void addItem(ItemSale obj) {
         try {
 
-            //Criar o comando sql
             String sql = "insert into tb_itemssales (sale_id, product_id, qty, subtotal)"
                     + "values (?,?,?,?)";
 
@@ -55,7 +54,7 @@ public class ItemSaleDAO {
     public List<ItemSale> ListItemSales (int sale_Id) {
         try {
 
-            List<ItemSale> listItems = new ArrayList<>(); //ItemVenda // lista
+            List<ItemSale> listItems = new ArrayList<>();
 
             String sql = "select p.product, i.qty, p.price, i.subtotal from tb_itemssales as i "
                     + "inner join tb_products as p on (i.product_id = p.id) "
@@ -63,7 +62,7 @@ public class ItemSaleDAO {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, sale_Id);
 
-            ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
+            ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 ItemSale item = new ItemSale();
                 Products product = new Products();

@@ -34,7 +34,6 @@ public class ProductsDAO {
 
         try {
 
-            //Criar o comando sql
             String sql = "insert into tb_products (product, price, stock_qty, for_id)"
                     + "values (?,?,?,?)";
 
@@ -59,7 +58,6 @@ public class ProductsDAO {
 
         try {
 
-            //Criar o comando sql
             String sql = "update tb_products set product=?, price=?, stock_qty=?, for_id=? where id=?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -86,7 +84,6 @@ public class ProductsDAO {
 
         try {
 
-            //Criar o comando sql
             String sql = "delete from tb_products where id = ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -99,7 +96,7 @@ public class ProductsDAO {
             JOptionPane.showMessageDialog(null, "Produto excluido com sucesso!");
 
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "Erro: " + erro);
+            JOptionPane.showMessageDialog(null, "Não é possível deletar esse produto pois existem vendas relacionadas a ele no sistema!");
         }
 
     }
@@ -112,7 +109,7 @@ public class ProductsDAO {
             String sql = "select p.id, p.product, p.price, p.stock_qty, f.name from tb_products as p "
                     + "inner join tb_suppliers as f on (p.for_id = f.id)";
             PreparedStatement stmt = con.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
+            ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
 
@@ -149,7 +146,7 @@ public class ProductsDAO {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, name);
 
-            ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
+            ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
 
@@ -183,7 +180,7 @@ public class ProductsDAO {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, id);
 
-            ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
+            ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
                 Products obj = new Products();

@@ -8,7 +8,7 @@ O petHUB é um gerenciador de petshop, pensado para facilitar o gerenciamento de
 
 Este projeto foi desenvolvido como parte da atividade avaliativa A3 da disciplina de Programação de Soluções Computacionais.
 
-![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white) ![NetBeans IDE](https://img.shields.io/badge/NetBeansIDE-1B6AC6.svg?style=for-the-badge&logo=apache-netbeans-ide&logoColor=white)
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white) ![NetBeans IDE](https://img.shields.io/badge/NetBeansIDE-1B6AC6.svg?style=for-the-badge&logo=apache-netbeans-ide&logoColor=white) 
 
 ## Funcionalidades
 
@@ -25,7 +25,8 @@ Este projeto foi desenvolvido como parte da atividade avaliativa A3 da disciplin
 - [json-20160810](https://repo1.maven.org/maven2/org/json/json/20160810/json-20160810.jar)
 - [mysql-connector](https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.0.31/mysql-connector-j-8.0.31.jar)
 - [jBCrypt](https://repo1.maven.org/maven2/de/svenkubiak/jBCrypt/0.4/jBCrypt-0.4.jar)
-  
+- [JasperReports® Library](https://community.jaspersoft.com/download-jaspersoft/community-edition/)
+
 ## Pacotes Externos
 
 - [ViaCEP](https://gitlab.com/parg/ViaCEP) - Biblioteca para consulta de CEPs através da API do ViaCEP (https://viacep.com.br/)

@@ -534,14 +534,22 @@ public class PetScreen extends javax.swing.JFrame {
     private void deleteBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBntActionPerformed
         // TODO add your handling code here:
 
-        Pets obj = new Pets();
+        try {
+            int op = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o pet? A exclusão apagará todos os registros no sistema relacionados a esse animal.", "Confirmação", JOptionPane.YES_NO_OPTION);
 
-        obj.setId(Integer.parseInt(idField.getText()));
+            if (op == JOptionPane.YES_OPTION) {
+                Pets obj = new Pets();
 
-        PetsDAO dao = new PetsDAO();
-        dao.deletePets(obj);
+                obj.setId(Integer.parseInt(idField.getText()));
 
-        new CleanFields().cleanFields(jPanel2, jPanel3);
+                PetsDAO dao = new PetsDAO();
+                dao.deletePets(obj);
+
+                new CleanFields().cleanFields(jPanel2, jPanel3);
+            }
+
+        } catch (Exception e) {
+        }
 
     }//GEN-LAST:event_deleteBntActionPerformed
 

@@ -25,7 +25,7 @@ public class EmployeesDAO {
 
     public void addEmployees(Employees obj) {
         try {
-            //Criar o comando sql
+
             String sql = "insert into tb_employees (name, rg, cpf, email, password, responsibility, access_level, landline, phone, cep, address, number,"
                     + "complement, district, city, state)"
                     + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -110,7 +110,6 @@ public class EmployeesDAO {
 
         try {
 
-            //Criar o comando sql
             String sql = "delete from tb_employees where id = ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -134,7 +133,7 @@ public class EmployeesDAO {
 
             String sql = "select * from tb_employees";
             PreparedStatement stmt = con.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
+            ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 Employees obj = new Employees();
@@ -174,7 +173,7 @@ public class EmployeesDAO {
             String sql = "select * from tb_employees where name like ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, name);
-            ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
+            ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
                 Employees obj = new Employees();

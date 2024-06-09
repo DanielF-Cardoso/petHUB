@@ -741,7 +741,6 @@ public class CustomerScreen extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            // Handle exception
         }
 
     }//GEN-LAST:event_deleteBtnActionPerformed

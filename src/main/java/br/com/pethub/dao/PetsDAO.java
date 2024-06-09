@@ -23,7 +23,6 @@ public class PetsDAO {
 
         try {
 
-            //Criar o comando sql
             String sql = "insert into tb_pets (pet_name, gender, birth, pet_weight, species, breed, for_id)"
                     + "values (?,?,?,?,?,?,?)";
 
@@ -53,7 +52,6 @@ public class PetsDAO {
 
         try {
 
-            //Criar o comando sql
             String sql = "update tb_pets set pet_name=?, gender=?, birth=?, pet_weight=?, species=?, breed=?, for_id=? where id=?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -83,7 +81,12 @@ public class PetsDAO {
 
         try {
 
-            //Criar o comando sql
+            VaccineDAO vaccineDAO = new VaccineDAO();
+            vaccineDAO.deleteVaccinesByPetId(obj.getId());
+
+            ServicesDAO servicesDAO = new ServicesDAO();
+            servicesDAO.deleteScheduleByPetId(obj.getId());
+
             String sql = "delete from tb_pets where id = ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -93,7 +96,7 @@ public class PetsDAO {
             stmt.execute();
             stmt.close();
 
-            JOptionPane.showMessageDialog(null, "Animal excluido com sucesso!");
+            JOptionPane.showMessageDialog(null, "Animal e registros relacionados excluídos com sucesso!");
 
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
@@ -108,7 +111,7 @@ public class PetsDAO {
             String sql = "select p.id, p.pet_name, p.gender, date_format(p.birth, '%d/%m/%Y') as date_formatted, p.pet_weight, p.species, p.breed, f.name from tb_pets as p "
                     + "inner join tb_customers as f on (p.for_id = f.id)";
             PreparedStatement stmt = con.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
+            ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
 
@@ -148,7 +151,7 @@ public class PetsDAO {
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, name);
 
-            ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
+            ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
 

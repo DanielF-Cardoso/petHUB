@@ -37,7 +37,6 @@ public class SalesDAO {
 
         try {
 
-            //Criar o comando sql
             String sql = "insert into tb_sales (client_id, sale_date, total_sale, note)"
                     + "values (?,?,?,?)";
 
@@ -85,7 +84,7 @@ public class SalesDAO {
             stmt.setString(1, date_start.toString());
             stmt.setString(2, date_end.toString());
 
-            ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
+            ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
 
                 Sales sale = new Sales();
@@ -134,11 +133,9 @@ public class SalesDAO {
 
     public void deleteSalesByCustomerId(int customerId) {
         try {
-            // Primeiro, deleta todos os itens de venda associados a este cliente
             ItemSaleDAO itemSaleDAO = new ItemSaleDAO();
             itemSaleDAO.deleteItemsSaleByCustomerId(customerId);
 
-            // Depois, deleta as vendas do cliente
             String sql = "delete from tb_sales where client_id = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setInt(1, customerId);

@@ -4,9 +4,11 @@
  */
 package br.com.pethub.view;
 
+import br.com.pethub.dao.PetsDAO;
 import br.com.pethub.dao.ProductsDAO;
 import br.com.pethub.dao.ServicesDAO;
 import br.com.pethub.dao.SuppliersDAO;
+import br.com.pethub.model.Pets;
 import br.com.pethub.model.Products;
 import br.com.pethub.model.Services;
 import br.com.pethub.model.Suppliers;
@@ -470,17 +472,24 @@ public class AddServicesScreen extends javax.swing.JFrame {
     private void deleteBntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBntActionPerformed
         // TODO add your handling code here:
 
-        Services obj = new Services();
-        obj.setId(Integer.parseInt(idField.getText()));
+        try {
+            int op = JOptionPane.showConfirmDialog(null, "Tem certeza que deseja excluir o serviço? A exclusão apagará todos agendamentos relacionados a esse serviço!", "Confirmação", JOptionPane.YES_NO_OPTION);
 
-        ServicesDAO dao = new ServicesDAO();
-        dao.deleteServices(obj);
+            if (op == JOptionPane.YES_OPTION) {
+                Services obj = new Services();
+                obj.setId(Integer.parseInt(idField.getText()));
 
-        serviceField.setText(null);
-        descriptionField.setText(null);
-        priceTable.setValueAt(null, 0, 1);
-        priceTable.setValueAt(null, 1, 1);
-        priceTable.setValueAt(null, 2, 1);
+                ServicesDAO dao = new ServicesDAO();
+                dao.deleteServices(obj);
+
+                serviceField.setText(null);
+                descriptionField.setText(null);
+                priceTable.setValueAt(null, 0, 1);
+                priceTable.setValueAt(null, 1, 1);
+                priceTable.setValueAt(null, 2, 1);
+            }
+        } catch (Exception e) {
+        }
 
     }//GEN-LAST:event_deleteBntActionPerformed
 

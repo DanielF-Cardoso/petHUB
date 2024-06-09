@@ -69,6 +69,9 @@ public class ServicesDAO {
 
     public void deleteServices(Services obj) {
         try {
+
+            deleteServiceSchedulesByServiceId(obj.getId());
+
             String sql = "delete from tb_services where id=?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -77,7 +80,7 @@ public class ServicesDAO {
             stmt.execute();
             stmt.close();
 
-            JOptionPane.showMessageDialog(null, "Serviço excluído com sucesso!");
+            JOptionPane.showMessageDialog(null, "Serviços e agendamentos excluídos com sucesso!");
 
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
@@ -383,6 +386,30 @@ public class ServicesDAO {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
         }
         return false;
+    }
+
+    public void deleteScheduleByPetId(int petId) {
+        try {
+            String sqlServices = "DELETE FROM tb_service_schedules WHERE for_pet = ?";
+            PreparedStatement stmtServices = con.prepareStatement(sqlServices);
+            stmtServices.setInt(1, petId);
+            stmtServices.execute();
+            stmtServices.close();
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro: " + erro);
+        }
+    }
+
+    public void deleteServiceSchedulesByServiceId(int serviceId) {
+        try {
+            String sqlSchedules = "DELETE FROM tb_service_schedules WHERE service_id = ?";
+            PreparedStatement stmtSchedules = con.prepareStatement(sqlSchedules);
+            stmtSchedules.setInt(1, serviceId);
+            stmtSchedules.execute();
+            stmtSchedules.close();
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro: " + erro);
+        }
     }
 
 }

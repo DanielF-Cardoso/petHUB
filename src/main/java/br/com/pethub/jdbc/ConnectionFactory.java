@@ -16,7 +16,7 @@ public class ConnectionFactory {
     public Connection getConnection(){
         
         try {
-            return DriverManager.getConnection("jdbc:mysql://node21.elgaehost.com.br/s2361_petHUB", "u2361_zoJwJxiM18", "USKL@bAXb^Ry@ae+tcf5o!Qg");
+            return DriverManager.getConnection("jdbc:mysql://190.115.196.66/s3_privado", "u3_0rKFINXhUG", "pHb9CedFIX=FzZI+X=1mv3oS");
         } catch (Exception erro) {
             throw new RuntimeException(erro);
         }

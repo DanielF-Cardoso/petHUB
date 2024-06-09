@@ -195,4 +195,17 @@ public class VaccineDAO {
         }
     }
 
+    public void deleteVaccinesByPetId(int petId) {
+        try {
+            String sqlVaccines = "DELETE FROM tb_vaccines WHERE for_pet = ?";
+            PreparedStatement stmtVaccines = con.prepareStatement(sqlVaccines);
+            stmtVaccines.setInt(1, petId);
+            stmtVaccines.execute();
+            stmtVaccines.close();
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null, "Erro: " + erro);
+        }
+    }
+
+
 }

@@ -25,8 +25,6 @@ public class SuppliersDAO {
     
         try {
 
-            //Criar o comando sql
-
             String sql = "insert into tb_suppliers (name, cnpj, email, landline, phone, cep, address, number," +
                     "complement, district, city, state)" +
                     "values (?,?,?,?,?,?,?,?,?,?,?, ?)";
@@ -60,7 +58,6 @@ public class SuppliersDAO {
     
             try {
 
-            //Criar o comando sql
 
             String sql = "update tb_suppliers set name = ?, cnpj = ?, email = ?, landline = ?, phone = ?, cep = ?, address = ?, number = ?," +
                     "complement = ?, district = ?, city = ?, state = ? where id = ?";
@@ -96,8 +93,6 @@ public class SuppliersDAO {
     
                 try {
 
-            //Criar o comando sql
-
             String sql = "delete from tb_suppliers where id = ?";
 
             PreparedStatement stmt = con.prepareStatement(sql);
@@ -109,7 +104,7 @@ public class SuppliersDAO {
             JOptionPane.showMessageDialog(null, "Fornecedor excluido com sucesso!");
             
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "Erro: " + erro);
+            JOptionPane.showMessageDialog(null, "Não é possível apagar esse fornecedor pois existem produtos relacionados a ele no sistema!");
         }
     
     }
@@ -121,7 +116,7 @@ public class SuppliersDAO {
 
             String sql = "select * from tb_suppliers";
             PreparedStatement stmt = con.prepareStatement(sql);
-            ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
+            ResultSet rs = stmt.executeQuery();
 
             while(rs.next()){
                 Suppliers obj = new Suppliers();
@@ -158,7 +153,7 @@ public class SuppliersDAO {
             String sql = "select * from tb_suppliers where name like ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, name);
-            ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
+            ResultSet rs = stmt.executeQuery();
 
             while(rs.next()){
                 Suppliers obj = new Suppliers();
@@ -193,7 +188,7 @@ public class SuppliersDAO {
             String sql = "select * from tb_suppliers where name = ?";
             PreparedStatement stmt = con.prepareStatement(sql);
             stmt.setString(1, name);
-            ResultSet rs = stmt.executeQuery(); //retorna um conjunto de dados
+            ResultSet rs = stmt.executeQuery();
 
             Suppliers obj = new Suppliers();
             
