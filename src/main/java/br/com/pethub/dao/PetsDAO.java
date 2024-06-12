@@ -3,6 +3,16 @@ package br.com.pethub.dao;
 import br.com.pethub.jdbc.ConnectionFactory;
 import br.com.pethub.model.Pets;
 import br.com.pethub.model.Customers;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
+
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -260,6 +270,31 @@ public class PetsDAO {
 
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro ao deletar pets: " + erro);
+        }
+    }
+
+    public void animalReport(int petId) {
+        try {
+            String sql = "SELECT p.*, c.*, v.*, s.* "
+                    + "FROM tb_pets AS p "
+                    + "JOIN tb_customers AS c ON p.for_id = c.id "
+                    + "JOIN tb_vaccines AS v ON p.id = v.for_pet "
+                    + "JOIN tb_service_schedules AS s ON p.id = s.for_pet "
+                    + "WHERE p.id = " + petId;
+
+            InputStream inputStream = getClass().getResourceAsStream("/br/com/pethub/reports/animalReport.jrxml");
+            JasperDesign jd = JRXmlLoader.load(inputStream);
+            JRDesignQuery query = new JRDesignQuery();
+            query.setText(sql);
+            jd.setQuery(query);
+
+            JasperReport jr = JasperCompileManager.compileReport(jd);
+            JasperPrint jp = JasperFillManager.fillReport(jr, null, con);
+
+            JasperViewer.viewReport(jp, false);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
         }
     }
 

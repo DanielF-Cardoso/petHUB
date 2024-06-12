@@ -59,8 +59,10 @@ public class DashboardScreen extends javax.swing.JFrame {
         customerMenu = new javax.swing.JMenu();
         addCustomerMenu = new javax.swing.JMenuItem();
         searchCustomerMenu = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
         addAnimalMenu = new javax.swing.JMenuItem();
         searchAnimalMenu = new javax.swing.JMenuItem();
+        searchAnimalMenu1 = new javax.swing.JMenuItem();
         employeeMenu = new javax.swing.JMenu();
         addEmployeeMenu = new javax.swing.JMenuItem();
         searchEmployeeMenu = new javax.swing.JMenuItem();
@@ -162,7 +164,6 @@ public class DashboardScreen extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
         jMenuBar1.setBorder(null);
 
         customerMenu.setForeground(new java.awt.Color(255, 255, 255));
@@ -189,6 +190,12 @@ public class DashboardScreen extends javax.swing.JFrame {
         });
         customerMenu.add(searchCustomerMenu);
 
+        jMenuBar1.add(customerMenu);
+
+        jMenu1.setForeground(new java.awt.Color(255, 255, 255));
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_pets.png"))); // NOI18N
+        jMenu1.setText("Animais");
+
         addAnimalMenu.setForeground(new java.awt.Color(28, 74, 137));
         addAnimalMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_adicionar.png"))); // NOI18N
         addAnimalMenu.setText("Cadastro de Animal");
@@ -197,7 +204,7 @@ public class DashboardScreen extends javax.swing.JFrame {
                 addAnimalMenuActionPerformed(evt);
             }
         });
-        customerMenu.add(addAnimalMenu);
+        jMenu1.add(addAnimalMenu);
 
         searchAnimalMenu.setForeground(new java.awt.Color(28, 74, 137));
         searchAnimalMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_buscar.png"))); // NOI18N
@@ -207,9 +214,19 @@ public class DashboardScreen extends javax.swing.JFrame {
                 searchAnimalMenuActionPerformed(evt);
             }
         });
-        customerMenu.add(searchAnimalMenu);
+        jMenu1.add(searchAnimalMenu);
 
-        jMenuBar1.add(customerMenu);
+        searchAnimalMenu1.setForeground(new java.awt.Color(28, 74, 137));
+        searchAnimalMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_relatorioprodutos.png"))); // NOI18N
+        searchAnimalMenu1.setText("Ficha Animal");
+        searchAnimalMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchAnimalMenu1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(searchAnimalMenu1);
+
+        jMenuBar1.add(jMenu1);
 
         employeeMenu.setForeground(new java.awt.Color(255, 255, 255));
         employeeMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/Icone_funcionario.png"))); // NOI18N
@@ -677,6 +694,14 @@ public class DashboardScreen extends javax.swing.JFrame {
         
     }//GEN-LAST:event_servicesScheduleActionPerformed
 
+    private void searchAnimalMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAnimalMenu1ActionPerformed
+        // TODO add your handling code here:
+        
+        PetReportScreen petReport = new PetReportScreen();
+        petReport.setVisible(true);
+        
+    }//GEN-LAST:event_searchAnimalMenu1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -740,6 +765,7 @@ public class DashboardScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
@@ -751,6 +777,7 @@ public class DashboardScreen extends javax.swing.JFrame {
     private javax.swing.JMenu reportsMenu;
     public javax.swing.JMenu salesMenu;
     private javax.swing.JMenuItem searchAnimalMenu;
+    private javax.swing.JMenuItem searchAnimalMenu1;
     private javax.swing.JMenuItem searchCustomerMenu;
     public javax.swing.JMenuItem searchEmployeeMenu;
     public javax.swing.JMenuItem searchProductMenu;

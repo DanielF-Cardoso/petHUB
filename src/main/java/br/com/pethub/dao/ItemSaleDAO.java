@@ -45,13 +45,12 @@ public class ItemSaleDAO {
             stmt.execute();
             stmt.close();
 
-
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro: " + erro);
         }
     }
 
-    public List<ItemSale> ListItemSales (int sale_Id) {
+    public List<ItemSale> ListItemSales(int sale_Id) {
         try {
 
             List<ItemSale> listItems = new ArrayList<>();

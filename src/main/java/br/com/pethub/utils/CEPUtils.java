@@ -29,7 +29,7 @@ public class CEPUtils {
                 ufField.setSelectedItem(viaCep.getUf());
             } catch (ViaCEPException ex) {
                 JOptionPane.showMessageDialog(null, "CEP inválido", "Erro", JOptionPane.ERROR_MESSAGE);
-                Toolkit.getDefaultToolkit().beep(); // Reproduz o som de erro do sistema
+                Toolkit.getDefaultToolkit().beep();
             }
     }
 }

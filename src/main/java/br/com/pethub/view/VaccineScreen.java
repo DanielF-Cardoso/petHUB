@@ -90,7 +90,6 @@ public class VaccineScreen extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
         addBtn = new javax.swing.JButton();
@@ -354,12 +353,9 @@ public class VaccineScreen extends javax.swing.JFrame {
                 jTextField9ActionPerformed(evt);
             }
         });
-
-        jButton1.setForeground(new java.awt.Color(28, 74, 137));
-        jButton1.setText("Pesquisar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField9KeyPressed(evt);
             }
         });
 
@@ -386,13 +382,11 @@ public class VaccineScreen extends javax.swing.JFrame {
                 .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 160, Short.MAX_VALUE)
+                .addGap(0, 192, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addGap(155, 155, 155))
+                .addGap(213, 213, 213))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -400,8 +394,7 @@ public class VaccineScreen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -617,30 +610,6 @@ public class VaccineScreen extends javax.swing.JFrame {
 
     }//GEN-LAST:event_formWindowActivated
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-
-        String name = "%" + jTextField9.getText() + "%";
-
-        VaccineDAO dao = new VaccineDAO();
-        List<Vaccine> listVaccines = dao.searchVaccines(name);
-        DefaultTableModel data = (DefaultTableModel) table.getModel();
-        data.setNumRows(0);
-
-        for (Vaccine v : listVaccines) {
-            data.addRow(new Object[]{
-                v.getId(),
-                v.getCustumers().getName(),
-                v.getPets().getPet_name(),
-                v.getVaccine_name(),
-                v.getVaccine_application(),
-                v.getVaccine_expiration(),
-                v.getNote()
-            });
-        }
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
         // TODO add your handling code here:
 
@@ -727,6 +696,30 @@ public class VaccineScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_CustomersFieldActionPerformed
 
+    private void jTextField9KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyPressed
+        // TODO add your handling code here:
+        
+                String name = "%" + jTextField9.getText() + "%";
+
+        VaccineDAO dao = new VaccineDAO();
+        List<Vaccine> listVaccines = dao.searchVaccines(name);
+        DefaultTableModel data = (DefaultTableModel) table.getModel();
+        data.setNumRows(0);
+
+        for (Vaccine v : listVaccines) {
+            data.addRow(new Object[]{
+                v.getId(),
+                v.getCustumers().getName(),
+                v.getPets().getPet_name(),
+                v.getVaccine_name(),
+                v.getVaccine_application(),
+                v.getVaccine_expiration(),
+                v.getNote()
+            });
+        }
+        
+    }//GEN-LAST:event_jTextField9KeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -785,7 +778,6 @@ public class VaccineScreen extends javax.swing.JFrame {
     private javax.swing.JButton editBtn;
     private javax.swing.JFormattedTextField expirationField;
     private javax.swing.JTextField idField;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel24;
