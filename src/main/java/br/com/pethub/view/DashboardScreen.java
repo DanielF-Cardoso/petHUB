@@ -62,7 +62,7 @@ public class DashboardScreen extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         addAnimalMenu = new javax.swing.JMenuItem();
         searchAnimalMenu = new javax.swing.JMenuItem();
-        searchAnimalMenu1 = new javax.swing.JMenuItem();
+        animalReportManu = new javax.swing.JMenuItem();
         employeeMenu = new javax.swing.JMenu();
         addEmployeeMenu = new javax.swing.JMenuItem();
         searchEmployeeMenu = new javax.swing.JMenuItem();
@@ -216,15 +216,15 @@ public class DashboardScreen extends javax.swing.JFrame {
         });
         jMenu1.add(searchAnimalMenu);
 
-        searchAnimalMenu1.setForeground(new java.awt.Color(28, 74, 137));
-        searchAnimalMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_relatorioprodutos.png"))); // NOI18N
-        searchAnimalMenu1.setText("Ficha Animal");
-        searchAnimalMenu1.addActionListener(new java.awt.event.ActionListener() {
+        animalReportManu.setForeground(new java.awt.Color(28, 74, 137));
+        animalReportManu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_relatorioprodutos.png"))); // NOI18N
+        animalReportManu.setText("Ficha Animal");
+        animalReportManu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchAnimalMenu1ActionPerformed(evt);
+                animalReportManuActionPerformed(evt);
             }
         });
-        jMenu1.add(searchAnimalMenu1);
+        jMenu1.add(animalReportManu);
 
         jMenuBar1.add(jMenu1);
 
@@ -694,13 +694,13 @@ public class DashboardScreen extends javax.swing.JFrame {
         
     }//GEN-LAST:event_servicesScheduleActionPerformed
 
-    private void searchAnimalMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchAnimalMenu1ActionPerformed
+    private void animalReportManuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_animalReportManuActionPerformed
         // TODO add your handling code here:
         
         PetReportScreen petReport = new PetReportScreen();
         petReport.setVisible(true);
         
-    }//GEN-LAST:event_searchAnimalMenu1ActionPerformed
+    }//GEN-LAST:event_animalReportManuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -756,6 +756,7 @@ public class DashboardScreen extends javax.swing.JFrame {
     public javax.swing.JMenuItem addProductsMenu;
     private javax.swing.JMenuItem addServices;
     public javax.swing.JMenuItem addSupplierMenu;
+    public javax.swing.JMenuItem animalReportManu;
     private javax.swing.JMenuItem changeUserMenu;
     private javax.swing.JMenu customerMenu;
     private javax.swing.JLabel dateLabel;
@@ -774,10 +775,9 @@ public class DashboardScreen extends javax.swing.JFrame {
     private javax.swing.JMenuItem pdvMenu;
     private javax.swing.JMenuItem productsList;
     public javax.swing.JMenu productsMenu;
-    private javax.swing.JMenu reportsMenu;
+    public javax.swing.JMenu reportsMenu;
     public javax.swing.JMenu salesMenu;
     private javax.swing.JMenuItem searchAnimalMenu;
-    private javax.swing.JMenuItem searchAnimalMenu1;
     private javax.swing.JMenuItem searchCustomerMenu;
     public javax.swing.JMenuItem searchEmployeeMenu;
     public javax.swing.JMenuItem searchProductMenu;

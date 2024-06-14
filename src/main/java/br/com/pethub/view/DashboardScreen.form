@@ -92,7 +92,7 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchAnimalMenuActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="searchAnimalMenu1">
+            <MenuItem class="javax.swing.JMenuItem" name="animalReportManu">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="89" green="4a" red="1c" type="rgb"/>
@@ -103,8 +103,11 @@
                 <Property name="text" type="java.lang.String" value="Ficha Animal"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchAnimalMenu1ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="animalReportManuActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+              </AuxValues>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -439,6 +442,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Relatorios"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+          </AuxValues>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="productsList">
               <Properties>

@@ -230,7 +230,8 @@ public class EmployeesDAO {
                         screen.historySalesMenu.setVisible(false);
                         screen.employeeMenu.setVisible(false);
                         screen.supplierMenu.setVisible(false);
-                        screen.addProductsMenu.setVisible(false);
+                        screen.animalReportManu.setVisible(false);
+                        screen.reportsMenu.setVisible(false);
                         screen.vaccineMenu.setVisible(false);
 
                         screen.setVisible(true);
@@ -243,8 +244,8 @@ public class EmployeesDAO {
                         screen.historySalesMenu.setVisible(false);
                         screen.employeeMenu.setVisible(false);
                         screen.supplierMenu.setVisible(false);
-                        screen.addProductsMenu.setVisible(false);
                         screen.salesMenu.setVisible(false);
+                        screen.reportsMenu.setVisible(false);
 
                         screen.setVisible(true);
                     }
