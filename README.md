@@ -67,17 +67,17 @@ Este projeto foi desenvolvido como parte da atividade avaliativa A3 da disciplin
 
 ### Administrador (Acesso Total ao Sistema)
 - **Usuário:** admin@admin.com
-- **Senha:** admin
+- **Senha:** 123
 
 ### Vendedor
 - **Acessos:** Cadastro de Clientes, Animais, Produtos e Serviços, Agenda de Serviços e Abrir PDV
 - **Usuário:** vendedor@vendedor.com
-- **Senha:** vendedor
+- **Senha:** 123
 
 ### Veterinário
 - **Acessos:** Cadastro de Clientes, Animais, Produtos e Serviços, Agenda de Serviços, Gerar Ficha Animal e Registro de Vacina
 - **Usuário:** veterinario@veterinario.com
-- **Senha:** veterinario
+- **Senha:** 123
 
 ## Instalação
 
