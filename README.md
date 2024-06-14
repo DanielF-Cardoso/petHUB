@@ -24,6 +24,8 @@ Este projeto foi desenvolvido como parte da atividade avaliativa A3 da disciplin
 
 ## Dependências
 
+- [Apache Maven](https://maven.apache.org/download.cgi)
+- [JDK 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
 - [json-20160810](https://repo1.maven.org/maven2/org/json/json/20160810/json-20160810.jar)
 - [mysql-connector](https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.0.31/mysql-connector-j-8.0.31.jar)
 - [jBCrypt](https://repo1.maven.org/maven2/de/svenkubiak/jBCrypt/0.4/jBCrypt-0.4.jar)
@@ -81,7 +83,7 @@ Este projeto foi desenvolvido como parte da atividade avaliativa A3 da disciplin
 
 ## Instalação
 
-Antes de começar, verifique se você possui o Java 17/22 instalado em seu computador. Se não tiver, faça o download e a instalação a partir do site oficial.
+Antes de começar, verifique se você possui o Java 17/22 e o Apache Maven instalado em seu computador. Se não tiver, faça o download e a instalação a partir dos sites oficiais.
 
 1. **Configuração do Banco de Dados**
     - Abra o arquivo `config.properties` dentro da pasta `resources`.
