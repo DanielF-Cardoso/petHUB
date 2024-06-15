@@ -10,6 +10,11 @@ Este projeto foi desenvolvido como parte da atividade avaliativa A3 da disciplin
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white) ![NetBeans IDE](https://img.shields.io/badge/NetBeansIDE-1B6AC6.svg?style=for-the-badge&logo=apache-netbeans-ide&logoColor=white) ![Apache Maven](https://img.shields.io/badge/Apache%20Maven-C71A36?style=for-the-badge&logo=Apache%20Maven&logoColor=white)
 
+## Integrantes
+
+- Bernardo Almeida de Oliveira Bahia
+- Daniel Fernandes Cardoso
+
 ## Funcionalidades
 
 - Controle de clientes
@@ -20,7 +25,7 @@ Este projeto foi desenvolvido como parte da atividade avaliativa A3 da disciplin
 - Controle de fornecedores
 - Controle de Funcionário com nível de acesso
 - Geração de Relatórios e pedido de venda
-- Ficha Animal com todas as vacians registradas
+- Ficha Animal com todas as vacinas registradas
 
 ## Dependências
 

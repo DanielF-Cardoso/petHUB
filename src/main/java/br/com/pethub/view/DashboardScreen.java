@@ -62,7 +62,6 @@ public class DashboardScreen extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         addAnimalMenu = new javax.swing.JMenuItem();
         searchAnimalMenu = new javax.swing.JMenuItem();
-        animalReportManu = new javax.swing.JMenuItem();
         employeeMenu = new javax.swing.JMenu();
         addEmployeeMenu = new javax.swing.JMenuItem();
         searchEmployeeMenu = new javax.swing.JMenuItem();
@@ -80,6 +79,7 @@ public class DashboardScreen extends javax.swing.JFrame {
         vaccineMenu = new javax.swing.JMenu();
         vaccineControllerMenu = new javax.swing.JMenuItem();
         searchVaccineMenu = new javax.swing.JMenuItem();
+        animalReportManu = new javax.swing.JMenuItem();
         salesMenu = new javax.swing.JMenu();
         pdvMenu = new javax.swing.JMenuItem();
         totalSalesDay = new javax.swing.JMenuItem();
@@ -216,16 +216,6 @@ public class DashboardScreen extends javax.swing.JFrame {
         });
         jMenu1.add(searchAnimalMenu);
 
-        animalReportManu.setForeground(new java.awt.Color(28, 74, 137));
-        animalReportManu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_relatorioprodutos.png"))); // NOI18N
-        animalReportManu.setText("Ficha Animal");
-        animalReportManu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                animalReportManuActionPerformed(evt);
-            }
-        });
-        jMenu1.add(animalReportManu);
-
         jMenuBar1.add(jMenu1);
 
         employeeMenu.setForeground(new java.awt.Color(255, 255, 255));
@@ -320,6 +310,7 @@ public class DashboardScreen extends javax.swing.JFrame {
         servicesMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_servicos.png"))); // NOI18N
         servicesMenu.setText("Serviços");
 
+        servicesSchedule.setForeground(new java.awt.Color(28, 74, 137));
         servicesSchedule.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_lista.png"))); // NOI18N
         servicesSchedule.setText("Agenda de Serviços");
         servicesSchedule.addActionListener(new java.awt.event.ActionListener() {
@@ -329,6 +320,7 @@ public class DashboardScreen extends javax.swing.JFrame {
         });
         servicesMenu.add(servicesSchedule);
 
+        addServices.setForeground(new java.awt.Color(28, 74, 137));
         addServices.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_adicionar.png"))); // NOI18N
         addServices.setText("Cadastro de Serviços");
         addServices.addActionListener(new java.awt.event.ActionListener() {
@@ -338,6 +330,7 @@ public class DashboardScreen extends javax.swing.JFrame {
         });
         servicesMenu.add(addServices);
 
+        listServices.setForeground(new java.awt.Color(28, 74, 137));
         listServices.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_buscar.png"))); // NOI18N
         listServices.setText("Consulta de Serviços");
         listServices.addActionListener(new java.awt.event.ActionListener() {
@@ -372,6 +365,16 @@ public class DashboardScreen extends javax.swing.JFrame {
             }
         });
         vaccineMenu.add(searchVaccineMenu);
+
+        animalReportManu.setForeground(new java.awt.Color(28, 74, 137));
+        animalReportManu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/pethub/images/icones/icone_relatorioprodutos.png"))); // NOI18N
+        animalReportManu.setText("Ficha Animal");
+        animalReportManu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                animalReportManuActionPerformed(evt);
+            }
+        });
+        vaccineMenu.add(animalReportManu);
 
         jMenuBar1.add(vaccineMenu);
 
