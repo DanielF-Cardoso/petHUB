@@ -584,10 +584,24 @@ public class PdvScreen extends javax.swing.JFrame {
 
         ProductsDAO dao = new ProductsDAO();
         int stock = dao.returnStock(Integer.parseInt(idField.getText()));
+        qty = Integer.parseInt(qtyField.getText());
 
         if (stock <= 0) {
-            JOptionPane.showMessageDialog(null, "PRODUTO SEM ESTOQUE");
-        } else {
+            JOptionPane.showMessageDialog(null, "O produto informado está sem estoque.");
+        } else if (qty > stock) {
+            JOptionPane.showMessageDialog(null, "Quantidade solicitada maior que o estoque disponível." + "\n" + "Estoque disponível: " + stock);
+        }
+        else {
+
+            cart = (DefaultTableModel) cartTable.getModel();
+
+            for (int i = 0; i < cart.getRowCount(); i++) {
+                if (cart.getValueAt(i, 0).equals(idField.getText())) {
+                    JOptionPane.showMessageDialog(null, "O produto já foi adicionado ao carrinho.");
+                    return;
+                }
+            }
+
             qty = Integer.parseInt(qtyField.getText());
             price = Double.parseDouble(priceField.getText());
 
@@ -618,15 +632,6 @@ public class PdvScreen extends javax.swing.JFrame {
             payment.customer = obj;
             payment.cart = cart;
             payment.setVisible(true);
-
-            nameField.setText(null);
-            cpfField.setText(null);
-            idField.setText(null);
-            productField.setText(null);
-            priceField.setText(null);
-            qtyField.setText(null);
-            totalField.setText(null);
-            cart.setRowCount(0);
 
         } else if (nameField.getText().isEmpty()){
             JOptionPane.showMessageDialog(null, "Não é possível finalizar uma venda sem indicar o cliente.");
