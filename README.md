@@ -46,27 +46,31 @@ Este projeto foi desenvolvido como parte da atividade avaliativa A3 da disciplin
 
 | Login | Dashboard |
 | --- | --- |
-| <img src="https://i.imgur.com/vHZlwML.png" width="410" height="200" /> | <img src="https://i.imgur.com/7DS68zy.png" width="410" height="200" /> |
+| <img src="https://i.imgur.com/vHZlwML.png" width="410" height="200" /> | <img src="https://i.imgur.com/ZoDNkZd.png" width="410" height="200" /> |
 
 | Cadastro Cliente | Cadastro Pet |
 | --- | --- |
-| <img src="https://i.imgur.com/xwclfVX.png" width="410" height="200" /> | <img src="https://i.imgur.com/ak1ComS.png" width="410" height="200" /> |
+| <img src="https://i.imgur.com/g4d3ifI.png" width="410" height="200" /> | <img src="https://i.imgur.com/ztUzGoP.png" width="410" height="200" /> |
 
 | Cadastro Funcionário | Cadastro Fornecedor |
 | --- | --- |
-| <img src="https://i.imgur.com/xwclfVX.png" width="410" height="200" /> | <img src="https://i.imgur.com/idSJ3rU.png" width="410" height="200" /> |
+| <img src="https://i.imgur.com/azLimIr.png" width="410" height="200" /> | <img src="https://i.imgur.com/lVr8fXu.png" width="410" height="200" /> |
 
 | Cadastro Produto | Controle Estoque |
 | --- | --- |
-| <img src="https://i.imgur.com/FY5gZhb.png" width="410" height="200" /> | <img src="https://i.imgur.com/cXW7L3A.png" width="410" height="200" /> |
+| <img src="https://i.imgur.com/d5iZf2i.png" width="410" height="200" /> | <img src="https://i.imgur.com/4PcNczU.png" width="410" height="200" /> |
+
+| Agenda de Serviços| Cadastro de Serviços|
+|----------------------------------------------------------------------|----------------------------------------------------------------------|
+| <img src="https://i.imgur.com/tjYihKK.png" width="410" height="200" /> | <img src="https://i.imgur.com/c8xttFO.png" width="410" height="200" /> |
 
 | Controle Vacinas | Tela Vendas |
 | --- | --- |
-| <img src="https://i.imgur.com/xEFOWUI.png" width="410" height="200" /> | <img src="https://i.imgur.com/U5NTinG.png" width="410" height="200" /> |
+| <img src="https://i.imgur.com/tdSff3N.png" width="410" height="200" /> | <img src="https://i.imgur.com/cRSas9n.png" width="410" height="200" /> |
 
 | Total Vendas | Histórico Vendas |
 | --- | --- |
-| <img src="https://i.imgur.com/l3rJbHa.png" width="410" height="200" /> | <img src="https://i.imgur.com/X2fe6BF.png" width="410" height="200" /> |
+| <img src="https://i.imgur.com/zUTUt8b.png" width="410" height="200" /> | <img src="https://i.imgur.com/9roCAxs.png" width="410" height="200" /> |
 
 </div>
 
