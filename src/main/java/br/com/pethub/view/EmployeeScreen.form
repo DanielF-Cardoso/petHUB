@@ -637,7 +637,7 @@
                   <Color blue="89" green="4a" red="1c" type="rgb"/>
                 </Property>
                 <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                  <Format format="##.###.###-##" subtype="-1" type="5"/>
+                  <Format format="##.###.###-#" subtype="-1" type="5"/>
                 </Property>
               </Properties>
             </Component>
