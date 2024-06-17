@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author danie
+ * @author Daniel Fernandes
  */
 public class PetScreen extends javax.swing.JFrame {
 

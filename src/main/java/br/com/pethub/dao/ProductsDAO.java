@@ -22,14 +22,26 @@ import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.view.JasperViewer;
 
+/**
+ * This class is responsible for managing the data access for the Products in the application.
+ * It provides methods to add, edit, delete, list, and search products in the database.
+ * It also provides methods to search products by code, update stock, return stock, and generate a products report.
+ */
 public class ProductsDAO {
 
     private Connection con;
 
+    /**
+     * The constructor method of the ProductsDAO class.
+     */
     public ProductsDAO() {
         this.con = new ConnectionFactory().getConnection();
     }
 
+    /**
+     * This method is used to add a new product to the database.
+     * @param obj The product to be added.
+     */
     public void addProducts(Products obj) {
 
         try {
@@ -54,6 +66,10 @@ public class ProductsDAO {
 
     }
 
+    /**
+     * This method is used to edit the details of an existing product in the database.
+     * @param obj The product with the updated details.
+     */
     public void editProducts(Products obj) {
 
         try {
@@ -80,6 +96,10 @@ public class ProductsDAO {
 
     }
 
+    /**
+     * This method is used to delete a product from the database.
+     * @param obj The product to be deleted.
+     */
     public void deleteProducts(Products obj) {
 
         try {
@@ -101,6 +121,10 @@ public class ProductsDAO {
 
     }
 
+    /**
+     * This method is used to retrieve a list of all products from the database.
+     * @return A list of all products.
+     */
     public List<Products> listProducts() {
         try {
 
@@ -136,6 +160,11 @@ public class ProductsDAO {
         }
     }
 
+    /**
+     * This method is used to search for products by name.
+     * @param name The name of the product to search for.
+     * @return A list of products that match the provided name.
+     */
     public List<Products> searchProducts(String name) {
         try {
 
@@ -173,6 +202,11 @@ public class ProductsDAO {
         }
     }
 
+    /**
+     * This method is used to search for a product by code.
+     * @param id The code of the product to search for.
+     * @return The product that matches the provided code, or null if no match is found.
+     */
     public Products searchProductsByCode(int id) {
         try {
             String sql = "select p.id, p.product, p.price, p.stock_qty, f.name from tb_products as p "
@@ -204,6 +238,11 @@ public class ProductsDAO {
         return null;
     }
 
+    /**
+     * This method is used to update the stock of a product.
+     * @param id The id of the product to update the stock for.
+     * @param stock_new The new stock quantity.
+     */
     public void updateStock(int id, int stock_new) {
         try {
             String sql = "update tb_products set stock_qty= ? where id= ?";
@@ -219,6 +258,11 @@ public class ProductsDAO {
         }
     }
 
+    /**
+     * This method is used to return the stock of a product.
+     * @param id The id of the product to return the stock for.
+     * @return The stock quantity of the product.
+     */
     public int returnStock(int id) {
         try {
             int stock_qty = 0;
@@ -242,6 +286,9 @@ public class ProductsDAO {
         }
     }
 
+    /**
+     * This method is used to generate a products report.
+     */
     public void productsReport() {
         try {
             String sql = "select p.id, p.product, p.price, p.stock_qty, f.name from tb_products as p "

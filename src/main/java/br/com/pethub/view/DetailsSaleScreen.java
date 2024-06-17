@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author danie
+ * @author Daniel Fernandes
  */
 public class DetailsSaleScreen extends javax.swing.JFrame {
 

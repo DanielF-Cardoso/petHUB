@@ -23,16 +23,29 @@ import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
- * @author daniel
+ * @author Daniel Fernandes
+ */
+
+/**
+ * This class is responsible for managing the data access for the Customers in the application.
+ * It provides methods to add, edit, delete, list, and search customers in the database.
+ * It also provides a method to generate a report of all customers.
  */
 public class CustomersDAO {
 
     private Connection con;
 
+    /**
+     * The constructor method of the CustomersDAO class.
+     */
     public CustomersDAO() {
         this.con = new ConnectionFactory().getConnection();
     }
 
+    /**
+     * This method adds a customer to the database.
+     * @param obj The customer object to be added.
+     */
     public void addCustomer(Customers obj) {
 
         try {
@@ -72,6 +85,10 @@ public class CustomersDAO {
 
     }
 
+    /**
+     * This method edits a customer in the database.
+     * @param obj The customer object to be edited.
+     */
     public void editCustomer(Customers obj) {
 
         try {
@@ -106,6 +123,10 @@ public class CustomersDAO {
 
     }
 
+    /**
+     * This method deletes a customer from the database.
+     * @param obj The customer object to be deleted.
+     */
     public void deleteCustomer(Customers obj) {
         SalesDAO salesDAO = new SalesDAO();
         salesDAO.deleteSalesByCustomerId(obj.getId());
@@ -137,6 +158,10 @@ public class CustomersDAO {
 
     }
 
+    /**
+     * This method lists all customers in the database.
+     * @return A list of all customers in the database.
+     */
     public List<Customers> listCustomers() {
         try {
 
@@ -174,6 +199,11 @@ public class CustomersDAO {
         }
     }
 
+    /**
+     * This method searches for a customer in the database by name.
+     * @param name The name of the customer to be searched.
+     * @return A list of customers with the name searched.
+     */
     public List<Customers> searchCustomer(String name) {
         try {
 
@@ -212,6 +242,11 @@ public class CustomersDAO {
         }
     }
 
+    /**
+     * This method searches for a customer in the database by CPF.
+     * @param cpf The CPF of the customer to be searched.
+     * @return The customer with the CPF searched.
+     */
     public Customers searchCustomerByCPF(String cpf) {
         try {
 
@@ -249,6 +284,11 @@ public class CustomersDAO {
         }
     }
 
+    /**
+     * This method is used to consult a customer by name.
+     * @param name The name of the customer to consult.
+     * @return The customer that matches the provided name, or null if no match is found.
+     */
     public Customers consultCustomers(String name) {
         try {
 
@@ -285,6 +325,9 @@ public class CustomersDAO {
         }
     }
 
+    /**
+     * This method generates a report of all customers in the database.
+     */
     public void clientsReport() {
         try {
             String sql = "select * from tb_customers";

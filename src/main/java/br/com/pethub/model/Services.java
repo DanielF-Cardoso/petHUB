@@ -6,7 +6,13 @@ package br.com.pethub.model;
 
 /**
  *
- * @author danie
+ * @author Daniel Fernandes
+ */
+
+/**
+ * This class represents a Service in the application.
+ * It contains fields that represent different properties of a service, such as id, service_name, service_description, and prices for large, medium, and small sizes.
+ * It also contains getter and setter methods for these fields.
  */
 public class Services {
 

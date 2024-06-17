@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author danie
+ * @author Daniel Fernandes
  */
 public class SupplierScreen extends javax.swing.JFrame {
 

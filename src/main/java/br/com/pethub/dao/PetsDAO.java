@@ -21,14 +21,26 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
+/**
+ * This class is responsible for managing the data access for the Pets in the application.
+ * It provides methods to add, edit, delete, list, and search pets in the database.
+ * It also provides methods to get pets by customer, get pet by name, delete pets by customer id, and generate an animal report.
+ */
 public class PetsDAO {
 
     private Connection con;
 
+    /**
+     * The constructor method of the PetsDAO class.
+     */
     public PetsDAO() {
         this.con = new ConnectionFactory().getConnection();
     }
 
+    /**
+     * This method is used to add a new pet to the database.
+     * @param obj The pet to be added.
+     */
     public void addPets(Pets obj) {
 
         try {
@@ -58,6 +70,10 @@ public class PetsDAO {
 
     }
 
+    /**
+     * This method is used to edit the details of an existing pet in the database.
+     * @param obj The pet with the updated details.
+     */
     public void editPets(Pets obj) {
 
         try {
@@ -87,6 +103,10 @@ public class PetsDAO {
 
     }
 
+    /**
+     * This method is used to delete a pet from the database.
+     * @param obj The pet to be deleted.
+     */
     public void deletePets(Pets obj) {
 
         try {
@@ -114,6 +134,10 @@ public class PetsDAO {
 
     }
 
+    /**
+     * This method is used to retrieve a list of all pets from the database.
+     * @return A list of all pets.
+     */
     public List<Pets> listPets() {
         try {
             List<Pets> listPets = new ArrayList<>();
@@ -151,6 +175,11 @@ public class PetsDAO {
         }
     }
 
+    /**
+     * This method is used to search for pets by name.
+     * @param name The name of the pet to search for.
+     * @return A list of pets that match the provided name.
+     */
     public List<Pets> searchPets(String name) {
         try {
 
@@ -191,6 +220,11 @@ public class PetsDAO {
         }
     }
 
+    /**
+     * This method is used to get pets by customer.
+     * @param customer The customer to get pets for.
+     * @return A list of pets that belong to the provided customer.
+     */
     public List<Pets> getPetsByCustomer(Customers customer) {
         try {
             List<Pets> listPets = new ArrayList<>();
@@ -225,6 +259,11 @@ public class PetsDAO {
         }
     }
 
+    /**
+     * This method is used to get a pet by name.
+     * @param name The name of the pet to get.
+     * @return The pet that matches the provided name, or null if no match is found.
+     */
     public Pets getPetByName(String name) {
         try {
             String sql = "SELECT * FROM tb_pets WHERE pet_name = ?";
@@ -256,6 +295,10 @@ public class PetsDAO {
         return null;
     }
 
+    /**
+     * This method is used to delete pets by customer id.
+     * @param customerId The id of the customer to delete pets for.
+     */
     public void deletePetsByCustomerId(int customerId) {
         try {
             VaccineDAO vaccineDAO = new VaccineDAO();
@@ -273,6 +316,10 @@ public class PetsDAO {
         }
     }
 
+    /**
+     * This method is used to generate an animal report for a pet.
+     * @param petId The id of the pet to generate a report for.
+     */
     public void animalReport(int petId) {
         try {
             String sql = "SELECT p.*, c.*, v.*, s.* "

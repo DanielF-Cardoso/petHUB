@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author danie
+ * @author Daniel Fernandes
  */
 public class HistorySalesScreen extends javax.swing.JFrame {
 

@@ -11,7 +11,7 @@ import javax.swing.border.*;
 
 /**
  *
- * @author danie
+ * @author Daniel Fernandes
  */
 public class LoginScreen extends javax.swing.JFrame {
 

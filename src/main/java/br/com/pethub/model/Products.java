@@ -1,6 +1,11 @@
 
 package br.com.pethub.model;
 
+/**
+ * This class represents a Product in the application.
+ * It contains fields that represent different properties of a product, such as id, product, price, stock_qty, and a reference to a Suppliers object.
+ * It also contains getter and setter methods for these fields.
+ */
 
 public class Products {
     

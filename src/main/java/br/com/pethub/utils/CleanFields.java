@@ -10,10 +10,18 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author danie
+ * @author Daniel Fernandes
+ */
+
+/**
+ * This class provides a utility method to clean the text fields in a given set of containers.
  */
 public class CleanFields {
-    
+    /**
+     * This method cleans all the text fields in the given containers.
+     * It sets the text of each text field to null.
+     * @param containers The containers whose text fields are to be cleaned.
+     */
         public void cleanFields(JPanel... containers) {
         for (JPanel container : containers) {
             Component components[] = container.getComponents();

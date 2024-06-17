@@ -1,5 +1,10 @@
 package br.com.pethub.model;
 
+/**
+ * This class represents a Vaccine in the application.
+ * It contains fields that represent different properties of a vaccine, such as id, vaccine_name, vaccine_application, vaccine_expiration, note, and references to Customers and Pets objects.
+ * It also contains getter and setter methods for these fields.
+ */
 public class Vaccine {
 
     private int id;

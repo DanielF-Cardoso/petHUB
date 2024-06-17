@@ -10,14 +10,25 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 
+/**
+ * This class is responsible for managing the data access for the Suppliers in the application.
+ * It provides methods to add, edit, delete suppliers, list suppliers, search suppliers by name, and consult suppliers.
+ */
 public class SuppliersDAO {
 
     private Connection con;
 
+    /**
+     * The constructor method of the SuppliersDAO class.
+     */
     public SuppliersDAO() {
         this.con = new ConnectionFactory().getConnection();
     }
 
+    /**
+     * This method is used to add a supplier to the database.
+     * @param obj The supplier to be added.
+     */
     public void addSuppliers(Suppliers obj) {
 
         try {
@@ -51,6 +62,10 @@ public class SuppliersDAO {
 
     }
 
+    /**
+     * This method is used to edit a supplier in the database.
+     * @param obj The supplier with the updated details.
+     */
     public void editSuppliers(Suppliers obj) {
 
         try {
@@ -84,6 +99,10 @@ public class SuppliersDAO {
 
     }
 
+    /**
+     * This method is used to delete a supplier from the database.
+     * @param obj The supplier to be deleted.
+     */
     public void deleteSuppliers(Suppliers obj) {
 
         try {
@@ -104,6 +123,10 @@ public class SuppliersDAO {
 
     }
 
+    /**
+     * This method is used to retrieve a list of all suppliers from the database.
+     * @return A list of all suppliers.
+     */
     public List<Suppliers> listSuppliers() {
         try {
 
@@ -140,6 +163,11 @@ public class SuppliersDAO {
         }
     }
 
+    /**
+     * This method is used to search for suppliers by name.
+     * @param name The name of the supplier to search for.
+     * @return A list of suppliers that match the provided name.
+     */
     public List<Suppliers> searchSuppliers(String name) {
         try {
 
@@ -177,6 +205,11 @@ public class SuppliersDAO {
         }
     }
 
+    /**
+     * This method is used to consult a supplier by name.
+     * @param name The name of the supplier to consult.
+     * @return The supplier that matches the provided name, or null if no match is found.
+     */
     public Suppliers consultSuppliers(String name) {
         try {
 

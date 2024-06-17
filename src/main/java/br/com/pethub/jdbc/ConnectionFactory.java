@@ -11,9 +11,13 @@ import java.io.InputStream;
 
 /**
  *
- * @author danie
+ * @author Daniel Fernandes
  */
 
+/**
+ * This class is responsible for creating and managing the database connection.
+ * It reads the database configuration from a properties file and uses it to establish a connection.
+ */
 public class ConnectionFactory {
 
     private String host;
@@ -22,6 +26,10 @@ public class ConnectionFactory {
     private String database;
     private String port;
 
+    /**
+     * The constructor method of the ConnectionFactory class.
+     * It reads the database configuration from a properties file.
+     */
     public ConnectionFactory() {
         try {
             InputStream input = getClass().getClassLoader().getResourceAsStream("config.properties");
@@ -38,6 +46,10 @@ public class ConnectionFactory {
         }
     }
 
+    /**
+     * This method is used to establish a connection to the database.
+     * @return A Connection object for interacting with the database.
+     */
     public Connection getConnection() {
         try {
             String url = "jdbc:mysql://" + host + ":" + port + "/" + database;

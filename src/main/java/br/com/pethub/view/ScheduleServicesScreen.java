@@ -21,7 +21,7 @@ import javax.swing.*;
 
 /**
  *
- * @author danie
+ * @author Daniel Fernandes
  */
 public class ScheduleServicesScreen extends JFrame {
 

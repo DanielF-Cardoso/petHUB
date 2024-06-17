@@ -20,16 +20,28 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author danie
+ * @author Daniel Fernandes
+ */
+
+/**
+ * This class is responsible for managing the data access for the ItemSale in the application.
+ * It provides methods to add items to a sale and list items in a sale.
  */
 public class ItemSaleDAO {
 
     private Connection con;
 
+    /**
+     * The constructor method of the ItemSaleDAO class.
+     */
     public ItemSaleDAO() {
         this.con = new ConnectionFactory().getConnection();
     }
 
+    /**
+     * This method is used to add an item to a sale.
+     * @param obj The ItemSale object to be added.
+     */
     public void addItem(ItemSale obj) {
         try {
 
@@ -50,6 +62,11 @@ public class ItemSaleDAO {
         }
     }
 
+    /**
+     * This method is used to list all items in a sale.
+     * @param sale_Id The ID of the sale.
+     * @return A list of ItemSale objects.
+     */
     public List<ItemSale> ListItemSales(int sale_Id) {
         try {
 
@@ -85,6 +102,10 @@ public class ItemSaleDAO {
         }
     }
 
+    /**
+     * This method is used to delete all items from a sale by customer ID.
+     * @param customerId The ID of the customer.
+     */
     public void deleteItemsSaleByCustomerId(int customerId) {
         try {
             String sql = "delete from tb_itemssales where sale_id in (select id from tb_sales where client_id = ?)";

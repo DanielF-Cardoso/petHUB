@@ -15,14 +15,26 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is responsible for managing the data access for the Employees in the application.
+ * It provides methods to add, edit, delete, list, and search employees in the database.
+ * It also provides a method to authenticate an employee.
+ */
 public class EmployeesDAO {
 
     private Connection con;
 
+    /**
+     * The constructor method of the EmployeesDAO class.
+     */
     public EmployeesDAO() {
         this.con = new ConnectionFactory().getConnection();
     }
 
+    /**
+     * This method is used to add a new employee to the database.
+     * @param obj The employee to be added.
+     */
     public void addEmployees(Employees obj) {
         try {
 
@@ -62,6 +74,10 @@ public class EmployeesDAO {
         }
     }
 
+    /**
+     * This method is used to edit the details of an existing employee in the database.
+     * @param obj The employee with the updated details.
+     */
     public void editEmployees(Employees obj) {
         try {
             String sql = "update tb_employees set name = ?, rg = ?, cpf = ?, email = ?, "
@@ -106,6 +122,10 @@ public class EmployeesDAO {
         }
     }
 
+    /**
+     * This method is used to delete an employee from the database.
+     * @param obj The employee to be deleted.
+     */
     public void deleteEmployees(Employees obj) {
 
         try {
@@ -126,6 +146,10 @@ public class EmployeesDAO {
 
     }
 
+    /**
+     * This method is used to retrieve a list of all employees from the database.
+     * @return A list of all employees.
+     */
     public List<Employees> listEmployees() {
         try {
 
@@ -165,6 +189,11 @@ public class EmployeesDAO {
         }
     }
 
+    /**
+     * This method is used to search for employees by name.
+     * @param name The name of the employee to search for.
+     * @return A list of employees that match the provided name.
+     */
     public List<Employees> searchEmployees(String name) {
         try {
 
@@ -205,6 +234,12 @@ public class EmployeesDAO {
         }
     }
 
+    /**
+     * This method is used to authenticate an employee by email and password.
+     * @param email The email of the employee to authenticate.
+     * @param password The password of the employee to authenticate.
+     * @return true if the employee is authenticated, false otherwise.
+     */
     public boolean toLogin(String email, String password) {
         try {
             String sql = "select * from tb_employees where email = ?";

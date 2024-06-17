@@ -4,20 +4,20 @@
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="New Data Adapter (2)"/>
 	<queryString language="SQL">
-		<![CDATA[SELECT 
-    p.*, 
-    c.*, 
-    v.*, 
+		<![CDATA[SELECT
+    p.*,
+    c.*,
+    v.*,
     s.*
-FROM 
+FROM
     tb_pets AS p
-JOIN 
+JOIN
     tb_customers AS c ON p.for_id = c.id
-JOIN 
+JOIN
     tb_vaccines AS v ON p.id = v.for_pet
-JOIN 
+JOIN
     tb_service_schedules AS s ON p.id = s.for_pet
-WHERE 
+WHERE
     p.id = 25;]]>
 	</queryString>
 	<field name="id" class="java.lang.Integer">

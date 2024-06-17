@@ -14,14 +14,25 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
+/**
+ * This class is responsible for managing the data access for the Vaccines in the application.
+ * It provides methods to add, edit, delete vaccines, list vaccines, search vaccines by name, delete vaccines by customer id, and delete vaccines by pet id.
+ */
 public class VaccineDAO {
 
     private Connection con;
 
+    /**
+     * The constructor method of the VaccineDAO class.
+     */
     public VaccineDAO() {
         this.con = new ConnectionFactory().getConnection();
     }
 
+    /**
+     * This method is used to add a vaccine to the database.
+     * @param obj The vaccine to be added.
+     */
     public void addVaccine(Vaccine obj) {
 
         try {
@@ -49,6 +60,10 @@ public class VaccineDAO {
 
     }
 
+    /**
+     * This method is used to edit a vaccine in the database.
+     * @param obj The vaccine with the updated details.
+     */
     public void editVaccine(Vaccine obj) {
 
         try {
@@ -76,6 +91,10 @@ public class VaccineDAO {
 
     }
 
+    /**
+     * This method is used to delete a vaccine from the database.
+     * @param obj The vaccine to be deleted.
+     */
     public void deleteVaccine(Vaccine obj) {
 
         try {
@@ -97,6 +116,10 @@ public class VaccineDAO {
 
     }
 
+    /**
+     * This method is used to retrieve a list of all vaccines from the database.
+     * @return A list of all vaccines.
+     */
     public List<Vaccine> listVaccines() {
         try {
             List<Vaccine> listVaccines = new ArrayList<>();
@@ -138,6 +161,11 @@ public class VaccineDAO {
         }
     }
 
+    /**
+     * This method is used to search for vaccines by name.
+     * @param name The name of the vaccine to search for.
+     * @return A list of vaccines that match the provided name.
+     */
     public List<Vaccine> searchVaccines(String name) {
         try {
             List<Vaccine> listVaccines = new ArrayList<>();
@@ -181,6 +209,10 @@ public class VaccineDAO {
         }
     }
 
+    /**
+     * This method is used to delete all vaccines associated with a specific customer id.
+     * @param customerId The id of the customer.
+     */
     public void deleteVaccinesByCustomerId(int customerId) {
         try {
             String sql = "delete from tb_vaccines where for_id = ?";
@@ -195,6 +227,10 @@ public class VaccineDAO {
         }
     }
 
+    /**
+     * This method is used to delete all vaccines associated with a specific pet id.
+     * @param petId The id of the pet.
+     */
     public void deleteVaccinesByPetId(int petId) {
         try {
             String sqlVaccines = "DELETE FROM tb_vaccines WHERE for_pet = ?";

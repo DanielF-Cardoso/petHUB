@@ -15,7 +15,7 @@ import java.util.Date;
 
 /**
  *
- * @author daniel
+ * @author Daniel Fernandes
  */
 public class DashboardScreen extends javax.swing.JFrame {
 

@@ -6,7 +6,13 @@ package br.com.pethub.model;
 
 /**
  *
- * @author danie
+ * @author Daniel Fernandes
+ */
+
+/**
+ * This class represents a Sale in the application.
+ * It contains fields that represent different properties of a sale, such as id, customer, sale_date, total_sale, and note.
+ * It also contains getter and setter methods for these fields.
  */
 public class Sales {
     

@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author danie
+ * @author Daniel Fernandes
  */
 public class EmployeeScreen extends javax.swing.JFrame {
 

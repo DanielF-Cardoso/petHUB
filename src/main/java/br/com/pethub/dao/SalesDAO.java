@@ -23,16 +23,28 @@ import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
- * @author danie
+ * @author Daniel Fernandes
+ */
+
+/**
+ * This class is responsible for managing the data access for the Sales in the application.
+ * It provides methods to add sales, return the last sale, list sales by date range, return total sales for a day, delete sales by customer id, and generate a last sale report.
  */
 public class SalesDAO {
 
     private Connection con;
 
+    /**
+     * The constructor method of the SalesDAO class.
+     */
     public SalesDAO() {
         this.con = new ConnectionFactory().getConnection();
     }
 
+    /**
+     * This method is used to add a sale to the database.
+     * @param obj The sale to be added.
+     */
     public void addSales(Sales obj) {
 
         try {
@@ -55,6 +67,10 @@ public class SalesDAO {
 
     }
 
+    /**
+     * This method is used to return the last sale from the database.
+     * @return The id of the last sale.
+     */
     public int returnLastSale() {
         int idSale = 0;
         try {
@@ -72,6 +88,12 @@ public class SalesDAO {
         return idSale;
     }
 
+    /**
+     * This method is used to retrieve a list of all sales within a date range from the database.
+     * @param date_start The start date of the range.
+     * @param date_end The end date of the range.
+     * @return A list of all sales within the date range.
+     */
     public List<Sales> listSales(LocalDate date_start, LocalDate date_end) {
         try {
 
@@ -109,6 +131,11 @@ public class SalesDAO {
         }
     }
 
+    /**
+     * This method is used to return the total sales for a day.
+     * @param sale_date The date to return total sales for.
+     * @return The total sales for the day.
+     */
     public double returnTotalSalesDay(LocalDate sale_date) {
 
         try {
@@ -131,6 +158,10 @@ public class SalesDAO {
 
     }
 
+    /**
+     * This method is used to delete sales by customer id.
+     * @param customerId The id of the customer to delete sales for.
+     */
     public void deleteSalesByCustomerId(int customerId) {
         try {
             ItemSaleDAO itemSaleDAO = new ItemSaleDAO();
@@ -148,6 +179,9 @@ public class SalesDAO {
         }
     }
 
+    /**
+     * This method is used to generate a last sale report.
+     */
     public void lastSaleReport() {
         try {
             String sql = "SELECT s.id, DATE_FORMAT(s.sale_date, '%d/%m/%y') AS date_formatted, c.*, p.*, i.*, s.total_sale, s.note "

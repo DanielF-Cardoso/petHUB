@@ -6,7 +6,13 @@ package br.com.pethub.model;
 
 /**
  *
- * @author danie
+ * @author Daniel Fernandes
+ */
+
+/**
+ * This class represents an ItemSale in the application.
+ * It contains fields that represent different properties of an item sale, such as id, sale, product, qty, and subtotal.
+ * It also contains getter and setter methods for these fields.
  */
 public class ItemSale {
     

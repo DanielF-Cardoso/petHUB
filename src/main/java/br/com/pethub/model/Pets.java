@@ -1,7 +1,11 @@
 
 package br.com.pethub.model;
 
-
+/**
+ * This class represents a Pet in the application.
+ * It contains fields that represent different properties of a pet, such as id, pet_name, gender, birth, pet_weight, species, breed, and a reference to a Customers object.
+ * It also contains getter and setter methods for these fields.
+ */
 public class Pets {
     
     private int id;

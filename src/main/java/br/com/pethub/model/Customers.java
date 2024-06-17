@@ -6,7 +6,13 @@ package br.com.pethub.model;
 
 /**
  *
- * @author danie
+ * @author Daniel Fernandes
+ */
+
+/**
+ * This class represents a Customer in the application.
+ * It contains fields that represent different properties of a customer, such as id, name, rg, cpf, email, etc.
+ * It also contains getter and setter methods for these fields.
  */
 public class Customers {
 

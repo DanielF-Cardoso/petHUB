@@ -4,6 +4,11 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+/**
+ * This class represents a Schedule in the application.
+ * It contains fields that represent different properties of a schedule, such as id, date, time, status, total_Value, and references to Services, Customers, and Pets objects.
+ * It also contains getter and setter methods for these fields.
+ */
 public class Schedule {
 
     private int id;
