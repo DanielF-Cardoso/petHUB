@@ -86,6 +86,10 @@ Este projeto foi desenvolvido como parte da atividade avaliativa A3 da disciplin
 - **Usuário:** veterinario@veterinario.com
 - **Senha:** 123
 
+## Documentação
+
+Toda a documentação em Javadoc pode ser acessada pelo link: [Documentação do petHUB](https://danielf-cardoso.github.io/petHUB/)
+
 ## Instalação
 
 Antes de começar, verifique se você possui o Java 17/22 e o Apache Maven instalado em seu computador. Se não tiver, faça o download e a instalação a partir dos sites oficiais.
