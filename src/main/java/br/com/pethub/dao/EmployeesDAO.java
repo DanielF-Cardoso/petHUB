@@ -38,6 +38,11 @@ public class EmployeesDAO {
     public void addEmployees(Employees obj) {
         try {
 
+            Employees existingEmployee = searchEmployeeByCPF(obj.getCpf());
+            if (existingEmployee != null) {
+                JOptionPane.showMessageDialog(null, "Já existe um funcionário cadastrado com este CPF.");
+                return;
+            }
             String sql = "insert into tb_employees (name, rg, cpf, email, password, responsibility, access_level, landline, phone, cep, address, number,"
                     + "complement, district, city, state)"
                     + "values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -265,7 +270,6 @@ public class EmployeesDAO {
                         screen.historySalesMenu.setVisible(false);
                         screen.employeeMenu.setVisible(false);
                         screen.supplierMenu.setVisible(false);
-                        screen.animalReportManu.setVisible(false);
                         screen.reportsMenu.setVisible(false);
                         screen.vaccineMenu.setVisible(false);
 
@@ -299,6 +303,49 @@ public class EmployeesDAO {
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null, "Erro : " + erro);
             return false;
+        }
+    }
+
+    /**
+     * This method searches for an employee in the database by CPF.
+     * @param cpf The CPF of the employee to be searched.
+     * @return The employee with the CPF searched.
+     */
+    public Employees searchEmployeeByCPF(String cpf) {
+        try {
+
+            String sql = "select * from tb_employees where cpf = ?";
+            PreparedStatement stmt = con.prepareStatement(sql);
+            stmt.setString(1, cpf);
+
+            ResultSet rs = stmt.executeQuery();
+            Employees obj = null;
+
+            if (rs.next()) {
+                obj = new Employees();
+                obj.setId(rs.getInt("id"));
+                obj.setName(rs.getString("name"));
+                obj.setRg(rs.getString("rg"));
+                obj.setCpf(rs.getString("cpf"));
+                obj.setEmail(rs.getString("email"));
+                obj.setResponsibility(rs.getString("responsibility"));
+                obj.setAccess_level(rs.getString("access_level"));
+                obj.setLandline(rs.getString("landline"));
+                obj.setPhone(rs.getString("phone"));
+                obj.setCep(rs.getString("cep"));
+                obj.setAddress(rs.getString("address"));
+                obj.setNumber(rs.getInt("number"));
+                obj.setComplement(rs.getString("complement"));
+                obj.setDistrict(rs.getString("district"));
+                obj.setCity(rs.getString("city"));
+                obj.setState(rs.getString("state"));
+            }
+
+            return obj;
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro: " + e);
+            return null;
         }
     }
 
