@@ -484,12 +484,18 @@ public class ProductsScreen extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Preencha todos os campos antes de editar um produto.");
         } else {
             try {
+                int stockQty = Integer.parseInt(stock_qtyField.getText());
+                if (stockQty < 0) {
+                    JOptionPane.showMessageDialog(null, "A quantidade do produto não pode ser um número negativo.");
+                    return;
+                }
+
                 Products obj = new Products();
 
                 obj.setId(Integer.parseInt(idField.getText()));
                 obj.setProduct(productField.getText());
                 obj.setPrice(Double.parseDouble(priceField.getText()));
-                obj.setStock_qty(Integer.parseInt(stock_qtyField.getText()));
+                obj.setStock_qty(stockQty);
 
                 Suppliers f = new Suppliers();
                 f = (Suppliers) cbSuppliers.getSelectedItem();
@@ -500,7 +506,10 @@ public class ProductsScreen extends javax.swing.JFrame {
                 dao.editProducts(obj);
 
                 new CleanFields().cleanFields(jPanel2, jPanel5);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Não é possível inserir letras no campo de quantidade.");
             } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Um erro aconteceu: " + e);
             }
 
         }
