@@ -72,7 +72,7 @@ public class ProductsScreen extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         cbSuppliers = new javax.swing.JComboBox();
-        priceField = new javax.swing.JTextField();
+        priceField = new javax.swing.JFormattedTextField();
         productField = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -184,11 +184,11 @@ public class ProductsScreen extends javax.swing.JFrame {
         });
 
         priceField.setForeground(new java.awt.Color(28, 74, 137));
-        priceField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                priceFieldActionPerformed(evt);
-            }
-        });
+        try {
+            priceField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -202,8 +202,8 @@ public class ProductsScreen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
+                .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel21)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cbSuppliers, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,7 +212,7 @@ public class ProductsScreen extends javax.swing.JFrame {
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
                     .addComponent(stock_qtyField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -530,10 +530,6 @@ public class ProductsScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_searchFieldKeyPressed
 
-    private void priceFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_priceFieldActionPerformed
-
     private void cbSuppliersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbSuppliersActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbSuppliersActionPerformed
@@ -608,7 +604,7 @@ public class ProductsScreen extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField priceField;
+    private javax.swing.JFormattedTextField priceField;
     private javax.swing.JTextField productField;
     private javax.swing.JTextField searchField;
     private javax.swing.JTextField stock_qtyField;

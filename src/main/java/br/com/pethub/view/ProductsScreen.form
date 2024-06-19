@@ -251,8 +251,8 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="priceField" min="-2" pref="76" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                          <Component id="priceField" min="-2" pref="77" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel21" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="cbSuppliers" min="-2" pref="136" max="-2" attributes="0"/>
@@ -263,7 +263,7 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="stock_qtyField" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -341,15 +341,15 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value=""/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JTextField" name="priceField">
+                <Component class="javax.swing.JFormattedTextField" name="priceField">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="89" green="4a" red="1c" type="rgb"/>
                     </Property>
+                    <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
+                      <Format format="##.##" subtype="-1" type="5"/>
+                    </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="priceFieldActionPerformed"/>
-                  </Events>
                 </Component>
               </SubComponents>
             </Container>

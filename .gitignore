@@ -1,3 +1,3 @@
 .idea/
 target/
-.config.properties
+src/main/resources/config.properties
