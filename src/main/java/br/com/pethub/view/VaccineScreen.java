@@ -526,7 +526,7 @@ public class VaccineScreen extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (vaccine_name.getText().trim().isEmpty()
                 || dateField.getText().trim().isEmpty()
-                || expirationField.getText().trim().isEmpty()
+                || expirationField.getText().trim().replaceAll("[  /  /    ]", "").isEmpty()
                 || CustomersField.getSelectedItem() == null
                 || petField.getSelectedItem() == null) {
 
@@ -553,7 +553,7 @@ public class VaccineScreen extends javax.swing.JFrame {
                 obj.setVaccine_application(dateMysql);
 
                 SimpleDateFormat dateFormatBr2 = new SimpleDateFormat("dd/MM/yyyy");
-                Date vaccineExpiration = dateFormatBr2.parse(dateField.getText());
+                Date vaccineExpiration = dateFormatBr2.parse(expirationField.getText());
                 SimpleDateFormat dateFormatMysql2 = new SimpleDateFormat("yyyy-MM-dd");
                 String dateMysqlExpiration = dateFormatMysql2.format(vaccineExpiration);
                 obj.setVaccine_expiration(dateMysqlExpiration);
