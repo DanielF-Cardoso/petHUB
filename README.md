@@ -2,32 +2,25 @@
   <img src="https://i.imgur.com/JXyyAti.png" alt="petHUB">
 </p>
 
-## Descrição
+## Description
 
-O petHUB é um gerenciador de petshop, pensado para facilitar o gerenciamento de vendas e de vacinas de um petshop.
-
-Este projeto foi desenvolvido como parte da atividade avaliativa A3 da disciplina de Programação de Soluções Computacionais de Análise e Desenvolvimento de Sistemas da UNIFG/BA.
+petHUB is a pet shop manager designed to facilitate sales and vaccine management for a pet shop.
 
 ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white) ![NetBeans IDE](https://img.shields.io/badge/NetBeansIDE-1B6AC6.svg?style=for-the-badge&logo=apache-netbeans-ide&logoColor=white) ![Apache Maven](https://img.shields.io/badge/Apache%20Maven-C71A36?style=for-the-badge&logo=Apache%20Maven&logoColor=white)
 
-## Integrantes
+## Features
 
-- Bernardo Almeida de Oliveira Bahia
-- Daniel Fernandes Cardoso
+- Customer management
+- Animal management
+- Vaccine management
+- Sales management
+- Product management
+- Supplier management
+- Employee management with access levels
+- Generation of reports and sales orders
+- Animal record with all registered vaccines
 
-## Funcionalidades
-
-- Controle de clientes
-- Controle de animais
-- Controle de vacinas
-- Controle de vendas
-- Controle de produtos
-- Controle de fornecedores
-- Controle de Funcionário com nível de acesso
-- Geração de Relatórios e pedido de venda
-- Ficha Animal com todas as vacinas registradas
-
-## Dependências
+## Dependencies
 
 - [Apache Maven](https://maven.apache.org/download.cgi)
 - [JDK 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
@@ -36,11 +29,11 @@ Este projeto foi desenvolvido como parte da atividade avaliativa A3 da disciplin
 - [jBCrypt](https://repo1.maven.org/maven2/de/svenkubiak/jBCrypt/0.4/jBCrypt-0.4.jar)
 - [JasperReports® Library](https://community.jaspersoft.com/download-jaspersoft/community-edition/)
 
-## Pacotes Externos
+## External Packages
 
-- [ViaCEP](https://gitlab.com/parg/ViaCEP) - Biblioteca para consulta de CEPs através da API do ViaCEP (https://viacep.com.br/)
+- [ViaCEP](https://gitlab.com/parg/ViaCEP) - Library for querying Brazilian ZIP codes using the ViaCEP API (https://viacep.com.br/)
 
-## Telas
+## Screenshots
 
 <div align="center">
 
@@ -48,27 +41,27 @@ Este projeto foi desenvolvido como parte da atividade avaliativa A3 da disciplin
 | --- | --- |
 | <img src="https://i.imgur.com/vHZlwML.png" width="410" height="200" /> | <img src="https://i.imgur.com/ZoDNkZd.png" width="410" height="200" /> |
 
-| Cadastro Cliente | Cadastro Pet |
+| Customer Registration | Pet Registration |
 | --- | --- |
 | <img src="https://i.imgur.com/g4d3ifI.png" width="410" height="200" /> | <img src="https://i.imgur.com/ztUzGoP.png" width="410" height="200" /> |
 
-| Cadastro Funcionário | Cadastro Fornecedor |
+| Employee Registration | Supplier Registration |
 | --- | --- |
 | <img src="https://i.imgur.com/azLimIr.png" width="410" height="200" /> | <img src="https://i.imgur.com/lVr8fXu.png" width="410" height="200" /> |
 
-| Cadastro Produto | Controle Estoque |
+| Product Registration | Stock Control |
 | --- | --- |
 | <img src="https://i.imgur.com/d5iZf2i.png" width="410" height="200" /> | <img src="https://i.imgur.com/4PcNczU.png" width="410" height="200" /> |
 
-| Agenda de Serviços| Cadastro de Serviços|
+| Service Schedule | Service Registration |
 |----------------------------------------------------------------------|----------------------------------------------------------------------|
 | <img src="https://i.imgur.com/tjYihKK.png" width="410" height="200" /> | <img src="https://i.imgur.com/c8xttFO.png" width="410" height="200" /> |
 
-| Controle Vacinas | Tela Vendas |
+| Vaccine Control | Sales Screen |
 | --- | --- |
 | <img src="https://i.imgur.com/tdSff3N.png" width="410" height="200" /> | <img src="https://i.imgur.com/cRSas9n.png" width="410" height="200" /> |
 
-| Total Vendas | Histórico Vendas |
+| Total Sales | Sales History |
 | --- | --- |
 | <img src="https://i.imgur.com/zUTUt8b.png" width="410" height="200" /> | <img src="https://i.imgur.com/9roCAxs.png" width="410" height="200" /> |
 
@@ -76,44 +69,44 @@ Este projeto foi desenvolvido como parte da atividade avaliativa A3 da disciplin
 
 ## Logins
 
-### Administrador (Acesso Total ao Sistema)
-- **Usuário:** admin@admin.com
-- **Senha:** 123
+### Administrator (Full Access)
+- **Username:** admin@admin.com
+- **Password:** 123
 
-### Vendedor
-- **Acessos:** Cadastro de Clientes, Animais, Produtos e Serviços, Agenda de Serviços e Abrir PDV
-- **Usuário:** vendedor@vendedor.com
-- **Senha:** 123
+### Salesperson
+- **Access:** Customer, Animal, Product, and Service Registration, Service Schedule, Open POS
+- **Username:** vendedor@vendedor.com
+- **Password:** 123
 
-### Veterinário
-- **Acessos:** Cadastro de Clientes, Animais, Produtos e Serviços, Agenda de Serviços, Gerar Ficha Animal e Registro de Vacina
-- **Usuário:** veterinario@veterinario.com
-- **Senha:** 123
+### Veterinarian
+- **Access:** Customer, Animal, Product, and Service Registration, Service Schedule, Generate Animal Record, Vaccine Registration
+- **Username:** veterinario@veterinario.com
+- **Password:** 123
 
-## Documentação
+## Documentation
 
-Toda a documentação em Javadoc pode ser acessada pelo link: [Documentação do petHUB](https://danielf-cardoso.github.io/petHUB/)
+All Javadoc documentation can be accessed via this link: [petHUB Documentation](https://danielf-cardoso.github.io/petHUB/)
 
-## Instalação
+## Installation
 
-Antes de começar, verifique se você possui o Java 17/22 e o Apache Maven instalado em seu computador. Se não tiver, faça o download e a instalação a partir dos sites oficiais.
+Before you start, ensure you have Java 17/22 and Apache Maven installed on your computer. If not, download and install them from the official websites.
 
-1. **Configuração do Banco de Dados**
-    - Abra o arquivo `config.properties` dentro da pasta `resources`.
-    - Edite o arquivo com as informações do seu banco de dados.
+1. **Database Configuration**
+    - Open the `config.properties` file inside the `resources` folder.
+    - Edit the file with your database information.
 
-2. **Importação do Banco de Dados**
-    - Importe o banco de dados disponível na raiz do projeto (petHUB.sql) para o seu servidor MySQL.
+2. **Database Import**
+    - Import the database available in the project root (`petHUB.sql`) into your MySQL server.
 
-3. **Execução do Projeto**
-    - No diretório raiz do projeto, execute os seguintes comandos do Maven para limpar e empacotar o projeto:
+3. **Running the Project**
+    - In the project's root directory, execute the following Maven commands to clean and package the project:
       ```sh
       mvn clean package
       ```
-    - O comando acima irá gerar um arquivo `petHUB-1.0-SNAPSHOT.jar` na pasta `target`.
+    - The above command will generate a `petHUB-1.0-SNAPSHOT.jar` file in the `target` folder.
 
-4. **Iniciando a Aplicação**
-    - Execute o arquivo `petHUB-1.0-SNAPSHOT.jar` gerado, que já estará com todas as dependências necessárias:
+4. **Starting the Application**
+    - Execute the generated `petHUB-1.0-SNAPSHOT.jar` file, which will include all necessary dependencies:
       ```sh
       java -jar target/petHUB-1.0-SNAPSHOT.jar
       ```
