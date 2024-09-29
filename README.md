@@ -6,7 +6,7 @@
 
 petHUB is a pet shop manager designed to facilitate sales and vaccine management for a pet shop.
 
-![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white) ![NetBeans IDE](https://img.shields.io/badge/NetBeansIDE-1B6AC6.svg?style=for-the-badge&logo=apache-netbeans-ide&logoColor=white) ![Apache Maven](https://img.shields.io/badge/Apache%20Maven-C71A36?style=for-the-badge&logo=Apache%20Maven&logoColor=white)
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white) ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white) ![NetBeans IDE](https://img.shields.io/badge/NetBeansIDE-1B6AC6.svg?style=for-the-badge&logo=apache-netbeans-ide&logoColor=white) ![Apache Maven](https://img.shields.io/badge/Apache%20Maven-C71A36?style=for-the-badge&logo=Apache%20Maven&logoColor=white) ![Flyway Badge](https://img.shields.io/badge/Flyway-CC0200?logo=flyway&logoColor=fff&style=for-the-badge)
 
 ## Features
 
@@ -19,15 +19,6 @@ petHUB is a pet shop manager designed to facilitate sales and vaccine management
 - Employee management with access levels
 - Generation of reports and sales orders
 - Animal record with all registered vaccines
-
-## Dependencies
-
-- [Apache Maven](https://maven.apache.org/download.cgi)
-- [JDK 17](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)
-- [json-20160810](https://repo1.maven.org/maven2/org/json/json/20160810/json-20160810.jar)
-- [mysql-connector](https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/8.0.31/mysql-connector-j-8.0.31.jar)
-- [jBCrypt](https://repo1.maven.org/maven2/de/svenkubiak/jBCrypt/0.4/jBCrypt-0.4.jar)
-- [JasperReports® Library](https://community.jaspersoft.com/download-jaspersoft/community-edition/)
 
 ## External Packages
 
@@ -92,11 +83,11 @@ All Javadoc documentation can be accessed via this link: [petHUB Documentation](
 Before you start, ensure you have Java 17/22 and Apache Maven installed on your computer. If not, download and install them from the official websites.
 
 1. **Database Configuration**
-    - Open the `config.properties` file inside the `resources` folder.
+    - Rename the `config.properties.example` file inside the `resources` folder to `config.properties`.
     - Edit the file with your database information.
 
-2. **Database Import**
-    - Import the database available in the project root (`petHUB.sql`) into your MySQL server.
+2. **Database Migration**
+    - Execute the `FlywayMigration` inside the `br.com.pethub.jdbc` package to migrate the database.
 
 3. **Running the Project**
     - In the project's root directory, execute the following Maven commands to clean and package the project:
