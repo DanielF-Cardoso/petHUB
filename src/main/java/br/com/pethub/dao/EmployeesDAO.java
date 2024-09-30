@@ -12,13 +12,16 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLSyntaxErrorException;
+import java.sql.SQLTimeoutException;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is responsible for managing the data access for the Employees in the application.
- * It provides methods to add, edit, delete, list, and search employees in the database.
- * It also provides a method to authenticate an employee.
+ * This class is responsible for managing the data access for the Employees in
+ * the application. It provides methods to add, edit, delete, list, and search
+ * employees in the database. It also provides a method to authenticate an
+ * employee.
  */
 public class EmployeesDAO {
 
@@ -33,6 +36,7 @@ public class EmployeesDAO {
 
     /**
      * This method is used to add a new employee to the database.
+     *
      * @param obj The employee to be added.
      */
     public void addEmployees(Employees obj) {
@@ -80,7 +84,9 @@ public class EmployeesDAO {
     }
 
     /**
-     * This method is used to edit the details of an existing employee in the database.
+     * This method is used to edit the details of an existing employee in the
+     * database.
+     *
      * @param obj The employee with the updated details.
      */
     public void editEmployees(Employees obj) {
@@ -129,6 +135,7 @@ public class EmployeesDAO {
 
     /**
      * This method is used to delete an employee from the database.
+     *
      * @param obj The employee to be deleted.
      */
     public void deleteEmployees(Employees obj) {
@@ -152,7 +159,9 @@ public class EmployeesDAO {
     }
 
     /**
-     * This method is used to retrieve a list of all employees from the database.
+     * This method is used to retrieve a list of all employees from the
+     * database.
+     *
      * @return A list of all employees.
      */
     public List<Employees> listEmployees() {
@@ -196,6 +205,7 @@ public class EmployeesDAO {
 
     /**
      * This method is used to search for employees by name.
+     *
      * @param name The name of the employee to search for.
      * @return A list of employees that match the provided name.
      */
@@ -241,73 +251,123 @@ public class EmployeesDAO {
 
     /**
      * This method is used to authenticate an employee by email and password.
+     *
      * @param email The email of the employee to authenticate.
      * @param password The password of the employee to authenticate.
      * @return true if the employee is authenticated, false otherwise.
      */
     public boolean toLogin(String email, String password) {
-        try {
-            String sql = "select * from tb_employees where email = ?";
+        String sql = "SELECT * FROM tb_employees WHERE email = ?";
 
-            PreparedStatement stmt = con.prepareStatement(sql);
+        try (PreparedStatement stmt = con.prepareStatement(sql)) {
             stmt.setString(1, email);
-
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
-                if (BCrypt.checkpw(password, rs.getString("password"))) {
-                    if (rs.getString("access_level").equals("Administrador")) {
-                        JOptionPane.showMessageDialog(null, "Bem-vindo ao PetHUB!");
-                        DashboardScreen screen = new DashboardScreen();
-                        screen.userLogin = rs.getString("name");
-                        screen.setVisible(true);
-                    } else if (rs.getString("access_level").equals("Vendedor")) {
-                        JOptionPane.showMessageDialog(null, "Bem-vindo ao PetHUB!");
-                        DashboardScreen screen = new DashboardScreen();
-                        screen.userLogin = rs.getString("name");
+                String storedPassword = rs.getString("password");
+                if (BCrypt.checkpw(password, storedPassword)) {
+                    String accessLevel = rs.getString("access_level");
+                    String userName = rs.getString("name");
 
-                        screen.totalSalesDay.setVisible(false);
-                        screen.historySalesMenu.setVisible(false);
-                        screen.employeeMenu.setVisible(false);
-                        screen.supplierMenu.setVisible(false);
-                        screen.reportsMenu.setVisible(false);
-                        screen.vaccineMenu.setVisible(false);
+                    JOptionPane.showMessageDialog(null,
+                            "Bem-vindo ao PetHUB!",
+                            "PetHUB - Login",
+                            JOptionPane.INFORMATION_MESSAGE);
 
-                        screen.setVisible(true);
-                    } else if (rs.getString("access_level").equals("Veterinário")) {
-                        JOptionPane.showMessageDialog(null, "Bem-vindo ao PetHUB!");
-                        DashboardScreen screen = new DashboardScreen();
-                        screen.userLogin = rs.getString("name");
+                    DashboardScreen screen = new DashboardScreen();
+                    screen.userLogin = userName;
 
-                        screen.totalSalesDay.setVisible(false);
-                        screen.historySalesMenu.setVisible(false);
-                        screen.employeeMenu.setVisible(false);
-                        screen.supplierMenu.setVisible(false);
-                        screen.salesMenu.setVisible(false);
-                        screen.reportsMenu.setVisible(false);
+                    configureAccess(screen, accessLevel);
+                    screen.setVisible(true);
 
-                        screen.setVisible(true);
-                    }
                     rs.close();
-                    stmt.close();
                     return true;
                 } else {
-                    JOptionPane.showMessageDialog(null, "Dados incorretos. Por favor, verifique suas credenciais e tente novamente.");
+                    JOptionPane.showMessageDialog(null,
+                            "Dados incorretos. Por favor, verifique suas credenciais e tente novamente.",
+                            "Erro de Login",
+                            JOptionPane.ERROR_MESSAGE);
                     return false;
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Dados incorretos. Por favor, verifique suas credenciais e tente novamente.");
+                JOptionPane.showMessageDialog(null,
+                        "Dados incorretos. Por favor, verifique suas credenciais e tente novamente.",
+                        "Erro de Login",
+                        JOptionPane.ERROR_MESSAGE);
                 return false;
             }
 
-        } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, "Erro : " + erro);
+        } catch (SQLSyntaxErrorException syntaxError) {
+            JOptionPane.showMessageDialog(null,
+                    "Erro de sintaxe no SQL: " + syntaxError.getMessage(),
+                    "Erro no Banco de Dados",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        } catch (SQLTimeoutException timeoutError) {
+            JOptionPane.showMessageDialog(null,
+                    "Tempo de conexão excedido: " + timeoutError.getMessage(),
+                    "Erro de Conexão",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        } catch (SQLException sqlError) {
+            JOptionPane.showMessageDialog(null,
+                    "Erro ao acessar o banco de dados: " + sqlError.getMessage(),
+                    "Erro no Banco de Dados",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,
+                    "Erro inesperado: " + e.getMessage(),
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE);
             return false;
         }
     }
 
     /**
+     * Configures access permissions based on the user's access level.
+     *
+     * Depending on the user's role, certain elements of the `DashboardScreen`
+     * are made visible or hidden to restrict or grant access to specific
+     * functionalities.
+     *
+     * @param screen The dashboard screen object where access permissions will
+     * be configured.
+     * @param accessLevel The access level of the user, which can be
+     * "Administrador", "Vendedor", or "Veterinário".
+     */
+    
+    private void configureAccess(DashboardScreen screen, String accessLevel) {
+        switch (accessLevel) {
+            case "Administrador" -> {
+            }
+            case "Vendedor" -> {
+                screen.totalSalesDay.setVisible(false);
+                screen.historySalesMenu.setVisible(false);
+                screen.employeeMenu.setVisible(false);
+                screen.supplierMenu.setVisible(false);
+                screen.reportsMenu.setVisible(false);
+                screen.vaccineMenu.setVisible(false);
+            }
+            case "Veterinário" -> {
+                screen.totalSalesDay.setVisible(false);
+                screen.historySalesMenu.setVisible(false);
+                screen.employeeMenu.setVisible(false);
+                screen.supplierMenu.setVisible(false);
+                screen.salesMenu.setVisible(false);
+                screen.reportsMenu.setVisible(false);
+            }
+            default ->
+                JOptionPane.showMessageDialog(null,
+                        "Nível de acesso desconhecido.",
+                        "Erro de Acesso",
+                        JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    /**
      * This method searches for an employee in the database by CPF.
+     *
      * @param cpf The CPF of the employee to be searched.
      * @return The employee with the CPF searched.
      */

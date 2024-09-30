@@ -31,6 +31,13 @@
             <artifactId>flyway-mysql</artifactId>
             <version>10.18.2</version>
         </dependency>
+        
+        <dependency>
+            <groupId>com.formdev</groupId>
+            <artifactId>flatlaf</artifactId>
+            <version>3.5.1</version>
+            <type>jar</type>
+        </dependency>
 
         <dependency>
             <groupId>org.json</groupId>
@@ -116,6 +123,11 @@
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
             <version>1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>RELEASE230</version>
         </dependency>
     </dependencies>
     <build>
