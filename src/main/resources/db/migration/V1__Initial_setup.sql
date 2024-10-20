@@ -132,6 +132,18 @@ CREATE TABLE IF NOT EXISTS `tb_employees` (
     PRIMARY KEY (`id`)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- Creation of the `tb_vaccines` table
+CREATE TABLE IF NOT EXISTS `tb_vaccines` (
+    `id` INT(11) NOT NULL AUTO_INCREMENT,
+    `vaccine_name` VARCHAR(50) DEFAULT NULL,
+    `vaccine_application` DATE DEFAULT NULL,
+    `vaccine_expiration` DATE DEFAULT NULL,
+    `note` TEXT DEFAULT NULL,
+    `for_id` INT(11) DEFAULT NULL,
+    `for_pet` INT(11) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 -- Insertion of data into the `tb_employees` table
 INSERT INTO `tb_employees` (`id`, `name`, `rg`, `cpf`, `email`, `password`, `responsibility`, `access_level`, `landline`, `phone`, `cep`, `address`, `number`, `complement`, `district`, `city`, `state`) VALUES
 (1, 'Administrador', '12.345.678-90', '123.456.789-00', 'admin@admin.com', '$2a$10$alRUaw4fcUqb5eVHEoI2BuzojOpW2EA1trOd0cHznsAWZum1o6Ehu', 'Admin', 'Administrador', '(  )     -    ', '(12) 31231 - 2312', '00000-000', 'Sem Endereço', 0, '', 'Sem Bairro', 'Sem Cidade', 'BA'),
