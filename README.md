@@ -30,7 +30,7 @@ petHUB is a pet shop manager designed to facilitate sales and vaccine management
 
 | Login | Dashboard |
 | --- | --- |
-| <img src="https://i.imgur.com/vHZlwML.png" width="410" height="200" /> | <img src="https://i.imgur.com/ZoDNkZd.png" width="410" height="200" /> |
+| <img src="https://i.imgur.com/7jgRrmE.png" width="410" height="200" /> | <img src="https://i.imgur.com/ZoDNkZd.png" width="410" height="200" /> |
 
 | Customer Registration | Pet Registration |
 | --- | --- |
